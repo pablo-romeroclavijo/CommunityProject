@@ -1,0 +1,179 @@
+h1 {
+    color: #36454F;
+    font-size: 50 px;
+    text-align: center;
+}
+
+body {
+  background: linear-gradient(45deg, #5fb3ff 0%, rgb(83, 166, 196) 35%, #a1d3ff 100%);
+  /* font-family: ;*/
+}
+
+.flexbox-item {
+	width: 50%;
+  height: 100px;
+	margin: 100px;
+  border-radius: 8px;
+	border: 3px solid #bbdfff;
+	background-color: transparent;
+}
+
+.welcomeHeader {
+align-self: center;
+}
+
+.subheader{
+  align-self: center;
+}
+
+.flexbox-image-login{
+    height: 500px;
+    width: 500px
+}
+
+.flexbox-login-array{
+    width: 500px;
+    height: 500px;
+
+}
+
+.flexbox-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    row-gap: 10px;
+    align-content: center;
+}
+
+.login-array{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5rem    
+}
+
+
+
+.mailInput{
+    /* border-radius: 8px;
+    width: 90%;
+    height: 40px;
+    font-size: 1pc;
+     */ 
+  font-weight: bold; /* Make the font bold */
+  font-size: 1.2rem; /* Set the font size */
+  padding: 20px; /* Add padding for spacing */
+  border: none; /* Remove the border */
+  background-color: transparent ; /* Set the background color */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center;
+  width: 90%;
+  border-bottom: 1px solid white;
+  align-self: center;
+
+  
+}
+
+.hidden{
+  color: transparent
+}
+
+.loginButton{
+    border-radius: 8px;
+    height: 40px;
+    width: 90%;
+    background-color: #437fb7;;
+    color: whitesmoke;
+    align-self: center;
+}
+
+.passwordInput{
+  font-weight: bold; /* Make the font bold */
+  font-size: 1.2rem; /* Set the font size */
+  padding: 10px; /* Add padding for spacing */
+  border: none; /* Remove the border */
+  background-color: transparent ; /* Set the background color#d7ecff; */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center;
+  width: 90%;
+  border-bottom: 1px solid white;
+  align-self: center;
+}
+
+.showPassword{
+    height: 20px;
+    width: 20px;
+    position:relative;
+    top: 5px;
+    
+}
+
+  .circle {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background-color: transparent;
+    text-align: center;
+    color: white;
+    transform: scale(1);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .circle :hover{
+    transform: scale(1.2);
+  }
+
+.ikon{
+  color: whitesmoke; 
+  cursor: pointer
+}
+
+#ikon a:hover {
+    color: black;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.welcomeHeader{
+  font-size: 2pc;
+  font-weight: bold;
+}
+
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #5fb3ff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #525252;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}

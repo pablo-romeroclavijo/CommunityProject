@@ -1,3 +1,7 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+
+
 h1 {
     color: #36454F;
     font-size: 50 px;
@@ -7,6 +11,10 @@ h1 {
 body {
   background: linear-gradient(45deg, #5fb3ff 0%, rgb(83, 166, 196) 35%, #a1d3ff 100%);
   /* font-family: ;*/
+}
+
+footer{
+  text-align: center;
 }
 
 
@@ -23,10 +31,11 @@ body {
   border-radius: 8px;
 	border: 3px solid #bbdfff;
 	background-color: transparent;
+  padding-bottom: 5px;
 }
 
 .welcomeHeader {
-align-self: center;
+color: white;
 }
 
 .subheader{
@@ -41,7 +50,36 @@ align-self: center;
 .flexbox-login-array{
     width: 500px;
     height: 400px;
+    padding-bottom: 5px;
+    border: none;
 
+}
+
+.input-icons i {
+  position: absolute;
+}
+
+.input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 10px;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+h2 {
+  color: white;
 }
 
 .flexbox-container{
@@ -50,32 +88,44 @@ align-self: center;
     justify-content: space-around;
     align-items: center;
     row-gap: 10px;
-}
+    align-content: center;
+  }
 
 .login-array{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0.5rem    
+    padding: 0.5rem;  
 }
 
 
 
+label {
+  display: flex;
+  flex-direction: row;
+  text-align: right;
+  width: 100px;
+  line-height: 1px;
+  margin-bottom: 1px;
+}
+
+input {
+  height: 10px;
+  flex: 0 0 90px;
+}
 .mailInput{
-    /* border-radius: 8px;
-    width: 90%;
-    height: 40px;
-    font-size: 1pc;
-     */ font-weight: bold; /* Make the font bold */
-  font-size: 1.2rem; /* Set the font size */
+  font-weight: bold; /* Make the font bold */
+  font-size: 1.3rem; /* Set the font size */
   padding: 10px; /* Add padding for spacing */
   border: none; /* Remove the border */
   background-color: transparent ; /* Set the background color */
-  border-radius: 10px; /* Rounded corners */
-  text-align: center;
-  width: 90%;
+  width: 100%;
   border-bottom: 1px solid white;
+}
+
+#emailInput {
+  padding-bottom: 10px;
 }
 
 .hidden{
@@ -87,7 +137,9 @@ align-self: center;
     height: 40px;
     width: 90%;
     background-color: #437fb7;;
-    color: whitesmoke
+    color: whitesmoke;
+    align-self: center;
+    padding-top: 10px;
 }
 
 .passwordInput{
@@ -98,7 +150,7 @@ align-self: center;
   background-color: transparent ; /* Set the background color#d7ecff; */
   border-radius: 10px; /* Rounded corners */
   text-align: center;
-  width: 90%;
+  width: 100%;
   border-bottom: 1px solid white;
 }
 
@@ -107,6 +159,7 @@ align-self: center;
     width: 20px;
     position:relative;
     top: 5px;
+    
 }
 
   .circle {
