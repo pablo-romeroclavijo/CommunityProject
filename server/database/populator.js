@@ -1,35 +1,23 @@
 const fs = require('fs');
 require("dotenv").config();
-
 const { parse } = require("csv-parse")
 
-const db = require("./connect");
-const sql = fs.readFileSync('./database/db.sql').toString();
 
-
-db.query(sql)
-    .then(data => {
-        db.end();
-        console.log("Set-up complete.");
-    })
-    .catch(error => console.log(error));
-
-const users = readUsers()
-const categories = readCategories()  
-const products = readProducts()
-
-
-    
-
+let users = []
+let categories = []
+let products = []
+  
 //Read users
-function readUsers(){
+function loadUsers(){
     const query = 'INSERT INTO users (user_id, username, identity_verified, admin, family_unit, Postcode, Email, Password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
-    let users = []
-    fs.createReadStream("./server/database/resources/users.csv")
+
+    fs.createReadStream("./resources/users.csv")
     .pipe(parse({ delimiter: ",", from_line: 2 }))
     .on("data", function (row) {
+        db.query(query, row);
         users.push(row)})
     .on("end", function () {
+        // Here log the result array
         console.log("parsed csv data:");
         console.log(users)})
 }
@@ -62,3 +50,5 @@ function loadProducts(){
         console.log("parsed product data:");
         console.log(products)})
 }
+
+module.expors = { loadCategories, loadProducts, loadUsers }

@@ -1,0 +1,10 @@
+category_id,category_name,Description
+1,Dairy (Refrigerated),Dairy products that require refrigeration
+9,Dairy (long-life),Long-life dairy products
+2,Meat,Any refrigerated meat
+3,Fruit/Vegetables (fresh),Un-refrigerated vegetable or fruit
+4,Fruit/Vegetables (frozen),Frozen Vegetables or fruit
+5,Hygiene,"Sanitary products, personal hygiene, toilet paper"
+6,Household,"Cleaning supplies, batteries, etc."
+7,School supplies,"Pencils, notebooks, etc."
+8,Cupboard,"I.e.: pasta, rice, tin cans, etc."

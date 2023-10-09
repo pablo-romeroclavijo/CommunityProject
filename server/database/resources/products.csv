@@ -1,0 +1,23 @@
+Product_id,product_name,category_id,max_order,waiting_list,Unit_Quantity
+1,Chicken,2,2,0,300 grams
+2,Beef,2,2,2,300 grams
+3,Broccoli (frozen),4,1,0,200 grams
+4,Broccoli (fresh),3,1,0,200 grams
+5,Tomatoes,3,2,1,200 grams
+6,Toothpaste,5,1,10,Tube
+7,Sanitary pads,5,15,0,Pad
+8,Notebook,7,2,10,Notebook
+9,Batteries AAA,6,4,0,Battery
+10,Batteries AA,6,4,0,Battery
+11,Bleach,5,1,0,Bottle
+12,Pencils,7,2,0,Pencil
+13,Pens,7,2,1,Pen
+14,Pasta,8,2,0,1 kg
+15,Rice,8,2,0,1 kg
+16,Lentil Can,8,3,12,Unit
+17,Lentil Bag,8,1,0,1 kg
+18,Milk (refrigerated),1,1,1,Litre
+19,Milk (long-life),9,5,15,Litre
+20,Yogurts,1,5,2,Unit
+21,Cheese,1,2,0,100 grams
+22,Toilet Paper,5,5,1,Roll

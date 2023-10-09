@@ -3,8 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const logRoutes = require('./middleware/logger');
 
-// Routers
 
+// Routers
+const userRouter = require('./routes/usersRoutes');
+const donationRouter = require('./routes/donationsRoutes')
 
 // Middleware
 const api = express();
@@ -18,4 +20,5 @@ api.get("/", (req, res) => {
     res.send('welcome to food waste api')
     })
 
-
+api.use("/user", userRouter)
+api.use("/donation", donationRouter)
