@@ -22,3 +22,6 @@ api.get("/", (req, res) => {
 
 api.use("/user", userRouter)
 api.use("/donation", donationRouter)
+
+
+module.exports = api 

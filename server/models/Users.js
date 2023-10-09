@@ -1,9 +1,10 @@
+
 const db = require('../database/connect');
 
 
 class User {
 
-    constructor({user_id, username, identity_verified, password, admin, postcode, email, family_unit }) {
+    constructor({user_id, username, identity_verified, password, admin, postcode, email, family_unit}) {
         this.id = user_id;
         this.username = username;
         this.password = password;
@@ -31,24 +32,23 @@ class User {
     }
 
     static async getOneByToken(token) {
-        const responseToken = await db.query("SELECT user_id FROM user_account WHERE token = $1", [token]);
-        if (response.rows.length != 1) {
+        const responseToken = await db.query("SELECT user_id FROM token WHERE token = $1", [token]);
+        if (responseToken.rows.length != 1) {
             throw new Error("Unable to locate user.");
         }
 
-        const responseUser = await this.getOneById(responseToken.rows[0].user_id)
-        return new User(responseUser.rows[0]);
+        return await User.getOneById(responseToken.rows[0].user_id)
     }
 
     static async create(data) {
-        const {user_id, username, identity_verified, password, admin, postcode, email, family_unit} = data;
-        const response = await db.query("INSERT INTO user_account (user_id, username, identity_verified, admin, postcode, email, family_unit, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING user_id;",
-            [user_id, username, identity_verified, admin, postcode, email, family_unit, password]);
+        const {username, password, admin, postcode, email} = data;
+        const response = await db.query("INSERT INTO user_account (username, is_admin, postcode, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING user_id;",
+            [username, admin, postcode, email, password]);
         
         const newId = response.rows[0].user_id;
         const newUser = await User.getOneById(newId);
-        return newUser;
+        return newUser; 
     }
 }
 
-module.exports = User;
+module.exports = User; 
