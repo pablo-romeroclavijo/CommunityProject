@@ -10,12 +10,12 @@ async function register (req, res) {
         // Generate a salt with a specific cost
         const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
 
-        // Hash the password
+        // Hash the password/ 
+        console.log('a', data["password"], salt, typeof(data['password'])) 
         data["password"] = await bcrypt.hash(data["password"], salt);
-
         const result = await User.create(data);
 
-        const token = await Token.create(data.user_id);
+        const token = await Token.create(result.id);
         res.status(200).json({ authenticated: true, token: token.token })
 
     } catch (err) {
@@ -23,12 +23,13 @@ async function register (req, res) {
     }
 };
 
-async function login (req, res) {
+async function login (req, res) { 
     const data = req.body;
     try {
         const user = await User.getOneByUsername(data.username);
         console.log("User", user)
-        const authenticated = await bcrypt.compare(data.password, user["password"]);
+        console.log(data.password, user.password)
+        const authenticated = await bcrypt.compare(data.password, user.password);
         console.log("Authentificated", authenticated)
         if (!authenticated) {
             throw new Error("Incorrect credentials.");
@@ -42,7 +43,7 @@ async function login (req, res) {
     }
 }
 
-async function profile (res, req){
+async function profile (req, res){
     const token = req.headers["authorization"];
     try {
         const user = await User.getOneByToken(token);
@@ -54,7 +55,7 @@ async function profile (res, req){
         res.status(403).json({"error": err.message})
     }
 }
-
-module.exports = {
+ 
+module.exports = { 
     register, login, profile
 }                           

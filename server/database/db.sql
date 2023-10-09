@@ -69,7 +69,7 @@ ALTER TABLE
 
 CREATE TABLE products(
     product_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    product_name VARCHAR(20) NOT NULL,
+    product_name VARCHAR(20) NOT NULL UNIQUE,
     category_id INTEGER NOT NULL,
     max_order INTEGER NOT NULL DEFAULT '1',
     waiting_list INTEGER NOT NULL,
@@ -83,7 +83,7 @@ ALTER TABLE
 
 CREATE TABLE events(
     event_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    code CHAR(6) NOT NULL,
+    code CHAR(6) NOT NULL UNIQUE,
     type CHAR(1) NOT NULL,
     QR_code_URL VARCHAR(255) NULL,
     slot_date DATE NOT NULL,
@@ -95,7 +95,7 @@ ALTER TABLE
 
 CREATE TABLE user_account(
     user_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    username VARCHAR(25) NOT NULL,
+    username VARCHAR(25) NOT NULL UNIQUE,
     identity_verified BOOLEAN NOT NULL DEFAULT '0',
     is_admin BOOLEAN NOT NULL DEFAULT '0',
     family_unit INTEGER NOT NULL DEFAULT '1',
