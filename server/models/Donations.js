@@ -1,9 +1,9 @@
-const db = require('../database/connect');
-const Events  = require('./Events')
-const ItemDonated = require('./ItemsDonated')
-
+const db = require("../database/connect");
+const Events = require("./Events");
+const ItemDonated = require("./ItemsDonated");
 
 class Donation {
+
 
     constructor({donation_id, user_id, received, donation_date, status, drop_id}) {
         this.id = donation_id;
@@ -88,8 +88,7 @@ class Donation {
         return {donation, responseItems}
 
     }
+
 }
 
-
-module.exports = Donation
-
+module.exports = Donation;

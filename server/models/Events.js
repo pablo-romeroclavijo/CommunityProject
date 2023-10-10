@@ -1,6 +1,7 @@
-const db = require('../database/connect');
+const db = require("../database/connect");
 
 class Events {
+
 
     constructor({event_id, code, type, QR_code, slot_date, slot_time}) {
         this.id = event_id;
@@ -43,6 +44,7 @@ class Events {
             }
             return result;
         }
+
 }
 
-module.exports = Events
+module.exports = Events;
