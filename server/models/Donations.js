@@ -22,9 +22,10 @@ class Donation {
         return new Donation(response.rows[0]);
     }
 
-    static async create(data){
-        const {user_id, items, slot_time, slot_date, type} = data 
-        const event = await Events.create(type, user_id, slot_time, slot_date)
+    static async create(data, user_id){
+        const {items, slot_time, slot_date, type} = data 
+        console.log(slot_time)
+        const event = await Events.create(type, slot_time, slot_date)
         const date = new Date()
 
         const currentDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 

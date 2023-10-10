@@ -4,6 +4,7 @@ class Events {
 
     constructor({event_id, code, type, QR_code, slot_date, slot_time}) {
         this.id = event_id;
+        this.type = type
         this.code = code;
         this.QR = QR_code;
         this.slot_date = slot_date;
@@ -19,9 +20,9 @@ class Events {
     }
 
     static async create(type, slot_time, slot_date ){
-        const code = 'D-' + Events.makeid(4)
+        const code = type + '-' + Events.makeid(4)
         const QR_code = '<url>'
-
+        console.log('aa', slot_time) 
         const response  = await db.query('INSERT INTO events (type, slot_date, slot_time, QR_code_URL, code) VALUES ($1, $2, $3, $4, $5) RETURNING event_id', [type, slot_date, slot_time, QR_code, code])
         const event_id = response.rows[0].event_id
 
