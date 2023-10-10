@@ -5,7 +5,7 @@ h1 {
 }
 
 body {
-  background: linear-gradient(109.6deg, rgb(223, 234, 247) 11.2%, rgb(244, 248, 252) 91.1%);
+  background: rgb(223, 234, 247);
   min-height: 100%;
 }
 
@@ -46,7 +46,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background: linear-gradient(45deg, #2e74b5 0%, rgb(41, 114, 138) 35%, #40b4b4 100%);
+    background: linear-gradient(45deg, #98c385 0%, rgb(8, 103, 3) 35%, #90e7e7 100%);
     color: white;
     width: 100%;
     border-radius: 20px;
