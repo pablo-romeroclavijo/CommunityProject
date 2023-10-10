@@ -7,8 +7,11 @@ const logRoutes = require('./middleware/logger');
 // Routers
 const userRouter = require('./routes/usersRoutes');
 const donationRouter = require('./routes/donationsRoutes')
+<<<<<<< HEAD
 const stockRouter = require('./routes/stockRoutes')
 const requestRouter = require('./routes/requestsRoutes')
+=======
+>>>>>>> e7bf8e8f20dbd6a74c95d1fe51d41d05f60eafd2
 
 // Middleware
 const api = express();
@@ -24,8 +27,14 @@ api.get("/", (req, res) => {
 
 api.use("/user", userRouter)
 api.use("/donation", donationRouter)
+<<<<<<< HEAD
 api.use("/stock", stockRouter)
 api.use('/request', requestRouter)
 
 
 module.exports = api  
+=======
+
+
+module.exports = api 
+>>>>>>> e7bf8e8f20dbd6a74c95d1fe51d41d05f60eafd2
