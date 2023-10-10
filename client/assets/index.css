@@ -5,8 +5,8 @@ h1 {
 }
 
 body {
-  background: linear-gradient(45deg, #5fb3ff 0%, rgb(83, 166, 196) 35%, #a1d3ff 100%);
-  /* font-family: ;*/
+  background: linear-gradient(109.6deg, rgb(223, 234, 247) 11.2%, rgb(244, 248, 252) 91.1%);
+  min-height: 100%;
 }
 
 
@@ -20,18 +20,9 @@ body {
 	width: 50%;
   height: 100px;
 	margin: 100px;
-  border-radius: 8px;
-	border: 3px solid #bbdfff;
 	background-color: transparent;
 }
 
-.welcomeHeader {
-align-self: center;
-}
-
-.subheader{
-  align-self: center;
-}
 
 .flexbox-image-login{
     height: 600px;
@@ -40,8 +31,7 @@ align-self: center;
 
 .flexbox-login-array{
     width: 500px;
-    height: 400px;
-
+    height: 100%;
 }
 
 .flexbox-container{
@@ -55,39 +45,46 @@ align-self: center;
 .login-array{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0.5rem    
+    padding: 1rem;
+    background: linear-gradient(45deg, #2e74b5 0%, rgb(41, 114, 138) 35%, #40b4b4 100%);
+    color: white;
+    width: 100%;
+    border-radius: 20px;
 }
 
 
 
 .mailInput{
-    /* border-radius: 8px;
-    width: 90%;
-    height: 40px;
-    font-size: 1pc;
-     */ font-weight: bold; /* Make the font bold */
+
+  font-weight: bold; /* Make the font bold */
   font-size: 1.2rem; /* Set the font size */
   padding: 10px; /* Add padding for spacing */
   border: none; /* Remove the border */
   background-color: transparent ; /* Set the background color */
-  border-radius: 10px; /* Rounded corners */
   text-align: center;
-  width: 90%;
+  width: 100%;
   border-bottom: 1px solid white;
+  margin-bottom: 20px;
+  color: white;
 }
 
 .hidden{
   color: transparent
 }
 
+
+::placeholder {
+  color: white;
+}
 .loginButton{
     border-radius: 8px;
+    border-color: white;
     height: 40px;
     width: 90%;
-    background-color: #437fb7;;
-    color: whitesmoke
+    background-color: #ffffff;;
+    color: rgb(6, 87, 154);
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .passwordInput{
@@ -96,10 +93,11 @@ align-self: center;
   padding: 10px; /* Add padding for spacing */
   border: none; /* Remove the border */
   background-color: transparent ; /* Set the background color#d7ecff; */
-  border-radius: 10px; /* Rounded corners */
   text-align: center;
-  width: 90%;
+  width: 100%;
   border-bottom: 1px solid white;
+  margin-bottom: 20px;
+  color: white;
 }
 
 .showPassword{
@@ -107,6 +105,7 @@ align-self: center;
     width: 20px;
     position:relative;
     top: 5px;
+    margin-bottom: 20px;
 }
 
   .circle {
@@ -140,6 +139,8 @@ align-self: center;
 .welcomeHeader{
   font-size: 2pc;
   font-weight: bold;
+  padding-bottom: 20px;
+  
 }
 
 
@@ -243,6 +244,11 @@ align-self: center;
   height: 25px; 
   width: 25px; 
   cursor: pointer
+}
+
+.whiteLink{
+  color: white;
+  font-weight: bold;
 }
 
 .search-container {

@@ -12,7 +12,7 @@
     <script defer src = "./assets/index.js"></script>
 
 </head>
-<body>
+<body height:100%>
     <h1>Carmour: A CommUnity</h1>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -27,20 +27,19 @@
         <div class = "flexbox-item flexbox-image-login"></div>
         <div class = "flexbox-item flexbox-login-array">
             <div class = "login-array">
-                <div class = "welcomeHeader">Welcome back!</div>
-                <div class = "hidden">hi</div>
-                
-                    <label id ="emailInput" for="email_input"></label>
-                    
+                <div class = "welcomeHeader">Login</div>
 
+                    <label id ="emailInput" for="email_input"></label>
                     <input class = "mailInput" type="text" id="email" name="email" placeholder = "Email"> 
                      
-                <div class = "hidden">hi</div>
                     <label id ="passInput" for="password_input"></label>
-                    <input class = "passwordInput" type="password" id="password" name="password" placeholder = "Password" style = "border-radius: 8px">
-                    <input class = "showPassword" type = "checkbox" onclick = "revealPassword()" > Show Password
-                <button class = "loginButton">Login</button>
-                <div class = "subheader">Login above or <a href="register.html">create an account</a></div>
+                    <input class = "passwordInput" type="password" id="password" name="password" placeholder = "Password">
+                    <label>
+                        <input class="showPassword" type="checkbox" onclick="revealPassword()">
+                        Show Password
+                      </label>
+                <button class = "loginButton">Login to your account</button>
+                <div class = "subheader">Login above or <a href="register.html" class="whiteLink">create an account</a></div>
         </div>
         </div>
     </div>
