@@ -140,6 +140,12 @@ footer{
     border-radius: 8px;
 }
 
+.pwicon{
+  padding-right: 25px;
+  font-family: "FontAwesome";
+  content: "/f070"
+}
+
 .welcomeHeader{
   font-size: 2pc;
   font-weight: bold;

@@ -9,6 +9,9 @@ body {
   min-height: 100%;
 }
 
+footer{
+    text-align: center;
+  }
 
 .container {
     position: relative;
