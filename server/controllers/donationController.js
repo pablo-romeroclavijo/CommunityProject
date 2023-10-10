@@ -42,16 +42,10 @@ async function getOneById(req, res){
         token = req.headers["authorization"]
         const user = await User.getOneByToken(token)
         response = await Donation.getOneById(id)
-<<<<<<< HEAD
         console.log(response.donation.user_id)
         if(user.isAdmin){
             res.status(200).send(response)          // {donation:OBJECT, items: list(OBJECT)}
         }else if(response.donation.user_id == user.id){
-=======
-        if(user.isAdmin){
-            res.status(200).send(response)
-        }else if(response.user_id == user.id){
->>>>>>> e7bf8e8f20dbd6a74c95d1fe51d41d05f60eafd2
             res.status(200).send(response)
         }else{
             res.status(403).send('You have no access')}
