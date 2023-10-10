@@ -18,7 +18,7 @@ async function create(req, res){   // req.body ={items:OBJECT, slot_time, slot_d
 }
 
 async function getAll(req, res){
-    try{
+    // try{
         token = req.headers["authorization"]
         const user = await User.getOneByToken(token)
         let response
@@ -32,9 +32,9 @@ async function getAll(req, res){
         console.log(response)
         res.status(200).send(response)
 
-    } catch (err) {
-        res.status(403).json({"error": err.message})
-        }
+    // } catch (err) {
+    //     res.status(403).json({"error": err.message})
+    //     }
 
 }
 
