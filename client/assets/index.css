@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Jost&display=swap');
+
 h1 {
     color: #36454F;
     font-size: 50 px;
@@ -7,6 +9,7 @@ h1 {
 body {
   background: linear-gradient(109.6deg, rgb(223, 234, 247) 11.2%, rgb(244, 248, 252) 91.1%);
   min-height: 100%;
+  font-family: "Jost", sans-serif;
 }
 
 footer{
