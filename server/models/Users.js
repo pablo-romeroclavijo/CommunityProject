@@ -12,6 +12,17 @@ class User {
 		this.familyUnit = family_unit;
 	}
 
+    constructor({user_id, username, identity_verified, password, is_admin, postcode, email, family_unit}) {
+        this.id = user_id;
+        this.username = username;
+        this.password = password;
+        this.isAdmin = is_admin;
+        this.verified = identity_verified;
+        this.postcode = postcode;
+        this.email = email;
+        this.familyUnit = family_unit;
+    }
+
 	static async getOneById(id) {
 		const response = await db.query("SELECT * FROM user_account WHERE user_id = $1", [id]);
 		if (response.rows.length != 1) {

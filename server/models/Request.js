@@ -40,6 +40,7 @@ class Request {
         const {items} = data 
         const event = await Events.create(type)
         const date = new Date()
+        console.log(event)
 
         const currentDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 
 
@@ -64,7 +65,7 @@ class Request {
             throw new Error("Unable to locate Requests.");
         }
 
-        return response.rows.map(Request => new Request(Request))
+        return response.rows.map(request => new Request(request))
     }
 
     static async getAllSelf(id){
