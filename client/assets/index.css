@@ -9,6 +9,10 @@ body {
   min-height: 100%;
 }
 
+footer{
+  text-align: center;
+}
+
 
 .container {
     position: relative;
@@ -151,7 +155,8 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #5fb3ff;
+  background: linear-gradient(45deg, #2e74b5 0%, rgb(41, 114, 138) 35%, #40b4b4 100%);
+
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -161,7 +166,7 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #525252;
+  color: whitesmoke;/*#525252;*/
   display: block;
   transition: 0.3s;
 }

@@ -4,30 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carmour: Register</title>
     <link rel="shortcut icon" href="./assets/favicom.ico">
-    <link rel="stylesheet" href="./assets.css">
+    <link rel="stylesheet" href="./assets/register.css">
     <script src="./assets/register.js" defer></script>
-    <title>Carmour</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
     <header>
         <h1>Register</h1>
-        <em>Not everything needs to be public.</em>
     </header>
     <hr />
     <main>
-        <form id="register-form">
-            <fieldset>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-            </fieldset>
-            <fieldset>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-            </fieldset>
-            <input type="submit" value="Register">
-        </form>
-        <p>Already registered? <a href="./login.html">Log in here</a>.</p>
-    </main>
+        <div class = "flexbox-container">
+            <div class = "flexbox-item flexbox-image-login"></div>
+            <div class = "flexbox-item flexbox-login-array">
+                <div class = "login-array">
+                    <div class = "welcomeHeader">Login</div>
+    
+                        <label id ="nameInput" for="name_input"></label>
+                        <input class = "mailInput" type="text" id="name" name="name" placeholder = "Matt Smith"> 
+                         
+                        <label id ="emailInput" for="email_input"></label>
+                        <input class = "mailInput" type="text" id="email" name="email" placeholder = "mattsmith@mail.com"> 
+
+                        <label id ="PostcodeInput" for="code_input"></label>
+                        <input class = "mailInput" type="text" id="code" name="code" placeholder = "Email"> 
+
+                        <label id ="passInput" for="password_input"></label>
+                        <input class = "passwordInput" type="password" id="password" name="password" placeholder = "Password">
+                        <label>
+                            <input class="showPassword" type="checkbox" onclick="revealPassword()">
+                            Show Password
+                          </label>
+                    <button class = "loginButton">Login to your account</button>
+                    <div class = "subheader">Login above or <a href="register.html" class="whiteLink">create an account</a></div>
+            </div>
+            </div>
+        </div>
+        </main>
 </body>
 </html>
