@@ -5,16 +5,16 @@ const User = require ('../models/Users')
 
 
 async function create(req, res){   // req.body ={items:OBJECT, slot_time, slot_date, type}
-    // try{
+    try{
         token = req.headers["authorization"]
 
         const user = await User.getOneByToken(token)
         const data = req.body
         const response = await Request.create(data, user.id, 'C') 
         res.status(200).send(response)
-    // } catch (err) {
-    // res.status(403).json({"error": err.message})
-    // }
+    } catch (err) {
+    res.status(403).json({"error": err.message})
+    }
 }
 
 async function getAll(req, res){
