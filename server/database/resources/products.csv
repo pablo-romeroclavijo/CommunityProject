@@ -1,0 +1,23 @@
+product_name,category_id,max_order,waiting_list,Unit_Quantity,category_name
+Chicken,2,2,0,300 grams,Dairy products that require refrigeration
+Beef,2,2,2,300 grams,Dairy products that require refrigeration
+Broccoli (frozen),4,1,0,200 grams,Dairy products that require refrigeration
+Broccoli (fresh),3,1,0,200 grams,Dairy products that require refrigeration
+Tomatoes,3,2,1,200 grams,Dairy products that require refrigeration
+Toothpaste,5,1,10,Tube,Dairy products that require refrigeration
+Sanitary pads,5,15,0,Pad,Dairy products that require refrigeration
+Notebook,7,2,10,Notebook,Dairy products that require refrigeration
+Batteries AAA,6,4,0,Battery,Dairy products that require refrigeration
+Batteries AA,6,4,0,Battery,Dairy products that require refrigeration
+Bleach,5,1,0,Bottle,Dairy products that require refrigeration
+Pencils,7,2,0,Pencil,Dairy products that require refrigeration
+Pens,7,2,1,Pen,Dairy products that require refrigeration
+Pasta,8,2,0,1 kg,Dairy products that require refrigeration
+Rice,8,2,0,1 kg,Dairy products that require refrigeration
+Lentil Can,8,3,12,Unit,Dairy products that require refrigeration
+Lentil Bag,8,1,0,1 kg,Dairy products that require refrigeration
+Milk (refrigerated),1,1,1,Litre,Dairy products that require refrigeration
+Milk (long-life),9,5,15,Litre,Dairy products that require refrigeration
+Yogurts,1,5,2,Unit,Dairy products that require refrigeration
+Cheese,1,2,0,100 grams,Dairy products that require refrigeration
+Toilet Paper,5,5,1,Roll,Dairy products that require refrigeration

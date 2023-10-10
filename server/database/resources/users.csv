@@ -1,0 +1,7 @@
+Username,identity_verified,admin,family_unit,Postcode,Email,Password
+admin1234,TRUE,TRUE,0,0,admin1234@council.com,$2y$10$EhCUiDgxhVOoEAUpk2mWxevs/lASdYB4t1/DZeMYStzQ/Xa6xFpPK
+pablo1234,TRUE,FALSE,5,AA1 8TY,pablo@gmail.com,$2y$10$amq7yMtpb1RSo1C3jZA5NOTgOFIAuC9.u91jNUYt.rhvmhzQP6nXy
+justin4321,FALSE,FALSE,4,B4 9JK,justin@gmail.com,$2y$10$q7ADNBfZUWsTFjjVMWqPS.7cxd0IMoPIrQoyUpilE4RC0zE00CoDm
+david4321,FALSE,FALSE,2,NW1 6PO,David@hotmail.com,$2y$10$Nok0yLKoEaKjGDq.1jp37.lwPAZ7V9E8iK7n2eFDTvcBaSHHJ3K1W
+abi1234,FALSE,FALSE,1,P23 5YU,abi@gmail.com,$2y$10$.7OwKG9EJzLHrl/2zGYhiOdZj8C2De9x5VireONvJvxuo1/9iY9hC
+resident2,FALSE,FALSE,8,L1 RT9,fake_email@hotmail.com,$2y$10$G3mGP1rDshpMCEeLIOpRf.FFfkI2n.r9PsECa2QG7iMKneKRGMoGW
