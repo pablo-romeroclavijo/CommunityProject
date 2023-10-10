@@ -18,7 +18,7 @@ class Events {
         return new Events(response.rows[0]);
     }
 
-    static async create(type, user_id, slot_time, slot_date ){
+    static async create(type, slot_time, slot_date ){
         const code = 'D-' + Events.makeid(4)
         const QR_code = '<url>'
 

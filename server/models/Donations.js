@@ -32,7 +32,7 @@ class Donation {
 
         const response = await db.query("INSERT INTO donations (user_id, donation_date, drop_id) VALUES ($1, $2, $3) RETURNING donation_id", [Number(user_id), currentDate, event.id ])
         const donation = await Donation.getOneById(response.rows[0].donation_id)
-        const query = donation.queryBuilder(items)
+        const query = donation.donation.queryBuilder(items)
 
         const responseCreateItems = await db.query(query)
 
@@ -79,7 +79,12 @@ class Donation {
             throw new Error("Unable to locate donations.");
         }
 
-        return new Donation(response.rows[0])
+        const donation = new Donation(response.rows[0])
+
+        const responseItems = await ItemDonated.getMultipleByDonation(donation.id)
+
+
+        return {donation, responseItems}
 
     }
 }
