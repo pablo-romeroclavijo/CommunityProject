@@ -3,7 +3,7 @@ const db = require('../database/connect');
 class ItemDonated {
     constructor({item_id, donation_id, user_id, quantity_donated,
 
-    quantity_remaining, expiration_date, to_dispose, verified, product_id, product_name, max_order, unit_quantity}){
+    quantity_remaining, expiration_date, to_dispose, verified, product_id, product_name, max_order, unit_quantity, category_name}){
 
         this.item_id = item_id
         this.donation_id = donation_id
@@ -17,6 +17,7 @@ class ItemDonated {
         this.product_id = product_id
         this.product_name = product_name
         this.max = max_order
+        this.category = category_name
 
         this.unit = unit_quantity
 
@@ -46,8 +47,8 @@ class ItemDonated {
 
 
     static async getAllByProductID(){
-        const response = await db.query("SELECT i.product_id, p.product_name, COUNT(i.quantity_remaining) AS quantity_remaining, p.max_order, unit_quantity FROM items_donated i JOIN products p ON p.product_id = i.product_id WHERE verified = '1' GROUP BY i.product_id, p.product_name, p.max_order");
-        console.log(response)
+        const response = await db.query("SELECT i.product_id, p.product_name, p.category_name, COUNT(i.quantity_remaining) AS quantity_remaining, p.max_order, unit_quantity FROM items_donated i JOIN products p ON p.product_id = i.product_id WHERE verified = '1' GROUP BY i.product_id, p.product_name, p.max_order, p.unit_quantity, p.category_name");
+        console.log(response.rows)
         const products = response.rows.map(item => new ItemDonated(item))
         return products
         

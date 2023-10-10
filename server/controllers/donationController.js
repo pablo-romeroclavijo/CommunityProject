@@ -1,37 +1,44 @@
-const Events = require("../models/Events");
-const ItemDonated = require("../models/ItemsDonated");
-const Donation = require("../models/Donations");
-const User = require("../models/Users");
 
-async function createDonation(req, res) {
-	// req.body ={user_id, items:OBJECT, slot_time, slot_date, type}
-	try {
-		const data = req.body;
-		const response = await Donation.create(data);
-		console.log(response);
-		res.status(200).send(response);
-	} catch (err) {
-		res.status(403).json({ error: err.message });
-	}
+const Events  = require('../models/Events')
+const ItemDonated = require('../models/ItemsDonated')
+const Donation = require ('../models/Donations')
+const User = require ('../models/Users')
+
+
+async function createDonation(req, res){   // req.body ={items:OBJECT, slot_time, slot_date, type}
+    try{
+        token = req.headers["authorization"]
+        const user = await User.getOneByToken(token)
+
+        const data = req.body
+        const response = await Donation.create(data, user.id) 
+        console.log(response)
+        res.status(200).send(response)
+    } catch (err) {
+    res.status(403).json({"error": err.message})
+    }
 }
 
-async function getAll(req, res) {
-	try {
-		token = req.headers["authorization"];
-		const user = await User.getOneByToken(token);
-		let response;
-		if (user.isAdmin) {
-			response = await Donation.getAllDonations();
-		} else {
-			console.log(user.id);
-			response = await Donation.getAllSelf(user.id);
-		}
+async function getAll(req, res){
+    try{
+        token = req.headers["authorization"] 
+        const user = await User.getOneByToken(token)
+        let response
+        if(user.isAdmin){
+            response = await Donation.getAllDonations()
+        }else{
+            console.log(user.id)
+            response = await Donation.getAllSelf(user.id)
+        }
 
-		console.log(response);
-		res.status(200).send(response);
-	} catch (err) {
-		res.status(403).json({ error: err.message });
-	}
+        console.log(response)
+        res.status(200).send(response)
+
+    } catch (err) {
+        res.status(403).json({"error": err.message})
+        }
+
+
 }
 
 async function getOneById(req, res) {
