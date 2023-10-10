@@ -1,18 +1,20 @@
-const Events  = require('../models/Events')
-const ItemDonated = require('../models/ItemsDonated')
-const Donation = require ('../models/Donations')
+
+const ItemRequested = require('../models/ItemRequested')
+const Request = require ('../models/Request')
 const User = require ('../models/Users')
 
 
-async function createDonation(req, res){   // req.body ={user_id, items:OBJECT, slot_time, slot_date, type}
-    try{
+async function create(req, res){   // req.body ={items:OBJECT, slot_time, slot_date, type}
+    // try{
+        token = req.headers["authorization"]
+
+        const user = await User.getOneByToken(token)
         const data = req.body
-        const response = await Donation.create(data) 
-        console.log(response)
+        const response = await Request.create(data, user.id, 'C') 
         res.status(200).send(response)
-    } catch (err) {
-    res.status(403).json({"error": err.message})
-    }
+    // } catch (err) {
+    // res.status(403).json({"error": err.message})
+    // }
 }
 
 async function getAll(req, res){
@@ -21,10 +23,10 @@ async function getAll(req, res){
         const user = await User.getOneByToken(token)
         let response
         if(user.isAdmin){
-            response = await Donation.getAllDonations()
+            response = await Request.getAllRequests()
         }else{
             console.log(user.id)
-            response = await Donation.getAllSelf(user.id)
+            response = await Request.getAllSelf(user.id)
         }
 
         console.log(response)
@@ -41,11 +43,11 @@ async function getOneById(req, res){
     try{
         token = req.headers["authorization"]
         const user = await User.getOneByToken(token)
-        response = await Donation.getOneById(id)
-        console.log(response.donation.user_id)
+        response = await Request.getOneById(id)
+        console.log(response.request.user_id)
         if(user.isAdmin){
-            res.status(200).send(response)          // {donation:OBJECT, items: list(OBJECT)}
-        }else if(response.donation.user_id == user.id){
+            res.status(200).send(response)          // {request:OBJECT, items: list(OBJECT)}
+        }else if(response.request.user_id == user.id){
             res.status(200).send(response)
         }else{
             res.status(403).send('You have no access')}
@@ -56,12 +58,12 @@ async function getOneById(req, res){
 
 }
 
-async function verifyItem(req, res){
+async function collected(req, res){
     const itemId = req.params.itemid
     console.log(itemId)
     try{
-        const item = await ItemDonated.getOneById(itemId)
-        const verifiedItem = await item.updateVerify()
+        const item = await ItemRequested.getOneById(itemId)
+        const verifiedItem = await item.updateCollected()
         res.status(201).send(verifiedItem)
 
 
@@ -74,4 +76,4 @@ async function verifyItem(req, res){
 
 }
 
-module.exports = { createDonation, getAll, getOneById, verifyItem }
+module.exports = { create , getAll, getOneById, collected }

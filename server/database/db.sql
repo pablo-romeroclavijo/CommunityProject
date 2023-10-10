@@ -30,7 +30,8 @@ CREATE TABLE items_requested(
     fulfilled BOOLEAN NOT NULL DEFAULT '0',
     expiration_date DATE NULL,
     product_id INTEGER NOT NULL,
-    collected BOOLEAN NOT NULL DEFAULT '0'
+    collected BOOLEAN NOT NULL DEFAULT '0',
+    quantity_requested INTEGER NOT NULL
 );
 ALTER TABLE
     items_requested ADD PRIMARY KEY(item_id);
@@ -86,8 +87,8 @@ CREATE TABLE events(
     code CHAR(6) NOT NULL UNIQUE,
     type CHAR(1) NOT NULL,
     QR_code_URL VARCHAR(255) NULL,
-    slot_date DATE NOT NULL,
-    slot_time TIME(0) WITHOUT TIME ZONE NOT NULL
+    slot_date DATE,
+    slot_time TIME(0) WITHOUT TIME ZONE 
 );
 ALTER TABLE
     events ADD PRIMARY KEY(event_id);
