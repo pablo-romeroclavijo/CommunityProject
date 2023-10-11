@@ -14,7 +14,8 @@ function openNav() {
 
 
 //Load user
-const isAdmin = loadProfile()
+loadProfile()
+let isAdmin 
 async function loadProfile(){
     if (localStorage.token){
         headers = {"Authorization": localStorage.token}
@@ -31,7 +32,23 @@ async function loadProfile(){
         const response = await fetch(backendURL + "/user/profile", options)
         const data = await response.json()
         console.log(data)
+
+        isAdmin = data.isAdmin
+
     }}
+
+
+// add actions
+const actions = document.getElementsByClassName("dropdown-content")
+function addActions(list){
+    actions.map(action =>{
+        const option = document.createElement('aa')
+
+    })
+    
+}
+
+
 
 // Send request
 const token = localStorage.token
@@ -54,15 +71,18 @@ async function sendRequest(token, id){
     const response = await request.json()
     console.log(response)
     loadRequest(response)
+
+
+ 
 }
 
 function loadRequest(response){
     let donatioDate = new Date(response.donation.donation_date)
     const days = donatioDate.getFullYear()+'-'+(donatioDate.getMonth()+1)+'-'+donatioDate.getDate(); 
 
-    document.getElementById("donation_id").textContent = "Donation ID: " + response.donation.id
-    document.getElementById("donation_date").textContent = "Donation Status: " + response.donation.status
-    document.getElementById("donation_status").textContent = "Donation date: " + days
+    document.getElementById("donation_id").textContent = "Donation Locator:      " + response.event.code
+    document.getElementById("donation_date").textContent = "Donation Status:    " + response.donation.status
+    document.getElementById("donation_status").textContent = "Donation date:    " + days
     const received = document.getElementById("donation_received")
     if(response.donation.received == false){
         received.textContent = 'Donation Received: No' 
@@ -71,10 +91,18 @@ function loadRequest(response){
     }
 
     const itemList = response.responseItems
-    updateRequestedTable(itemList)  
+
+    console.log(isAdmin)
+    isAdmin == false ? tableNonAdmin(itemList) : tableAdmin(itemList)
 }
 
-function updateRequestedTable(itemList) {
+function tableAdmin(itemList){
+
+    console.log('admin table')
+}
+
+
+function tableNonAdmin(itemList) {
     const table = document.getElementById('request-table');
 
     const tbody = table.querySelector('tbody');
