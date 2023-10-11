@@ -39,13 +39,26 @@ async function loadProfile(){
 
 
 // add actions
-const actions = document.getElementsByClassName("dropdown-content")
-function addActions(list){
-    actions.map(action =>{
-        const option = document.createElement('aa')
 
+
+
+function addActions(list){
+    const actions = document.getElementById("dropdown")
+    list.map(action =>{
+        console.log(action)
+        const option = document.createElement('option')
+        option.id = action
+        option.value = action
+        option.textContent = action
+        console.log(option)
+        option.addEventListener("click", updateStatus)
+        actions.appendChild(option)
     })
     
+}
+
+function updateStatus(e){
+console.log(    e.target.value)
 }
 
 
@@ -97,12 +110,77 @@ function loadRequest(response){
 }
 
 function tableAdmin(itemList){
+    const actions = ['Close', 'Hold', 'Report']
+    addActions(actions)
+    const table = document.getElementById('request-table');
 
-    console.log('admin table')
+    const tbody = table.querySelector('tbody');
+    const thead = table.querySelector('thead tr')
+    
+    console.log(tbody)
+    tbody.innerHTML = '';
+
+    const th = document.createElement('th')
+    th.textContent = 'Action'
+    thead.appendChild(th)
+
+
+    for (let i = 0; i < itemList.length; i++) {
+        const form = document.createElement('form')
+
+        console.log('aaa', i, itemList[i])
+        const row = document.createElement('tr');
+        const rowData = itemList[i];
+
+        const cell1 = document.createElement('td')
+        cell1.textContent = rowData['product_id']
+        row.appendChild(cell1)
+
+        const cell2 = document.createElement('td')
+        cell2.textContent = rowData['product_name']
+        row.appendChild(cell2)
+
+        const cell4 = document.createElement('td');
+        const input2 = document.createElement('input')
+        input2.type = 'number'
+        input2.defaultValue = rowData['quantity_donated']
+
+        cell4.appendChild(input2)
+        row.appendChild(cell4)
+
+        const cell3 = document.createElement('td');
+        const input1 = document.createElement('input')
+        let date = new Date(rowData['expiration_date'])
+        const day = date.toISOString().split("T")[0];
+        input1.type = 'date'
+        input1.defaultValue = day
+
+        cell3.appendChild(input1)
+        row.appendChild(cell3)
+
+        const cell5 = document.createElement('td')
+        rowData['verified'] == false ? cell5.textContent = 'No' : cell5.textContent = 'Yes'
+        row.appendChild(cell5)
+
+
+        const cell6 = document.createElement('td');
+        const input3 = document.createElement('input')
+        input3.type = 'submit'
+        input3.value = 'Verify'
+        cell6.appendChild(input3)
+        row.appendChild(cell6)
+
+        //form.appendChild(row)        
+        tbody.appendChild(row)
+    }
 }
 
 
+
 function tableNonAdmin(itemList) {
+    const actions = ['Close']
+    addActions(actions)
+
     const table = document.getElementById('request-table');
 
     const tbody = table.querySelector('tbody');

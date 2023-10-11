@@ -330,13 +330,13 @@ th {
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  .dropdown-content a {
+  .dropdown-content option {
     display: block;
     color: #000000;
     padding: 5px;
     text-decoration: none;
   }
-  .dropdown-content a:hover {
+  .dropdown-content option:hover {
     color: #FFFFFF;
     background-color: #00A4BD;
   }
