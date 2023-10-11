@@ -26,6 +26,34 @@ footer{
     font-size: x-large
 }
 
+.profile-table{
+  width: 100%;
+  align-self: center;
+  padding-left: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #1c5234;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+
 .input-label {
   position: relative;
   width: 100%;
