@@ -19,7 +19,7 @@ async function getStock(){
         header:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '88e0ee88-40c8-46ac-a3cb-001d80a9eebf'
+            'Authorization': localStorage.token
         }}
     const request = await fetch(backendURL + '/stock', options)
     const table = await request.json()
@@ -187,7 +187,7 @@ async function sendRequest(donatedList){
         headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'cc6dd486-3aa1-444a-aaf8-b2ed41279fab'    /// change to colacl.storage
+            'Authorization': localStorage.token    /// change to colacl.storage
         },
         body: donatedList
         }

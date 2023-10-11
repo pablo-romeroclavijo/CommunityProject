@@ -26,6 +26,7 @@ async function getAll(req, res){
         const user = await User.getOneByToken(token)
         console.log("wassup")
         let response
+        console.log(user)
         if(user.isAdmin){
             response = await Donation.getAllDonations()
         }else{

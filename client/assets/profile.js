@@ -11,7 +11,7 @@ async function loadProfile(){
         const options = {
             method: "GET",
             headers: {
-                "authorization": localStorage.token,
+                "Authorization": localStorage.token,
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             }
@@ -61,20 +61,19 @@ function updateTable(tableData) {
 async function getStock(){
     console.log("HI")
     const options = {
-        method: "GET",
+        methods: "GET",
         headers:{
-            'authorization': localStorage.token,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            
+            'Authorization': localStorage.token
         }}
     const request = await fetch('https://communityapp-gsbn.onrender.com/donation', options)
     console.log(request)
     const table = await request.json()
     console.log(donations)
 
-    updateTable(donations);
-    //updatePagination(donations)
+    // updateTable(table);
+    // updatePagination(table)
 
     return tableData = table
 
