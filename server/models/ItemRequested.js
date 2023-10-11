@@ -29,7 +29,8 @@ class ItemRequested {
         const response = await db.query("SELECT i.product_id, i.quantity_requested, p.product_name, i.collected FROM items_requested i JOIN products p ON p.product_id = i.product_id WHERE request_id = $1", [request_id])
         //console.log(response)
         const items = response.rows.map(item => new ItemRequested(item))
-        //console.log(items)
+        console.log(items)
+    
         return items
     }
 

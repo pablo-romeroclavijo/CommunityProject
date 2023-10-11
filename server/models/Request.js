@@ -53,7 +53,8 @@ class Request {
 
         const responseCreateItems = await db.query(query)
 
-        const itemList = responseCreateItems.rows.map(item => new ItemRequested(item) )
+        const itemList = await ItemRequested.getMultipleByRequest(response.rows[0].request_id)
+        //responseCreateItems.rows.map(item => new ItemRequested(item) )
 
         return {event, request, itemList} 
     } 
