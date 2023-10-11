@@ -33,7 +33,7 @@ class ItemDonated {
 
 
     static async getMultipleByDonation(donation_id){
-        const response = await db.query("SELECT * FROM items_donated WHERE donation_id = $1", [donation_id])
+        const response = await db.query("SELECT i.product_ID, p.product_name, i.quantity_donated, i.expiration_date, i.verified  FROM items_donated i JOIN products p ON p.product_id = i.product_id WHERE donation_id = $1", [donation_id])
         
         const items = response.rows.map(item => new ItemDonated(item))
         return items
