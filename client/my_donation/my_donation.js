@@ -57,41 +57,36 @@ async function sendRequest(token, id){
 }
 
 function loadRequest(response){
-    document.getElementById("donation_id").textContent = "Donation: " 
+    let donatioDate = new Date(response.donation.donation_date)
+    const days = donatioDate.getFullYear()+'-'+(donatioDate.getMonth()+1)+'-'+donatioDate.getDate(); 
 
+    document.getElementById("donation_id").textContent = "Donation ID: " + response.donation.id
+    document.getElementById("donation_date").textContent = "Donation Status: " + response.donation.status
+    document.getElementById("donation_status").textContent = "Donation date: " + days
+    const received = document.getElementById("donation_received")
+    if(response.donation.received == false){
+        received.textContent = 'Donation Received: No' 
+    }else{
+        received.textContent = 'Donation Received:Yes'
+    }
 
-
-    const QR = document.getElementById('QR')
-    const code = document.getElementById('code')
-    const slot = document.getElementById('slot')
-
- 
-
-    const {event, itemList, request}  = response
-    code.textContent = "your drop-off code is: " + event.code
-    QR.setAttribute('src', event.QR)
-    QR.setAttribute('title', event.code)
-
-    let date = new Date(event.slot_date)
-    const day = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 
-    slot.textContent = 'Your drop of slot is: ' + event.slot_time.slice(0, -3) + ' on ' + day
-    updateRequestedTable(itemList)
-    
+    const itemList = response.responseItems
+    updateRequestedTable(itemList)  
 }
 
 function updateRequestedTable(itemList) {
-    console.log(itemList)
-    const table = document.getElementById('requested-table');
+    const table = document.getElementById('request-table');
+
     const tbody = table.querySelector('tbody');
+    console.log(tbody)
     tbody.innerHTML = '';
 
     for (let i = 0; i < itemList.length; i++) {
         console.log('aaa', i, itemList[i])
         const row = document.createElement('tr');
         const rowData = itemList[i];
-        const keys = ['product_id', 'product_name', "quantity_donated", 'expiration_date']
+        const keys = ['product_id', 'product_name', "quantity_donated", 'expiration_date', 'verified']
         keys.map(key =>{
-            console.log(key)
             const cell = document.createElement('td');
 
             if(key == 'expiration_date'){
@@ -99,8 +94,14 @@ function updateRequestedTable(itemList) {
                 cell.textContent = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 
             }else{
                 cell.textContent = rowData[key];}
+            
+            if(key == 'verified'){
+               rowData[key] == false ? cell.textContent = 'No' : cell.textContent = 'Yes'
+            }
+
             row.appendChild(cell);
         })
-        table.appendChild(row)
+    console.log(row)
+    tbody.appendChild(row)
     }
 }

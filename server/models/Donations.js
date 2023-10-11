@@ -79,15 +79,17 @@ class Donation {
         console.log(id)
         const response = await db.query("SELECT * FROM donations WHERE donation_id = $1", [id]);
         if (response.rows.length < 1) {
-            throw new Error("Unable to locate donations.");
+            throw new Error("Unagit add .le to locate donations.");
         }
 
         const donation = new Donation(response.rows[0])
 
         const responseItems = await ItemDonated.getMultipleByDonation(donation.id)
+    
+        const event = await Events.getOneById(donation.drop_id)
 
 
-        return {donation, responseItems}
+        return {donation, responseItems, event}
 
     }
 
