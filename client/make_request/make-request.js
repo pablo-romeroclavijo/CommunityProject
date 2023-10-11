@@ -121,7 +121,6 @@ function eventListeners(){
 }
 
 async function addItem (e){
-    console.log(tableData.PromiseResult)
     const item = await tableData.find(element => element["product_id"] == e.target.id)
     e.target.textContent = "ADDED"
     e.target.disabled = true
@@ -205,7 +204,6 @@ async function sendRequest(requestList){
 }
 
 function loadRequest(response){
-    console.log(document.getElementById('container1'))
     document.getElementById('container1').style.display = 'none'
     document.getElementById('container2').style.display = 'block'
 
@@ -215,18 +213,20 @@ function loadRequest(response){
 
     const {event, itemList, request}  = response
     code.textContent = "your collection code is: " + event.code
-    QR.attr('src', event.QR)
-    QR.att('title', event.code)
+    QR.setAttribute('src', event.QR)
+    QR.setAttribute('title', event.code)
     updateRequestedTable(itemList)
     
 }
 
 function updateRequestedTable(itemList) {
-    const table = document.getElementById('request-table');
+    console.log(itemList)
+    const table = document.getElementById('requested-table');
     const tbody = table.querySelector('tbody');
     tbody.innerHTML = '';
 
-    for (let i = 0; i < requestTable.length; i++) {
+    for (let i = 0; i < itemList.length; i++) {
+        console.log(i, itemList[i])
         const row = document.createElement('tr');
         const rowData = itemList[i];
         const keys = ['product_id', 'product_name', "requested", 'collected']
