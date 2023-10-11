@@ -23,7 +23,7 @@
       </div>
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-    <div class="container">
+    <div class="container" id="container1">
         <div class = "flexbox-container">
             <h2> Bank Stock</h2>
         </div>
@@ -91,7 +91,45 @@
         </div>
 
     </div>
-        
+    
+    
+
+
+<div class="container" id="container2" style="display: none;">
+    <h1> Thanks for making a request</h1>
+    <img id ='QR' src= "" alt="" title="" />
+    <h2 id="code"></h2>
+    
+    <div class = "flexbox-container">
+        <h2> Requested items</h2>
+    </div>
+
+
+    <div class = "flexbox-container">
+
+        <div class = 'flexbox-item'>
+            <table id="requested-table">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product</th>
+                        <th>Requested Ammount</th>
+                        <th>Fulfilled</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Your data rows will go here -->
+                </tbody>
+            </table>
+    
+            <ul class="pagination" id="pagination">
+                <!-- Pagination links will be added here dynamically -->
+            </ul>
+            
+        </div>
+    </div>
+
 
 </body>
 </html>
