@@ -13,38 +13,38 @@ function openNav() {
 
 // stock table
 
-getStock()
 async function getStock(){
     const options = {
         method: "GET",
         header:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '88e0ee88-40c8-46ac-a3cb-001d80a9eebf'
+            'Authorization': localStorage.token
         }}
     const request = await fetch(backendURL + '/stock', options)
     const table = await request.json()
     console.log(table)
-
-    updateTable(table);
-    updatePagination(table)
-
-    return tableData = table
-
-    
+    return table
 }
-let tableData = []
 
+const tableData = getStock()
 
 
 const itemsPerPage = 10;
 let currentPage = 1;
 let disabled_buttons = []
 
-function updateTable(tableData) {
+updateTable();
+
+
+
+async function updateTable() {
+    let tableData = await getStock()
+    console.log(tableData)
     const table = document.getElementById('data-table');
     const tbody = table.querySelector('tbody');
     tbody.innerHTML = '';
+    updatePagination(tableData)
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -55,12 +55,15 @@ function updateTable(tableData) {
         const keys = ['product_id', 'product_name', "category", "quantity_remaining", "unit"]
         keys.map(key =>{
             const cell = document.createElement('td');
-            cell.textContent = rowData[key];
+            if(rowData[key] == null){
+                cell.textContent = 'Unavailable';
+            }else{
+                cell.textContent = rowData[key];}
             row.appendChild(cell);
         })
         const cell = document.createElement('td');
         const button = document.createElement('button')
-        button.innerHTML = 'DONATE'
+        button.innerHTML = 'ADD TO LIST'
         button.classList.add('add-button')
         button.id = rowData.product_id
         cell.appendChild(button)
@@ -102,7 +105,6 @@ function disableButtons(list){
     }
 }
 
-
 //Request table
 let requestTable = []
 
@@ -116,6 +118,7 @@ function eventListeners(){
 }
 
 async function addItem (e){
+    const tableData = await getStock()
     const item = await tableData.find(element => element["product_id"] == e.target.id)
     e.target.textContent = "ADDED"
     e.target.disabled = true
@@ -155,6 +158,7 @@ function updateRequestTable() {
         input.defaultValue = 1
         input.min = 1
         input.classList.add('quantity')
+        input.setAttribute('required', '')
         input.id = rowData.product_id
         cell.appendChild(input)
         row.appendChild(cell)
@@ -166,6 +170,7 @@ function updateRequestTable() {
         const today =  new Date()
         input2.setAttribute("min", today.toISOString().split("T")[0])
         input2.classList.add('date_exp')
+        input2.setAttribute('required', '')
         cell2.appendChild(input2)
         row.appendChild(cell2)
 
@@ -176,8 +181,11 @@ function updateRequestTable() {
     ten_days.setDate(ten_days.getDate()+10)
     document.getElementById("date").setAttribute("min", today.toISOString().split("T")[0])
     document.getElementById("date").setAttribute("max", ten_days.toISOString().split("T")[0])
+    document.getElementById("date").setAttribute('required', '')
     document.getElementById("time").setAttribute("min", '08:00:00')
     document.getElementById("time").setAttribute("max", '11:00:00')
+    document.getElementById("time").setAttribute('required', '')
+
 }
 
 // Send request
@@ -189,7 +197,7 @@ function fetchForm(e){
     const quantitites = document.getElementsByClassName('quantity')
     const dates = document.getElementsByClassName('date_exp')
     donatedList['slot_date'] = document.getElementById('date').value
-    donatedList['time'] = document.getElementById('time').value
+    donatedList['slot_time'] = document.getElementById('time').value + ':00'
 
     for(i = 0 ; i < quantitites.length; i++){
         const quantity = quantitites[i].value
@@ -209,7 +217,7 @@ async function sendRequest(donatedList){
         headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '8b51d488-d012-4c51-858e-130ca4c77a17	'    /// change to colacl.storage
+            'Authorization': localStorage.token    /// change to colacl.storage
         },
         body: donatedList
         }
@@ -233,7 +241,10 @@ function loadRequest(response){
     code.textContent = "your drop-off code is: " + event.code
     QR.setAttribute('src', event.QR)
     QR.setAttribute('title', event.code)
-    slot.textContent = 'Your drop of slot is: ' + event.drop_time
+
+    let date = new Date(event.slot_date)
+    const day = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 
+    slot.textContent = 'Your drop of slot is: ' + event.slot_time.slice(0, -3) + ' on ' + day
     updateRequestedTable(itemList)
     
 }
@@ -248,11 +259,16 @@ function updateRequestedTable(itemList) {
         console.log('aaa', i, itemList[i])
         const row = document.createElement('tr');
         const rowData = itemList[i];
-        const keys = ['product_id', 'product_name', "quantity_requested", 'collected']
+        const keys = ['product_id', 'product_name', "quantity_donated", 'expiration_date']
         keys.map(key =>{
             console.log(key)
             const cell = document.createElement('td');
-            cell.textContent = rowData[key];
+
+            if(key == 'expiration_date'){
+                let date = new Date(rowData[key])
+                cell.textContent = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 
+            }else{
+                cell.textContent = rowData[key];}
             row.appendChild(cell);
         })
         table.appendChild(row)

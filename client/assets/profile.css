@@ -22,6 +22,36 @@ footer{
   width: 100%;
 }
 
+.welcome{
+    font-size: x-large
+}
+
+.profile-table{
+  width: 100%;
+  align-self: center;
+  padding-left: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #1c5234;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
 
 
 .input-label {
@@ -432,38 +462,4 @@ footer{
 	-moz-transform: rotate(-45deg);
 	-o-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
-}
-
-.navbar-toggler {
-  color: white;
-}
-
-/* Style the icons in the navigation bar */
-.material-icons {
-  font-size: 24px;
-}
-
-/* Style the dropdown toggle and dropdown menu */
-.navbar-nav .dropdown-toggle {
-  cursor: pointer;
-}
-
-/* Style the dropdown menu items */
-.dropdown-menu {
-  background-color: #333; /* Change this to your desired dropdown background color */
-}
-
-.dropdown-menu a {
-  color: white;
-}
-
-/* Style the active link */
-.nav-link.active {
-  background-color: #555; /* Change this to your desired active link background color */
-}
-
-/* Style the hover effect on dropdown items */
-.dropdown-item:hover {
-  background-color: #444; /* Change this to your desired hover color */
-  color: lightgreen; /* Change this to your desired hover text color */
 }

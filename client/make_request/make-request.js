@@ -1,3 +1,4 @@
+
 backendURL = 'https://communityapp-gsbn.onrender.com'
 
 //Navbar
@@ -11,40 +12,43 @@ function openNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
 
+
 // stock table
 
-getStock()
+
 async function getStock(){
     const options = {
         method: "GET",
         header:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '88e0ee88-40c8-46ac-a3cb-001d80a9eebf'
+            'Authorization': localStorage.token
         }}
+
     const request = await fetch(backendURL + '/stock', options)
     const table = await request.json()
     console.log(table)
-
-    updateTable(table);
-    updatePagination(table)
-
-    return tableData = table
-
-    
+    return table
 }
-let tableData = []
 
+const tableData = getStock()
 
 
 const itemsPerPage = 10;
 let currentPage = 1;
 let disabled_buttons = []
 
-function updateTable(tableData) {
+updateTable();
+
+
+
+async function updateTable() {
+    let tableData = await getStock()
+    console.log(tableData)
     const table = document.getElementById('data-table');
     const tbody = table.querySelector('tbody');
     tbody.innerHTML = '';
+    updatePagination(tableData)
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -55,7 +59,10 @@ function updateTable(tableData) {
         const keys = ['product_id', 'product_name', "category", "quantity_remaining", "unit"]
         keys.map(key =>{
             const cell = document.createElement('td');
-            cell.textContent = rowData[key];
+            if(rowData[key] == null){
+                cell.textContent = 'Unavailable';
+            }else{
+                cell.textContent = rowData[key];}
             row.appendChild(cell);
         })
         const cell = document.createElement('td');
@@ -116,6 +123,7 @@ function eventListeners(){
 }
 
 async function addItem (e){
+    const tableData = await getStock()
     const item = await tableData.find(element => element["product_id"] == e.target.id)
     e.target.textContent = "ADDED"
     e.target.disabled = true
@@ -188,7 +196,7 @@ async function sendRequest(requestList){
         headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '8b51d488-d012-4c51-858e-130ca4c77a17	'    /// change to colacl.storage
+            'Authorization': localStorage.token  /// change to colacl.storage
         },
         body: requestList
         }
@@ -228,7 +236,10 @@ function updateRequestedTable(itemList) {
         keys.map(key =>{
             console.log(key)
             const cell = document.createElement('td');
-            cell.textContent = rowData[key];
+            if(rowData[key]==false & key == 'collected'){
+                cell.textContent = 'No';
+            }else{
+                cell.textContent = rowData[key];}
             row.appendChild(cell);
         })
         table.appendChild(row)

@@ -45,33 +45,35 @@
             <div class = "flexbox-item flexbox-login-array">
                 <div class = "login-array">
                     <div class = "welcomeHeader">Register</div>
-    
-                    <label for="usernameInput" class="input-label">
-                        <i class="material-icons">person</i>
-                        <input class="Input" type="text" id="username_input" name="email_input" placeholder="Username">
-                      </label>
-                         
-                      <label for="PostcodeInput" class="input-label">
-                        <i class="material-icons">location_on</i> <!-- Icon for Post Code -->
-                        <input class="Input" type="text" id="postcode_input" name="code_input" placeholder="Post Code" maxlength="7">
-                      </label>
-                      
-                      <label for="emailInput" class="input-label">
-                        <i class="material-icons">email</i> <!-- Icon for Email -->
-                        <input class="Input" type="text" id="email_input" name="email_input" placeholder="Email">
-                      </label>
+                        <form id="register">
+                            <label for="usernameInput" class="input-label">
+                                <i class="material-icons">person</i>
+                                <input required class="Input" type="text" id="username" name="email_input" placeholder="Username">
+                            </label>
+                    
+                                
+                            <label for="PostcodeInput" class="input-label">
+                                <i class="material-icons">location_on</i> <!-- Icon for Post Code -->
+                                <input required class="Input" type="text" id="postcode" name="code_input" placeholder="Post Code" maxlength="7">
+                            </label>
+                            
+                            <label for="emailInput" class="input-label">
+                                <i class="material-icons">email</i> <!-- Icon for Email -->
+                                <input required class="Input" type="text" id="email" name="email_input" placeholder="Email">
+                            </label>
 
-                      <label for="password_input" class="input-label">
-                        <i class="material-icons">lock</i>
-                        <input class="passwordInput" type="password" id="password" name="password_input" placeholder="Password">
-                      </label>
-                      <label>
-                        <input class="showPassword" type="checkbox" onclick="revealPassword()">
-                        Show Password
-                      </label>
-                    <button class = "loginButton">Register your account</button>
+                            <label for="password_input" class="input-label">
+                                <i class="material-icons">lock</i>
+                                <input required class="passwordInput" type="password" id="password" name="password_input" placeholder="Password">
+                            </label>
+                            <label>
+                                <input class="showPassword" type="checkbox" onclick="revealPassword()">
+                                Show Password
+                            </label>
+                            <input type = 'submit' class = "loginButton" value="Register your account">
+                        </form>
                     <div class = "subheader">Already have an account? <a href="index.html" class="whiteLink">Login here</a></div>
-            </div>
+                </div>
             </div>
         </div>
         </main>

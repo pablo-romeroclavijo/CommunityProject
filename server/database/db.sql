@@ -30,12 +30,8 @@ CREATE TABLE items_requested(
     fulfilled BOOLEAN NOT NULL DEFAULT '0',
     expiration_date DATE NULL,
     product_id INTEGER NOT NULL,
-<<<<<<< HEAD
     collected BOOLEAN NOT NULL DEFAULT '0',
     quantity_requested INTEGER NOT NULL
-=======
-    collected BOOLEAN NOT NULL DEFAULT '0'
->>>>>>> e7bf8e8f20dbd6a74c95d1fe51d41d05f60eafd2
 );
 ALTER TABLE
     items_requested ADD PRIMARY KEY(item_id);
@@ -65,7 +61,7 @@ ALTER TABLE
 
 CREATE TABLE token(
     token_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    token CHAR(60) NULL,
+    token CHAR(36) NULL,
     user_id INTEGER NOT NULL
 );
 ALTER TABLE
@@ -74,13 +70,14 @@ ALTER TABLE
 
 CREATE TABLE products(
     product_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    product_name VARCHAR(20) NOT NULL UNIQUE,
+    product_name VARCHAR(35) NOT NULL,
     category_id INTEGER NOT NULL,
     max_order INTEGER NOT NULL DEFAULT '1',
     waiting_list INTEGER NOT NULL,
-    unit_quantity VARCHAR(20) NOT NULL,
+    unit_quantity VARCHAR(250) NOT NULL,
     category_description VARCHAR(255) NOT NULL,
-    category_name VARCHAR(60) NOT NULL
+    category_name VARCHAR(60) NOT NULL,
+    sub_category_name VARCHAR(60)
 );
 ALTER TABLE
     products ADD PRIMARY KEY(product_id);
@@ -91,13 +88,8 @@ CREATE TABLE events(
     code CHAR(6) NOT NULL UNIQUE,
     type CHAR(1) NOT NULL,
     QR_code_URL VARCHAR(255) NULL,
-<<<<<<< HEAD
     slot_date DATE,
     slot_time TIME(0) WITHOUT TIME ZONE 
-=======
-    slot_date DATE NOT NULL,
-    slot_time TIME(0) WITHOUT TIME ZONE NOT NULL
->>>>>>> e7bf8e8f20dbd6a74c95d1fe51d41d05f60eafd2
 );
 ALTER TABLE
     events ADD PRIMARY KEY(event_id);
