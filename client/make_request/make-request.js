@@ -226,14 +226,16 @@ function updateRequestedTable(itemList) {
     tbody.innerHTML = '';
 
     for (let i = 0; i < itemList.length; i++) {
-        console.log(i, itemList[i])
+        console.log('aaa', i, itemList[i])
         const row = document.createElement('tr');
         const rowData = itemList[i];
-        const keys = ['product_id', 'product_name', "requested", 'collected']
+        const keys = ['product_id', 'product_name', "quantity_requested", 'collected']
         keys.map(key =>{
+            console.log(key)
             const cell = document.createElement('td');
             cell.textContent = rowData[key];
             row.appendChild(cell);
         })
+        table.appendChild(row)
     }
 }
