@@ -34,7 +34,7 @@ class User {
 			throw new Error("Unable to locate user.");
 		}
 		const user = await User.getOneById(responseToken.rows[0].user_id);
-		return user;
+		return user;Ê
 	}
 
 	static async create(data) {

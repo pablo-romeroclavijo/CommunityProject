@@ -50,8 +50,8 @@ async function profile (req, res){
     try {
         const user = await User.getOneByToken(token);
         console.log("User", user)
-        const {username, identity_verified, postcode, email, family_unit} = user
-        res.status(200).json({username: username, identity_verified: identity_verified, postcode: postcode, email: email, family_unit: family_unit});
+        const {username, identity_verified, postcode, email, family_unit, isAdmin} = user
+        res.status(200).json({username: username, identity_verified: identity_verified, postcode: postcode, email: email, family_unit: family_unit, isAdmin:isAdmin});
         
     } catch (err) {
         res.status(403).json({"error": err.message})

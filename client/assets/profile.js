@@ -11,7 +11,7 @@ async function loadProfile(){
         const options = {
             method: "GET",
             headers: {
-                "authorization": localStorage.token,
+                "Authorization": localStorage.token,
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             }
@@ -31,18 +31,18 @@ async function loadProfile(){
 async function getStock(){
     console.log("HI")
     const options = {
-        method: "GET",
-        header:{
+        methods: "GET",
+        headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '88e0ee88-40c8-46ac-a3cb-001d80a9eebf'
+            'Authorization': localStorage.token
         }}
     const request = await fetch(backendURL + 'donation/', options)
     const table = await request.json()
     console.log(table)
 
-    updateTable(table);
-    updatePagination(table)
+    // updateTable(table);
+    // updatePagination(table)
 
     return tableData = table
 

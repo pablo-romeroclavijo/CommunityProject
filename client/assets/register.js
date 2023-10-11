@@ -38,9 +38,9 @@ async function registerNewUser(e){
         
         
             if (response.status == 200) {
-                console.log(data.token)
+        
                 localStorage.setItem("token", data.token);
-                //window.location.assign("profile.html");
+                window.location.assign("profile.html");
             } else {
                 alert(data.error);
             }
