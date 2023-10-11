@@ -86,9 +86,9 @@ class Donation {
 
         const responseItems = await ItemDonated.getMultipleByDonation(donation.id)
 
+        const event = await Events.getOneById(donation.drop_id)
 
-        return {donation, responseItems}
-
+        return {donation, responseItems, event}
     }
 
 }
