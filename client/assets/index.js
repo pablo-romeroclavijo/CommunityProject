@@ -10,45 +10,34 @@ function revealPassword() {
 	}
 }
 
-// const login = document.getElementById("loginButton");
-// login.addEventListener("submit", loginRequest);
-// console.log(login);
-
-/*
-
-Request goes to URL http://localhost3000/user/login passes object:{
-    username:
-    password:
-}
-
-//Register goes to http://localhost3000/user/register passes object:{
-    username:
-    password:
-    postcode:
-    email:
-}
-
-Register auto-logs in
-Store the token (returns) in local storage
-
-Profile goes to http://localhost3000/user/profile
-Requires that the header contains the token
-Options passes the header
-method: body[<empty>], header{
-    authentication: token - reads local storage
-}
-
-Returned all information 
-{username: username, identity_verified: identity_verified, postcode: postcode, email: email, family_unit: family_unit}
-
-fetch (`{URL}/uses/<path>`)
-*/
+const a = document.getElementById("Login");
+console.log(a);
+a.addEventListener("submit", loginRequest);
 
 async function loginRequest(e) {
-	console.log(e);
-	const email = e.target.email_input.value;
-	console.log(email);
+	e.preventDefault();
+	const form = new FormData(e.target);
+
 	const options = {
 		method: "POST",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			username: form.get("email_input"),
+			password: form.get("password_input"),
+		}),
 	};
+
+	const response = await fetch("https://communityapp-gsbn.onrender.com/user/login");
+	const data = await response.json();
+	console.log(data);
+
+	if (response.status == 200) {
+		localStorage.setItem("token", data.token);
+		window.location.assign("board.html");
+	} else {
+		alert(data.error);
+	}
 }

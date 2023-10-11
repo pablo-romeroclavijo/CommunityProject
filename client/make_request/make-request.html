@@ -37,6 +37,7 @@
                         <tr>
                             <th>Product ID</th>
                             <th>Product</th>
+                            <th>Catogory</th>
                             <th>Quantity in Stock</th>
                             <th>Unit</th>
                             <th>Action</th>
@@ -58,34 +59,33 @@
             <h2> Requested items</h2>
         </div>
 
-        <form id="'resquest-items">
-        <div class = "flexbox-container">
+        <form id="'resquest-items" method='get'>
+            <div class = "flexbox-container">
 
-            <div class = 'flexbox-item'>
-            
-                <table id="request-table">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Product</th>
-                            <th>Quantity in Stock</th>
-                            <th>Unit</th>
-                            <th>Max Quantity</th>
-                            <th>Requested Ammount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Your data rows will go here -->
-                    </tbody>
-                </table>
-    
+                <div class = 'flexbox-item'>
+                
+                    <table id="request-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Product</th>
+                                <th>Quantity in Stock</th>
+                                <th>Unit</th>
+                                <th>Max Quantity</th>
+                                <th>Requested Ammount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Your data rows will go here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class = "flexbox-container">
+                <input id ='make-request' type= "submit">
                 
             </div>
-        
-        </div>
-        <div class = "flexbox-container">
-            <input id ='make-request' type= "submit"></input>
-        </div>
         </form>
 
 
