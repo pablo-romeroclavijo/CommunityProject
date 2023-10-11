@@ -75,13 +75,13 @@ class Request {
             throw new Error("Unable to locate Requests.");
         }
 
-        return response.rows.map(Request => new Request(Request))
+        return response.rows.map(request => new Request(request))
 
     }
 
     static async getOneById(id){
         //console.log(id)
-        const response = await db.query("SELECT * FROM Requests WHERE Request_id = $1", [id]);
+        const response = await db.query("SELECT * FROM requests WHERE request_id = $1", [id]);
         if (response.rows.length < 1) {
             throw new Error("Unable to locate Requests.");
         }
