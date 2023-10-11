@@ -23,9 +23,10 @@ class Donation {
     }
 
     static async create(data, user_id){
-        const {items, slot_time, slot_date, type} = data 
-        console.log(slot_time)
-        const event = await Events.create(type, slot_time, slot_date)
+       // console.log(data)
+        const {items, slot_time, slot_date} = data 
+        //console.log(items)
+        const event = await Events.create("D", slot_time, slot_date)
         const date = new Date()
 
         const currentDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 
@@ -33,11 +34,12 @@ class Donation {
 
         const response = await db.query("INSERT INTO donations (user_id, donation_date, drop_id) VALUES ($1, $2, $3) RETURNING donation_id", [Number(user_id), currentDate, event.id ])
         const donation = await Donation.getOneById(response.rows[0].donation_id)
+        //console.log(donation.donation)
         const query = donation.donation.queryBuilder(items)
 
         const responseCreateItems = await db.query(query)
 
-        const itemList = responseCreateItems.rows.map(item => new ItemDonated(item) )
+        const itemList = await ItemDonated.getMultipleByDonation(response.rows[0].donation_id)
 
         return {event, donation, itemList} 
     } 
@@ -45,11 +47,11 @@ class Donation {
     queryBuilder(items){
         let query = 'INSERT INTO items_donated (user_id, donation_id, expiration_date, quantity_donated, quantity_remaining, product_id) VALUES'
         items.map(item =>{
-            let subquery = "( '" + this.user_id + "', '" + this.id + "', '" + item.expirationDate + "', '" +item.quantityDonated + "', '" + item.quantityDonated + "', '" + item.id + "'),"
+            let subquery = "( '" + this.user_id + "', '" + this.id + "', '" + item.expiration_date + "', '" +item.quantity_donated + "', '" + item.quantity_donated + "', '" + item.product_id + "'),"
             query = query + subquery
         })
         query = query.substring(0, query.length - 1)+ ' RETURNING *;'
-        console.log(query)
+        //console.log(query)
         return query
  
     }
