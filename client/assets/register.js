@@ -1,24 +1,16 @@
-function revealPassword(){
-    const x = document.getElementById("password")
-    console.log(x)
-    if (x.type === "password"){
-        x.type = "text";
-    }
-    else{
-        x.type = "password"
-    }
+function revealPassword() {
+	const x = document.getElementById("password");
+	console.log(x);
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password";
+	}
 }
-const a = document.getElementById("register")
-a.addEventListener("submit", registerNewUser)
-console.log(a)
 
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
+const a = document.getElementById("register");
+a.addEventListener("submit", registerNewUser);
+console.log(a);
 
 async function registerNewUser(e){
     e.preventdefault()
