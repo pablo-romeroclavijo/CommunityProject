@@ -18,13 +18,11 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <i class="material-icons ikon" style="color: white; position: relative; top: 5px; right: 20px; cursor: pointer" onmouseover="this.style.color = 'lightgreen';" onmouseout="this.style.color = 'white'"><span class="material-symbols-outlined">
-                    notifications
-                    </span></i>
             <i class="material-icons ikon" style="color: white; position: relative; top: 5px; right: 10px; cursor: pointer" onmouseover="this.style.color = 'lightgreen';" onmouseout="this.style.color = 'white'"><span class="material-symbols-outlined">
                 person
                 </span></i>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#" style="color: white">
@@ -35,8 +33,8 @@
                         </li>
                     </ul>
                 </div>
-                </div> 
-                </nav> 
+        </div> 
+    </nav> 
       <div class = "flexbox-container">
         <div class = "flexbox-item flexbox-image-login">
             <img class = "logo" src = "assets/images/Logo.png" padding-top: -100px">
@@ -45,14 +43,14 @@
             <div class = "login-array">
                 <div class = "welcomeHeader">Login</div>
                     <form id = "login">
-                      <label for="usernameInput" class="input-label">
+                      <label for="username" class="input-label">
                         <i class="material-icons">person</i>
-                        <input class="Input" type="text" id="username_input" name="email_input" placeholder="Username">
+                        <input class="Input" type="text" id="username" name="username" placeholder="Username">
                       </label>
                       
-                      <label for="password_input" class="input-label">
+                      <label for="password" class="input-label">
                         <i class="material-icons">lock</i>
-                        <input class="Input" type="password" id="password" name="password_input" placeholder="Password">
+                        <input class="Input" type="password" id="password" name="password" placeholder="Password">
                       </label>
                       <label>
                         <input class="showPassword" type="checkbox" onclick="revealPassword()">

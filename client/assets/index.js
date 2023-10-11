@@ -10,14 +10,13 @@ function revealPassword() {
 	}
 }
 
-const a = document.getElementById("Login");
+const a = document.getElementById("login");
 console.log(a);
 a.addEventListener("submit", loginRequest);
 
 async function loginRequest(e) {
 	e.preventDefault();
 	const form = new FormData(e.target);
-
 	const options = {
 		method: "POST",
 		headers: {
@@ -25,12 +24,12 @@ async function loginRequest(e) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			username: form.get("email_input"),
-			password: form.get("password_input"),
+			username: form.get("username"),
+			password: form.get("username"),
 		}),
 	};
 
-	const response = await fetch("https://communityapp-gsbn.onrender.com/user/login");
+	const response = await fetch("https://communityapp-gsbn.onrender.com/user/login", options);
 	const data = await response.json();
 	console.log(data);
 
@@ -42,30 +41,3 @@ async function loginRequest(e) {
 	}
 }
 
-async function loginRequest(e){
-    e.preventDefault()
-    const form = new FormData(e.target)
-
-    const options = {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            username: form.get("email_input"),
-            password: form.get("password_input")
-        })
-    }
-
-    const response = await fetch("https://communityapp-gsbn.onrender.com/user/login", options) 
-    const data = await response.json()
-    console.log(data)
-
-    if (response.status == 200) {
-        localStorage.setItem("token", data.token);
-        window.location.assign("board.html");
-    } else {
-        alert(data.error);
-    }
-}

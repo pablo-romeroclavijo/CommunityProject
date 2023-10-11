@@ -30,7 +30,7 @@ async function login (req, res) {
         console.log("User", user)
         console.log(data.password, user.password)
         const authenticated = await bcrypt.compare(data.password, user.password);
-        console.log("Authentificated", authenticated)
+        console.log("Authenticated", authenticated)
         if (!authenticated) {
             throw new Error("Incorrect credentials.");
         } else {
