@@ -1,4 +1,5 @@
 const db = require("../database/connect");
+const donationRouter = require("../routes/donationsRoutes");
 const Events = require("./Events");
 const ItemDonated = require("./ItemsDonated");
 
@@ -20,6 +21,16 @@ class Donation {
             throw new Error("Unable to locate donation.");
         }
         return new Donation(response.rows[0]);
+    }
+
+
+    static async modifyStatus(id, status){
+        console.log('a', id, status)
+        const response = await db.query('UPDATE donations SET status = $1 WHERE donation_id = $2 RETURNING *', [status, id])
+  
+        const donation = new Donation(response.rows[0])
+
+        return donation
     }
 
     static async create(data, user_id){
@@ -79,17 +90,23 @@ class Donation {
         console.log(id)
         const response = await db.query("SELECT * FROM donations WHERE donation_id = $1", [id]);
         if (response.rows.length < 1) {
-            throw new Error("Unable to locate donations.");
+            throw new Error("Unagit add .le to locate donations.");
         }
-
+        console.log('aa', response.rows[0])
         const donation = new Donation(response.rows[0])
+        console.log('aa', response.rows[0])
 
         const responseItems = await ItemDonated.getMultipleByDonation(donation.id)
+    
+        const event = await Events.getOneById(donation.drop_id)
 
         const event = await Events.getOneById(donation.drop_id)
 
         return {donation, responseItems, event}
+
     }
+
+
 
 }
 
