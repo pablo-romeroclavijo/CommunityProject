@@ -27,27 +27,62 @@ async function loadProfile(){
 }
 }
 
+function updateTable(tableData) {
 
+    const tbody = donations.querySelector('tbody');
+    tbody.innerHTML = '';
+    let currentPage = 1
+    let itemsPerPage = 10
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+
+    console.log(tableData)
+    for (let i = startIndex; i < endIndex && i < tableData.length; i++) {
+        const row = document.createElement('tr');
+        const rowData = tableData[i];
+        const keys = ['product_id', 'product_name', "category", "quantity_remaining", "unit"]
+        keys.map(key =>{
+            const cell = document.createElement('td');
+            cell.textContent = rowData[key];
+            row.appendChild(cell);
+        })
+        const cell = document.createElement('td');
+        const button = document.createElement('button')
+        button.innerHTML = 'DONATE'
+        button.classList.add('add-button')
+        button.id = rowData.product_id
+        cell.appendChild(button)
+        row.appendChild(cell)
+
+        tbody.appendChild(row);
+    }
+}
 async function getStock(){
     console.log("HI")
     const options = {
         method: "GET",
-        header:{
+        headers:{
+            'authorization': localStorage.token,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '88e0ee88-40c8-46ac-a3cb-001d80a9eebf'
+            
         }}
-    const request = await fetch(backendURL + 'donation/', options)
+    const request = await fetch('https://communityapp-gsbn.onrender.com/donation', options)
+    console.log(request)
     const table = await request.json()
-    console.log(table)
+    console.log(donations)
 
-    updateTable(table);
-    updatePagination(table)
+    updateTable(donations);
+    //updatePagination(donations)
 
     return tableData = table
 
     
 }
+
+let tableData = []
+
 
 
 loadProfile()

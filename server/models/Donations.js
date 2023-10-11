@@ -23,7 +23,7 @@ class Donation {
     }
 
     static async create(data, user_id){
-        //console.log(data)
+       // console.log(data)
         const {items, slot_time, slot_date} = data 
         //console.log(items)
         const event = await Events.create("D", slot_time, slot_date)
