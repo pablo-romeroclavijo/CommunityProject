@@ -28,11 +28,11 @@ class ItemDonated {
         if (response.rows.length != 1) {
             throw new Error("Unable to locate item.");
         }
-        return new ItemDonated(response.rows[0]);
+        return new ItemDonated(response.rows[0]); 
     }
 
 
-    static async getMultipleByDonation(donation_id){
+    static async getMultipleByDonation(donation_id){ 
         const response = await db.query("SELECT i.product_ID, p.product_name, i.quantity_donated, i.expiration_date, i.verified  FROM items_donated i JOIN products p ON p.product_id = i.product_id WHERE donation_id = $1", [donation_id])
         
         const items = response.rows.map(item => new ItemDonated(item))
@@ -47,9 +47,9 @@ class ItemDonated {
 
 
     static async getAllByProductID(){
-        const response = await db.query("SELECT i.product_id, p.product_name, p.category_name, COUNT(i.quantity_remaining) AS quantity_remaining, p.max_order, unit_quantity FROM items_donated i JOIN products p ON p.product_id = i.product_id WHERE verified = '1' GROUP BY i.product_id, p.product_name, p.max_order, p.unit_quantity, p.category_name");
-        console.log(response.rows)
-        const products = response.rows.map(item => new ItemDonated(item))
+        const query = "SELECT  p.product_id, p.product_name, p.category_name, SUM(i.quantity_remaining) AS quantity_remaining, p.max_order, unit_quantity FROM products p FULL JOIN items_donated i ON p.product_id = i.product_id GROUP BY p.product_id, p.product_name, p.max_order, p.unit_quantity, p.category_name"
+        const response = await db.query(query)
+        const products = response.rows.map(item => new ItemDonated(item)) 
         return products
         
     }
