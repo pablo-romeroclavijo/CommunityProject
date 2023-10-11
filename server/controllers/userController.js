@@ -4,7 +4,7 @@ const User = require('../models/Users');
 const Token = require('../models/Token');
 
 async function register (req, res) {
-    // try {
+    try {
         const data = req.body;
         console.log(data)
 
@@ -19,9 +19,9 @@ async function register (req, res) {
         const token = await Token.create(result.id);
         res.status(200).json({ authenticated: true, token: token.token })
 
-    // } catch (err) {
-    //     res.status(400).json({"error": err.message})
-    // }
+    } catch (err) {
+        res.status(400).json({"error": err.message})
+    }
 };
 
 async function login (req, res) { 

@@ -16,29 +16,41 @@ async function registerNewUser(e){
     e.preventDefault()
     const form = new FormData(e.target)
     console.log(e.target)
+    try {
+        if(ValidateEmail(document.getElementById("email").value)){
 
-    if(ValidateEmail(document.getElementById("email").value)){
+            const options = {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: document.getElementById("username").value,
+                    email: document.getElementById("email").value,
+                    postcode: document.getElementById("postcode").value,
+                    password: document.getElementById("password").value
+                })
+            }
 
-        const options = {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: document.getElementById("username").value,
-                email: document.getElementById("email").value,
-                postcode: document.getElementById("postcode").value,
-                password: document.getElementById("password").value
-            })
+            const response = await fetch("https://communityapp-gsbn.onrender.com/user/register", options);
+            const data = await response.json();
+        
+        
+            if (response.status == 200) {
+                console.log(data.token)
+                localStorage.setItem("token", data.token);
+                //window.location.assign("profile.html");
+            } else {
+                alert(data.error);
+            }
+            
+            
         }
-
-        console.log(options)
-        const response = await fetch ("https://communityapp-gsbn.onrender.com/user/register", options)
-        const data = await response.json()
-        console.log(response)
-    }
-    else{//pass
+        else{//pass
+        }
+    } catch (error) {
+        
     }
 }
 
