@@ -184,32 +184,56 @@ function fetchForm(e){
         requestList.push(item)
     }
     console.log(requestList)
-    sendRequest(requestList)
+    sendRequest(JSON.stringify(requestList))
 
 }
 
 async function sendRequest(requestList){
     const options = {
         method: "POST",
-        header:{
+        headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': '$2b$10$cj40F4ApBWuITJvGxo6AZ.CBIkxWzzUYTf8CppT85joS1AbaluRl2'    /// change to colacl.storage
+            'Authorization': '8b51d488-d012-4c51-858e-130ca4c77a17	'    /// change to colacl.storage
         },
-        body: requestList.toString()
+        body: requestList
         }
-    const request = await fetch(backendURL + '/donation', options)
-    const table = await request.json()
-    console.log(table)
+    const request = await fetch(backendURL + '/request', options)
+    const response = await request.json()
+    console.log(response)
+    loadRequest(response)
+}
 
-    updateTable(table);
-    updatePagination(table)
+function loadRequest(response){
+    console.log(document.getElementById('container1'))
+    document.getElementById('container1').style.display = 'none'
+    document.getElementById('container2').style.display = 'block'
 
-    return tableData = table}
+    const QR = document.getElementById('QR')
+    const code = document.getElementById('code')
+ 
 
+    const {event, itemList, request}  = response
+    code.textContent = "your collection code is: " + event.code
+    QR.attr('src', event.QR)
+    QR.att('title', event.code)
+    updateRequestedTable(itemList)
+    
+}
 
+function updateRequestedTable(itemList) {
+    const table = document.getElementById('request-table');
+    const tbody = table.querySelector('tbody');
+    tbody.innerHTML = '';
 
-    // {[
-//   {"product_id": "12", "quantity_requested": "12"},
-//   {"product_id": "1", "quantity_requested": "2"}
-//   ]}
+    for (let i = 0; i < requestTable.length; i++) {
+        const row = document.createElement('tr');
+        const rowData = itemList[i];
+        const keys = ['product_id', 'product_name', "requested", 'collected']
+        keys.map(key =>{
+            const cell = document.createElement('td');
+            cell.textContent = rowData[key];
+            row.appendChild(cell);
+        })
+    }
+}
