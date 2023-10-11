@@ -25,11 +25,11 @@ class ItemRequested {
     }
 
     static async getMultipleByRequest(request_id){
-        console.log(request_id)
+        //console.log(request_id)
         const response = await db.query("SELECT * FROM items_requested WHERE request_id = $1", [request_id])
-        console.log(response)
+        //console.log(response)
         const items = response.rows.map(item => new ItemRequested(item))
-        console.log(items)
+        //console.log(items)
         return items
     }
 

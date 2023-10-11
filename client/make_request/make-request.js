@@ -1,4 +1,4 @@
-backendURL = 'http://localhost:3000'
+backendURL = 'https://communityapp-gsbn.onrender.com'
 
 //Navbar
 
@@ -16,11 +16,9 @@ function openNav() {
 
 
 
-
+// stock table
 
 getStock()
-
-// stock table
 async function getStock(){
     const options = {
         method: "GET",
@@ -129,8 +127,17 @@ async function addItem (e){
     e.target.disabled = true
     disabled_buttons.push(e.target.id)
     requestTable.push(item)
+    console.log(item)
+
+    document.getElementById('request-container').style.display = 'block'
     
     updateRequestTable()
+
+    try{
+        const form = document.getElementById('resquest-items')
+        form.addEventListener('submit', fetchForm)}
+    catch{//pass
+    }   
 }
 
 
@@ -151,11 +158,11 @@ function updateRequestTable() {
         const cell = document.createElement('td');
         const input = document.createElement('input')
         input.type = 'number'
-        input.placeholder = 1
-        input.min = 1
+        input.defaultValue = 0
+        input.min = 0
         input.max = rowData.max
         input.classList.add('quantity')
-        input.id = rowData.name
+        input.id = rowData.product_id
         cell.appendChild(input)
         row.appendChild(cell)
 
@@ -165,12 +172,44 @@ function updateRequestTable() {
 
 // Send request
 
-const button = document.getElementById('make-request')
-console.log(button)
-button.addEventListener('submit', function (e) {e.stopImmediatePropagation(); console.log(e)})
-
-function sendRequest(e){
-
+function fetchForm(e){
+    const requestList = []
+    e.preventDefault()
     console.log(e.target)
-    console.log('blalba')
+    const quantitites = document.getElementsByClassName('quantity')
+    for(i = 0 ; i < quantitites.length; i++){
+        const quantity = quantitites[i].value
+        const product_id = quantitites[i].id
+        const item = {product_id: product_id, quantity_requested: quantity}
+        requestList.push(item)
+    }
+    console.log(requestList)
+    sendRequest(requestList)
+
 }
+
+async function sendRequest(requestList){
+    const options = {
+        method: "POST",
+        header:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': '$2b$10$cj40F4ApBWuITJvGxo6AZ.CBIkxWzzUYTf8CppT85joS1AbaluRl2'    /// change to colacl.storage
+        },
+        body: requestList.toString()
+        }
+    const request = await fetch(backendURL + '/donation', options)
+    const table = await request.json()
+    console.log(table)
+
+    updateTable(table);
+    updatePagination(table)
+
+    return tableData = table}
+
+
+
+    // {[
+//   {"product_id": "12", "quantity_requested": "12"},
+//   {"product_id": "1", "quantity_requested": "2"}
+//   ]}
