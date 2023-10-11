@@ -9,5 +9,5 @@ requestRouter.post('/', requestController.create)
 requestRouter.get('/', requestController.getAll)      
 requestRouter.get('/:id', requestController.getOneById) 
 
-requestRouter.patch('/collected/:id', requestController.collected)        //to be built
+requestRouter.patch('/collected/:id', requestController.collected)      
 module.exports = requestRouter;

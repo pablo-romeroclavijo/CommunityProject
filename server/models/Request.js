@@ -19,7 +19,7 @@ class Request {
     queryBuilder(items, event_id) {
         let query = 'INSERT INTO items_requested (request_id, event_id, product_id, quantity_requested) VALUES'
         items.map(item =>{
-            let subquery = "( '" + this.id + "', '" + event_id + "', '" +item.id + "', '" + item.quantity_requested + "'),"
+            let subquery = "( '" + this.id + "', '" + event_id + "', '" +item.product_id + "', '" + item.quantity_requested + "'),"
             query = query + subquery
         })
         query = query.substring(0, query.length - 1)+ ' RETURNING *;'
@@ -37,23 +37,24 @@ class Request {
     }
 
     static async create(data, user_id, type){
-        const {items} = data 
+        const items = data 
         const event = await Events.create(type)
         const date = new Date()
-        console.log(event)
+        //console.log(event)
 
         const currentDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate(); 
 
 
         const response = await db.query("INSERT INTO requests (user_id, request_date) VALUES ($1, $2) RETURNING Request_id", [Number(user_id), currentDate])
         const request = await Request.getOneById(response.rows[0].request_id)
-        console.log(request.request)
+        //console.log(request.request)
         const query = request.request.queryBuilder(items, event.id)
 
 
         const responseCreateItems = await db.query(query)
 
-        const itemList = responseCreateItems.rows.map(item => new ItemRequested(item) )
+        const itemList = await ItemRequested.getMultipleByRequest(response.rows[0].request_id)
+        //responseCreateItems.rows.map(item => new ItemRequested(item) )
 
         return {event, request, itemList} 
     } 
@@ -79,7 +80,7 @@ class Request {
     }
 
     static async getOneById(id){
-        console.log(id)
+        //console.log(id)
         const response = await db.query("SELECT * FROM Requests WHERE Request_id = $1", [id]);
         if (response.rows.length < 1) {
             throw new Error("Unable to locate Requests.");

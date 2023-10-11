@@ -60,7 +60,7 @@ function updateTable(tableData) {
         })
         const cell = document.createElement('td');
         const button = document.createElement('button')
-        button.innerHTML = 'ADD TO LIST'
+        button.innerHTML = 'DONATE'
         button.classList.add('add-button')
         button.id = rowData.product_id
         cell.appendChild(button)
@@ -143,7 +143,7 @@ function updateRequestTable() {
     for (let i = 0; i < requestTable.length; i++) {
         const row = document.createElement('tr');
         const rowData = requestTable[i];
-        const keys = ['product_id', 'product_name', "quantity_remaining", "unit", 'max']
+        const keys = ['product_id', 'product_name', "quantity_remaining", "unit"]
         keys.map(key =>{
             const cell = document.createElement('td');
             cell.textContent = rowData[key];
@@ -152,37 +152,58 @@ function updateRequestTable() {
         const cell = document.createElement('td');
         const input = document.createElement('input')
         input.type = 'number'
-        input.defaultValue = 0
-        input.min = 0
-        input.max = rowData.max
+        input.defaultValue = 1
+        input.min = 1
         input.classList.add('quantity')
         input.id = rowData.product_id
         cell.appendChild(input)
         row.appendChild(cell)
 
+        const cell2 = document.createElement('td');
+        const input2 = document.createElement('input')
+        input2.type = 'date'
+        input2.defaultValue = new Date()
+        const today =  new Date()
+        input2.setAttribute("min", today.toISOString().split("T")[0])
+        input2.classList.add('date_exp')
+        cell2.appendChild(input2)
+        row.appendChild(cell2)
+
         tbody.appendChild(row);
     }
+    const today = new Date()
+    let ten_days = new Date()
+    ten_days.setDate(ten_days.getDate()+10)
+    document.getElementById("date").setAttribute("min", today.toISOString().split("T")[0])
+    document.getElementById("date").setAttribute("max", ten_days.toISOString().split("T")[0])
+    document.getElementById("time").setAttribute("min", '08:00:00')
+    document.getElementById("time").setAttribute("max", '11:00:00')
 }
 
 // Send request
 
 function fetchForm(e){
-    const requestList = []
+    const donatedList = {items:[]}
     e.preventDefault()
     console.log(e.target)
     const quantitites = document.getElementsByClassName('quantity')
+    const dates = document.getElementsByClassName('date_exp')
+    donatedList['slot_date'] = document.getElementById('date').value
+    donatedList['time'] = document.getElementById('time').value
+
     for(i = 0 ; i < quantitites.length; i++){
         const quantity = quantitites[i].value
         const product_id = quantitites[i].id
-        const item = {product_id: product_id, quantity_requested: quantity}
-        requestList.push(item)
+        const date = dates[i].value
+        const item = {product_id: product_id, quantity_donated: quantity, expiration_date: date}
+        donatedList.items.push(item)
     }
-    console.log(requestList)
-    sendRequest(JSON.stringify(requestList))
+    console.log(JSON.stringify(donatedList))
+    sendRequest(JSON.stringify(donatedList))
 
 }
 
-async function sendRequest(requestList){
+async function sendRequest(donatedList){
     const options = {
         method: "POST",
         headers:{
@@ -190,9 +211,9 @@ async function sendRequest(requestList){
             'Content-Type': 'application/json',
             'Authorization': '8b51d488-d012-4c51-858e-130ca4c77a17	'    /// change to colacl.storage
         },
-        body: requestList
+        body: donatedList
         }
-    const request = await fetch(backendURL + '/request', options)
+    const request = await fetch(backendURL + '/donation', options)
     const response = await request.json()
     console.log(response)
     loadRequest(response)
@@ -204,12 +225,15 @@ function loadRequest(response){
 
     const QR = document.getElementById('QR')
     const code = document.getElementById('code')
+    const slot = document.getElementById('slot')
+
  
 
     const {event, itemList, request}  = response
-    code.textContent = "your collection code is: " + event.code
+    code.textContent = "your drop-off code is: " + event.code
     QR.setAttribute('src', event.QR)
     QR.setAttribute('title', event.code)
+    slot.textContent = 'Your drop of slot is: ' + event.drop_time
     updateRequestedTable(itemList)
     
 }
