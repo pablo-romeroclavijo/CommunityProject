@@ -61,7 +61,7 @@ ALTER TABLE
 
 CREATE TABLE token(
     token_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    token CHAR(60) NULL,
+    token CHAR(36) NULL,
     user_id INTEGER NOT NULL
 );
 ALTER TABLE
@@ -70,13 +70,14 @@ ALTER TABLE
 
 CREATE TABLE products(
     product_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    product_name VARCHAR(20) NOT NULL UNIQUE,
+    product_name VARCHAR(35) NOT NULL,
     category_id INTEGER NOT NULL,
     max_order INTEGER NOT NULL DEFAULT '1',
     waiting_list INTEGER NOT NULL,
-    unit_quantity VARCHAR(20) NOT NULL,
+    unit_quantity VARCHAR(250) NOT NULL,
     category_description VARCHAR(255) NOT NULL,
-    category_name VARCHAR(60) NOT NULL
+    category_name VARCHAR(60) NOT NULL,
+    sub_category_name VARCHAR(60)
 );
 ALTER TABLE
     products ADD PRIMARY KEY(product_id);
