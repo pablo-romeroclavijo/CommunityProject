@@ -87,7 +87,7 @@ footer{
     border-radius: 8px;
     border-color: white;
     height: 40px;
-    width: 90%;
+    width: 100%;
     background-color: #ffffff;;
     color: rgb(6, 87, 154);
     font-weight: bold;
@@ -156,7 +156,6 @@ footer{
   
 }
 
-
 .sidenav {
   height: 100%;
   width: 0;
@@ -164,7 +163,7 @@ footer{
   z-index: 1;
   top: 0;
   left: 0;
-  background: linear-gradient(45deg, #2e74b5 0%, rgb(41, 114, 138) 35%, #40b4b4 100%);
+  background: linear-gradient(45deg, #98c385 0%, rgb(8, 103, 3) 35%, #90e7e7 100%);
 
   overflow-x: hidden;
   transition: 0.5s;

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carmour: Register</title>
-    <link rel="shortcut icon" href="./assets/favicom.ico">
+    <link rel="shortcut icon" href="./assets/images/favicom.ico">
     <link rel="stylesheet" href="./assets/register.css">
     <script src="./assets/register.js" defer></script>
     <link rel = "stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -32,20 +32,17 @@
             <div class = "flexbox-item flexbox-login-array">
                 <div class = "login-array">
                     <div class = "welcomeHeader">Login</div>
-    
-                        <label id ="nameInput" for="name_input"></label>
+                    <form id = "register">
+                        <label id ="nameInput" for="name"></label>
                         <input class = "mailInput" type="text" id="name" name="name" placeholder = "Full Name"> 
                          
                         <label id ="emailInput" for="email_input"></label>
                         <input class = "mailInput" type="text" id="email" name="email" placeholder = "Email"> 
 
-                        <label id ="PostcodeInput" for="code_input"></label>
-                        <input class = "mailInput" type="text" id="code_input" name="code_input" placeholder = "Post Code" maxlength = 7> 
+                        <label id ="DOBInput" for="dob"></label>
+                        <input class = "mailInput" type="date" id="dob" name="dob"> 
 
-                        <label id ="DOBInput" for="dob_input"></label>
-                        <input class = "mailInput" type="date" id="dob_input" name="dob_input"> 
-
-                        <label id ="passInput" for="password_input"></label>
+                        <label id ="passInput" for="password"></label>
                         <input class = "passwordInput" type="password" id="password" name="password" placeholder = "Password">
                         <label>
                             <input class="showPassword" type="checkbox" onclick="revealPassword()">
@@ -53,6 +50,7 @@
                           </label>
                     <button class = "loginButton">Login to your account</button>
                     <div class = "subheader">Login above or <a href="register.html" class="whiteLink">create an account</a></div>
+                </form>
             </div>
             </div>
         </div>

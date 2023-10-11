@@ -8,7 +8,8 @@ function revealPassword(){
         x.type = "password"
     }
 }
-const a = document.getElementById("mySidenav")
+const a = document.getElementById("register")
+a.addEventListener("submit", registerNewUser)
 console.log(a)
 
 function openNav() {
@@ -18,3 +19,25 @@ function openNav() {
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
+
+async function registerNewUser(e){
+    e.preventdefault()
+    const form = new FormData(e.target)
+    
+
+    const options = {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fullname: form.get("name"),
+            email: form.get("email"),
+            DOB: form.get("dob"),
+            password: form.get("password")
+        })
+    }
+    const response = await fetch ("https://communityapp-gsbn.onrender.com/user/login")
+    const data = await response.json()
+}

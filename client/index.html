@@ -32,17 +32,18 @@
         <div class = "flexbox-item flexbox-login-array">
             <div class = "login-array">
                 <div class = "welcomeHeader">Login</div>
-
+                <form id = "Login" name = "login">
                     <label id ="emailInput" for="email_input"></label>
-                    <input class = "mailInput" type="text" id="email" name="email" placeholder = "Email"> 
+                    <input class = "mailInput" type="text" id="email_input" name="email_input" placeholder = "Email"> 
                      
                     <label id ="passInput" for="password_input"></label>
-                    <input class = "passwordInput" type="password" id="password" name="password" placeholder = "Password">
+                    <input class = "passwordInput" type="password" id="password_input" name="password_input" placeholder = "Password">
                     <label>
                         <input class="showPassword" type="checkbox" onclick="revealPassword()">
                         Show Password
                       </label>
-                <button class = "loginButton">Login to your account</button>
+                <button class = "loginButton" id = loginButton type = "submit">Login to your account</button>
+            </form>
                 <div class = "subheader">Login above or <a href="register.html" class="whiteLink">create an account</a></div>
         </div>
         </div>
