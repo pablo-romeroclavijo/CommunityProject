@@ -23,7 +23,7 @@
       </div>
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-    <div class="container">
+    <div class="container" id="container1">
         <div class = "flexbox-container">
             <h2> Bank Stock</h2>
         </div>
@@ -55,42 +55,77 @@
             </div>
         </div>
 
-        <div class = "flexbox-container">
-            <h2> Requested items</h2>
+        <div id = 'request-container' style="display: none;" >
+            <div class = "flexbox-container">
+                <h2> Requested items</h2>
+            </div>
+
+            <form id= "resquest-items" method='get' >
+                <div class = "flexbox-container">
+
+                    <div class = 'flexbox-item' id = 'request-containter'>
+                    
+                        <table id="request-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Product</th>
+                                    <th>Quantity in Stock</th>
+                                    <th>Unit</th>
+                                    <th>Max Quantity</th>
+                                    <th>Requested Ammount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Your data rows will go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class = "flexbox-container">
+                    <input id ='make-request' type= "submit">
+                    
+                </div>
+            </form>
         </div>
 
-        <form id="'resquest-items" method='get'>
-            <div class = "flexbox-container">
-
-                <div class = 'flexbox-item'>
-                
-                    <table id="request-table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Product</th>
-                                <th>Quantity in Stock</th>
-                                <th>Unit</th>
-                                <th>Max Quantity</th>
-                                <th>Requested Ammount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Your data rows will go here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class = "flexbox-container">
-                <input id ='make-request' type= "submit">
-                
-            </div>
-        </form>
-
-
     </div>
-        
+    
+    
+
+
+<div class="container" id="container2" style="display: none;">
+    <h1> Thanks for making a request</h1>
+    <img id ='QR' src= "" alt="" title="" />
+    <h2 id="code"></h2>
+    
+    <div class = "flexbox-container">
+        <h2> Requested items</h2>
+    </div>
+
+
+    <div class = "flexbox-container">
+
+        <div class = 'flexbox-item'>
+            <table id="requested-table">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product</th>
+                        <th>Requested Amount</th>
+                        <th>Collected</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Your data rows will go here -->
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
 
 </body>
 </html>

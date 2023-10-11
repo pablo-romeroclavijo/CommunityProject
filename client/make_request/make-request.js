@@ -1,4 +1,4 @@
-backendURL = 'http://localhost:3000'
+backendURL = 'https://communityapp-gsbn.onrender.com'
 
 //Navbar
 
@@ -16,11 +16,9 @@ function openNav() {
 
 
 
-
+// stock table
 
 getStock()
-
-// stock table
 async function getStock(){
     const options = {
         method: "GET",
@@ -123,14 +121,22 @@ function eventListeners(){
 }
 
 async function addItem (e){
-    console.log(tableData.PromiseResult)
     const item = await tableData.find(element => element["product_id"] == e.target.id)
     e.target.textContent = "ADDED"
     e.target.disabled = true
     disabled_buttons.push(e.target.id)
     requestTable.push(item)
+    console.log(item)
+
+    document.getElementById('request-container').style.display = 'block'
     
     updateRequestTable()
+
+    try{
+        const form = document.getElementById('resquest-items')
+        form.addEventListener('submit', fetchForm)}
+    catch{//pass
+    }   
 }
 
 
@@ -151,11 +157,11 @@ function updateRequestTable() {
         const cell = document.createElement('td');
         const input = document.createElement('input')
         input.type = 'number'
-        input.placeholder = 1
-        input.min = 1
+        input.defaultValue = 0
+        input.min = 0
         input.max = rowData.max
         input.classList.add('quantity')
-        input.id = rowData.name
+        input.id = rowData.product_id
         cell.appendChild(input)
         row.appendChild(cell)
 
@@ -165,12 +171,71 @@ function updateRequestTable() {
 
 // Send request
 
-const button = document.getElementById('make-request')
-console.log(button)
-button.addEventListener('submit', function (e) {e.stopImmediatePropagation(); console.log(e)})
-
-function sendRequest(e){
-
+function fetchForm(e){
+    const requestList = []
+    e.preventDefault()
     console.log(e.target)
-    console.log('blalba')
+    const quantitites = document.getElementsByClassName('quantity')
+    for(i = 0 ; i < quantitites.length; i++){
+        const quantity = quantitites[i].value
+        const product_id = quantitites[i].id
+        const item = {product_id: product_id, quantity_requested: quantity}
+        requestList.push(item)
+    }
+    console.log(requestList)
+    sendRequest(JSON.stringify(requestList))
+
+}
+
+async function sendRequest(requestList){
+    const options = {
+        method: "POST",
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': '8b51d488-d012-4c51-858e-130ca4c77a17	'    /// change to colacl.storage
+        },
+        body: requestList
+        }
+    const request = await fetch(backendURL + '/request', options)
+    const response = await request.json()
+    console.log(response)
+    loadRequest(response)
+}
+
+function loadRequest(response){
+    document.getElementById('container1').style.display = 'none'
+    document.getElementById('container2').style.display = 'block'
+
+    const QR = document.getElementById('QR')
+    const code = document.getElementById('code')
+ 
+
+    const {event, itemList, request}  = response
+    code.textContent = "your collection code is: " + event.code
+    QR.setAttribute('src', event.QR)
+    QR.setAttribute('title', event.code)
+    updateRequestedTable(itemList)
+    
+}
+
+function updateRequestedTable(itemList) {
+    console.log(itemList)
+    const table = document.getElementById('requested-table');
+    const tbody = table.querySelector('tbody');
+    tbody.innerHTML = '';
+
+    for (let i = 0; i < itemList.length; i++) {
+        console.log('aaa', i, itemList[i])
+        const row = document.createElement('tr');
+        const rowData = itemList[i];
+        const keys = ['product_id', 'product_name', "quantity_requested", 'collected']
+        keys.map(key =>{
+            console.log(key)
+            const cell = document.createElement('td');
+            cell.textContent = rowData[key];
+            row.appendChild(cell);
+        })
+        table.appendChild(row)
+    }
 }
