@@ -38,7 +38,7 @@ async function loginRequest(e){
         })
     }
 
-    const response = await fetch("https://communityapp-gsbn.onrender.com/user/login") 
+    const response = await fetch("https://communityapp-gsbn.onrender.com/user/login", options) 
     const data = await response.json()
     console.log(data)
 
