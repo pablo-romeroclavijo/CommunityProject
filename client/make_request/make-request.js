@@ -1,3 +1,5 @@
+backendURL = 'https://communityapp-gsbn.onrender.com'
+
 //Navbar
 
 
@@ -14,36 +16,37 @@ function openNav() {
 
 
 
-
-
-
-
 // stock table
 
-const tableData = [    //write http request
-{product_id: 1, product_name: 'Milk', quantity_remaining: 5, max: 5, unit: '300g'},
-{product_id: 2, product_name: 'asd', quantity_remaining: 5, max: 115, unit: '300g'},
-{product_id: 3, product_name: 'fds', quantity_remaining: 2, max: 5, unit: '300g'},
-{product_id: 4, product_name: 'fds', quantity_remaining: 205, max: 51, unit: '300g'},
-{product_id: 5, product_name: 'sfd', quantity_remaining: 2125, max: 65, unit: '300g'},
-{product_id: 6, product_name: 'sfd', quantity_remaining: 15, max: 5, unit: '300g'},
-{product_id: 7, product_name: 'fs', quantity_remaining: 25, max: 55, unit: '300g'},
-{product_id: 8, product_name: 'af', quantity_remaining: 13, max: 15, unit: '300g'},
-{product_id: 11, product_name: 'Milk', quantity_remaining: 5, max: 5, unit: '300g'},
-{product_id: 12, product_name: 'asd', quantity_remaining: 5, max: 115, unit: '300g'},
-{product_id: 13, product_name: 'fds', quantity_remaining: 2, max: 5, unit: '300g'},
-{product_id: 14, product_name: 'fds', quantity_remaining: 205, max: 51, unit: '300g'},
-{product_id: 15, product_name: 'sfd', quantity_remaining: 2125, max: 65, unit: '300g'},
-{product_id: 16, product_name: 'sfd', quantity_remaining: 15, max: 5, unit: '300g'},
-{product_id: 17, product_name: 'fs', quantity_remaining: 25, max: 55, unit: '300g'},
-{product_id: 18, product_name: 'af', quantity_remaining: 13, max: 15, unit: '300g'}]
+getStock()
+async function getStock(){
+    const options = {
+        method: "GET",
+        header:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': '88e0ee88-40c8-46ac-a3cb-001d80a9eebf'
+        }}
+    const request = await fetch(backendURL + '/stock', options)
+    const table = await request.json()
+    console.log(table)
+
+    updateTable(table);
+    updatePagination(table)
+
+    return tableData = table
+
+    
+}
+let tableData = []
+
 
 
 const itemsPerPage = 10;
 let currentPage = 1;
 let disabled_buttons = []
 
-function updateTable() {
+function updateTable(tableData) {
     const table = document.getElementById('data-table');
     const tbody = table.querySelector('tbody');
     tbody.innerHTML = '';
@@ -54,7 +57,7 @@ function updateTable() {
     for (let i = startIndex; i < endIndex && i < tableData.length; i++) {
         const row = document.createElement('tr');
         const rowData = tableData[i];
-        const keys = ['product_id', 'product_name', "quantity_remaining", "unit"]
+        const keys = ['product_id', 'product_name', "category", "quantity_remaining", "unit"]
         keys.map(key =>{
             const cell = document.createElement('td');
             cell.textContent = rowData[key];
@@ -75,7 +78,7 @@ function updateTable() {
     disableButtons(disabled_buttons)
 }
 
-function updatePagination() {
+function updatePagination(tableData) {
     const totalPages = Math.ceil(tableData.length / itemsPerPage);
     const pagination = document.getElementById('pagination');
     pagination.innerHTML = '';
@@ -92,10 +95,6 @@ function updatePagination() {
     }
 }
 
-
-
-updateTable();
-updatePagination();
 
 function disableButtons(list){
     for(i = 0; i < list.length; i++){
@@ -121,14 +120,24 @@ function eventListeners(){
         button.addEventListener('click', addItem)}
 }
 
-function addItem (e){
-    const item = tableData.find(element => element["product_id"] == e.target.id)
+async function addItem (e){
+    console.log(tableData.PromiseResult)
+    const item = await tableData.find(element => element["product_id"] == e.target.id)
     e.target.textContent = "ADDED"
     e.target.disabled = true
     disabled_buttons.push(e.target.id)
     requestTable.push(item)
+    console.log(item)
+
+    document.getElementById('request-container').style.display = 'block'
     
     updateRequestTable()
+
+    try{
+        const form = document.getElementById('resquest-items')
+        form.addEventListener('submit', fetchForm)}
+    catch{//pass
+    }   
 }
 
 
@@ -149,11 +158,11 @@ function updateRequestTable() {
         const cell = document.createElement('td');
         const input = document.createElement('input')
         input.type = 'number'
-        input.placeholder = 1
-        input.min = 1
+        input.defaultValue = 0
+        input.min = 0
         input.max = rowData.max
         input.classList.add('quantity')
-        input.id = rowData.name
+        input.id = rowData.product_id
         cell.appendChild(input)
         row.appendChild(cell)
 
@@ -163,9 +172,44 @@ function updateRequestTable() {
 
 // Send request
 
-const submit = document.getElementById('make-request')
-addEventListeners('submit', sendRequest)
-
-function sendRequest(e){
+function fetchForm(e){
+    const requestList = []
+    e.preventDefault()
     console.log(e.target)
+    const quantitites = document.getElementsByClassName('quantity')
+    for(i = 0 ; i < quantitites.length; i++){
+        const quantity = quantitites[i].value
+        const product_id = quantitites[i].id
+        const item = {product_id: product_id, quantity_requested: quantity}
+        requestList.push(item)
+    }
+    console.log(requestList)
+    sendRequest(requestList)
+
 }
+
+async function sendRequest(requestList){
+    const options = {
+        method: "POST",
+        header:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': '$2b$10$cj40F4ApBWuITJvGxo6AZ.CBIkxWzzUYTf8CppT85joS1AbaluRl2'    /// change to colacl.storage
+        },
+        body: requestList.toString()
+        }
+    const request = await fetch(backendURL + '/donation', options)
+    const table = await request.json()
+    console.log(table)
+
+    updateTable(table);
+    updatePagination(table)
+
+    return tableData = table}
+
+
+
+    // {[
+//   {"product_id": "12", "quantity_requested": "12"},
+//   {"product_id": "1", "quantity_requested": "2"}
+//   ]}
