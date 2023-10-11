@@ -73,4 +73,17 @@ async function verifyItem(req, res) {
 	}
 }
 
-module.exports = { createDonation, getAll, getOneById, verifyItem };
+async function modifyStatus(req, res){
+ try{
+    const donationID = req.params.id
+    const status = req.body.status
+    console.log(status, donationID) 
+
+    const response  = await Donation.modifyStatus(donationID, status)
+    console.log('a', response) 
+    res.status(203).send(response)
+}
+catch(error){console.log('error')}}
+  
+
+module.exports = { createDonation, getAll, getOneById, verifyItem, modifyStatus };  
