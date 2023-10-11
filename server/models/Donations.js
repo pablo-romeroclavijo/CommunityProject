@@ -100,6 +100,7 @@ class Donation {
     
         const event = await Events.getOneById(donation.drop_id)
 
+        const event = await Events.getOneById(donation.drop_id)
 
         return {donation, responseItems, event}
 
