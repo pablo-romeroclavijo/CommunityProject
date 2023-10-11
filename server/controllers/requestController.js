@@ -5,20 +5,21 @@ const User = require ('../models/Users')
 
 
 async function create(req, res){   // req.body ={items:OBJECT, slot_time, slot_date, type}
-    try{
+    // try{
         token = req.headers["authorization"]
 
         const user = await User.getOneByToken(token)
         const data = req.body
+        console.log(data)
         const response = await Request.create(data, user.id, 'C') 
         res.status(200).send(response)
-    } catch (err) {
-    res.status(403).json({"error": err.message})
-    }
+    // } catch (err) {
+    // res.status(403).json({"error": err.message})
+    // }
 }
 
 async function getAll(req, res){
-    // try{
+    try{
         token = req.headers["authorization"]
         const user = await User.getOneByToken(token)
         let response
@@ -29,12 +30,12 @@ async function getAll(req, res){
             response = await Request.getAllSelf(user.id)
         }
 
-        console.log(response)
+        //console.log(response)
         res.status(200).send(response)
 
-    // } catch (err) {
-    //     res.status(403).json({"error": err.message})
-    //     }
+    } catch (err) {
+        res.status(403).json({"error": err.message})
+        }
 
 }
 
@@ -44,7 +45,7 @@ async function getOneById(req, res){
         token = req.headers["authorization"]
         const user = await User.getOneByToken(token)
         response = await Request.getOneById(id)
-        console.log(response.request.user_id)
+        //console.log(response.request.user_id)
         if(user.isAdmin){
             res.status(200).send(response)          // {request:OBJECT, items: list(OBJECT)}
         }else if(response.request.user_id == user.id){
