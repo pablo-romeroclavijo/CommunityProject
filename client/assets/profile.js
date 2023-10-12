@@ -7,7 +7,9 @@ backendURL = "https://communityapp-gsbn.onrender.com/"
 async function loadProfile(){
     let headers = {}
     if (localStorage.token){
-        donations.style.display = "block"
+        donations.style.visibility = "visible"
+
+        console.log(donations)
         headers = {"Authorization": localStorage.token}
 
         const options = {
