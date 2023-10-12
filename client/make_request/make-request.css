@@ -87,6 +87,9 @@ th {
     cursor: pointer;
 }
 
+#requested-table{
+  margin-bottom: 100px;
+}
 
 .logo {
   height: 600px;
