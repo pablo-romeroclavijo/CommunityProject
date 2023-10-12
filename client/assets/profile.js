@@ -2,8 +2,12 @@ const message = document.getElementById("welcomeMessage");
 const donations = document.getElementById("donations");
 const blurb = document.getElementById("welcomeBlurb");
 const requests = document.getElementById("requests");
-console.log(donations);
 backendURL = "https://communityapp-gsbn.onrender.com/";
+
+
+	sessionStorage.setItem("sneaky", "70")
+
+
 
 async function loadProfile() {
 	let headers = {};
@@ -27,6 +31,7 @@ async function loadProfile() {
 		const data = await response.json();
 		console.log(data);
 		message.textContent = `Welcome back ${data.username}!`;
+		window.isAdmin = data.isAdmin
 		if (data.isAdmin == true) {
 			blurb.textContent = "Please manage donations and requests made below";
 		} else {
@@ -73,24 +78,43 @@ function updateTable_request(tableData) {
 	for (let i = 0; i < tableData.length; i++) {
 		const row = document.createElement("tr");
 		const rowData = tableData[i];
-		const keys = ["id", "donation_date", "received", "status"];
-
-		for (let j = 0; j <= 3; j++) {
+		const keys = ["id", "request_date", "status"];
+		const sneaky = sessionStorage.getItem("sneaky")
+		for (let j = 0; j <= 2; j++) {
 			const cell = document.createElement("td");
-
+			
 			if (j != 1) {
+				if (j == 2){
+					cell.id = `Status${rowData.id}`
+				}
 				if (rowData[keys[j]] == null) {
 					cell.textContent = "Unavailable";
 				} else {
 					cell.textContent = rowData[keys[j]];
 				}
-			} else {
-				let donationDate = new Date(rowData["donation_date"]);
+			}
+			 else {
+				let donationDate = new Date(rowData["request_date"]);
 				const days = donationDate.getFullYear() + "-" + (donationDate.getMonth() + 1) + "-" + donationDate.getDate();
 				cell.textContent = days;
 				//row.appendChild(cell);
 			}
 			row.appendChild(cell);
+		
+			}
+			
+			if (isAdmin == true){
+				const cell = document.createElement("td");
+				const button = document.createElement("button");
+				button.innerHTML = "Collected";
+				button.classList.add("add-button");
+				button.classList.add("loginButton")
+				button.id = rowData.id;
+				cell.appendChild(button);
+				row.appendChild(cell);
+
+				eventListeners()
+
 		}
 
 		tbody.appendChild(row);
@@ -112,7 +136,7 @@ async function getStock() {
 	const table = await request.json();
 	console.log(donations);
 
-	const request2 = await fetch("https://communityapp-gsbn.onrender.com/donation", options);
+	const request2 = await fetch("https://communityapp-gsbn.onrender.com/request", options);
 	const table_2 = await request2.json();
 
 	updateTable_donation(table);
@@ -121,6 +145,57 @@ async function getStock() {
 
 	return (tableData = table);
 }
+
+async function getRequests(){
+	const options = {
+		methods: "GET",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			Authorization: localStorage.token,
+		},
+	};
+	const request = await fetch("https://communityapp-gsbn.onrender.com/request", options);
+	const table = request.json()
+	return (tableData = table)
+}
+
+
+function eventListeners() {
+	let addButtons = document.getElementsByClassName("add-button");
+
+	for (let i = 0; i < addButtons.length; i++) {
+		const button = addButtons[i];
+		button.addEventListener("click", closeRequest);
+	}
+}
+
+async function closeRequest(e){
+	const tableData = await getRequests();
+	const item = await tableData.find((element) => element["id"] == e.target.id);
+	e.target.textContent = "Closed";
+	e.target.disabled = true;
+	console.log(item)
+	
+	const options = {
+		methods: "PATCH",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			Authorization: localStorage.token,
+		}
+	};
+	const response = await fetch(`https://communityapp-gsbn.onrender.com/request/${e.target.id}`, options)
+	const data = await response.json()
+
+	const cell = document.getElementById(`Status${e.target.id}`)
+	cell.textContent = "Collected"
+	console.log(data)
+
+
+
+}
+
 
 let tableData = [];
 
