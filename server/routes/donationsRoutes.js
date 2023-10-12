@@ -12,6 +12,7 @@ donationRouter.post("/", donationController.createDonation);
 
 
 donationRouter.patch("/item=:itemid", donationController.verifyItem); //to be built
-donationRouter.patch('/donation=:id', donationController.modifyStatus)   //to be built Modify Status and Received
+donationRouter.patch('/status/:id', donationController.modifyStatus)
+donationRouter.patch('/received/:id', donationController.markReceived)   //to be built Modify Status and Received
 
 module.exports = donationRouter;

@@ -84,6 +84,19 @@ async function modifyStatus(req, res){
     res.status(203).send(response)
 }
 catch(error){console.log('error')}}
+
+async function markReceived(req, res){
+    // try{
+       const donationID = req.params.id
+       console.log(donationID) 
+   
+       const response  = await Donation.markAsReceived(donationID)
+       console.log('a', response) 
+       res.status(203).send(response)
+   }
+//    catch(error){console.log('error')}}
+
+
   
 
-module.exports = { createDonation, getAll, getOneById, verifyItem, modifyStatus };  
+module.exports = { createDonation, getAll, getOneById, verifyItem, modifyStatus, markReceived };  
