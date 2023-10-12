@@ -86,7 +86,7 @@ function updateTable_donation(tableData) {
 		const cell1 = document.createElement("td");
 		const a = document.createElement("a");
 		a.textContent = rowData["id"];
-		a.setAttribute("href", `http://127.0.0.1:5500/client/my_donation/my_donation.html?id=${rowData["id"]}`);
+		a.setAttribute("href", `http://127.0.0.1:5500/CommunityProject/client/my_donation/my_donation.html?id=${rowData["id"]}`);
 		cell1.appendChild(a);
 		row.appendChild(cell1);
 

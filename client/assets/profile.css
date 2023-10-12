@@ -70,24 +70,34 @@ footer{
     font-size: large
     }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+  }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tr:nth-child(odd) {
-  background-color: #f2f2f2;
-}
-
-th {
-  background-color: #1c5234;
-  color: white;
-}
+  
+  th, td {
+      padding: 6px;
+      text-align: left;
+  }
+  
+  tr:nth-child(even) {
+      background-color: #ffffff;
+      color: black;
+      /* font-size: large; */
+      /* font-family:"jost"; */
+      font-weight: bold;
+  }
+  
+  tr:nth-child(odd){
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }
+  
+  th {
+      background-color: #333;
+      color: white;
+  }
 
 .pagination {
   display: flex;
@@ -136,12 +146,10 @@ th {
 
   .flexbox-item {
     margin: 100px;
-    width: 90%;
+    width: 100%;
     justify-content: center;
     align-self: auto;
   }
-
-
 
 .logo {
   height: 600px;
