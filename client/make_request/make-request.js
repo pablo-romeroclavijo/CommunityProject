@@ -95,7 +95,7 @@ async function updateTable() {
 		});
 		const cell = document.createElement("td");
 		const button = document.createElement("button");
-		button.innerHTML = "ADD TO LIST";
+		button.innerHTML = "Request";
 		button.classList.add("add-button");
 		button.id = rowData.product_id;
 		cell.appendChild(button);
