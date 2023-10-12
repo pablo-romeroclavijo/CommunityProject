@@ -63,13 +63,14 @@ async function getOneById(req, res) {
 	}
 }
 
-async function verifyItem(req, res) {
-	const itemId = req.params.itemid;
-	console.log(itemId);
+async function verifyItems(req, res) {
+
+	const donationID = req.params.params;
+	console.log(donationID);
 	try {
-		const item = await ItemDonated.getOneById(itemId);
-		const verifiedItem = await item.updateVerify();
-		res.status(201).send(verifiedItem);
+		const donation = await Donation.getOneById(donationID);
+		const verifiedItems = await donation.updateVerify();
+		res.status(201).send(verifiedItems);
 	} catch (err) {
 		res.status(403).json({ error: err.message });
 	}
@@ -101,4 +102,4 @@ async function markReceived(req, res){
 
   
 
-module.exports = { createDonation, getAll, getOneById, verifyItem, modifyStatus, markReceived };  
+module.exports = { createDonation, getAll, getOneById, verifyItems, modifyStatus, markReceived };  

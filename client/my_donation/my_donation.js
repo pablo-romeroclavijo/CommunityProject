@@ -31,8 +31,6 @@ async function loadProfile(){
     
         const response = await fetch(backendURL + "/user/profile", options)
         const data = await response.json()
-        console.log(data)
-
         isAdmin = data.isAdmin
 
     }}
@@ -43,20 +41,41 @@ let requestID
 function addActions(list){
     const actions = document.getElementById("dropdown")
     list.map(action =>{
-        console.log(action)
+
         const option = document.createElement('option')
         option.id = action
         option.value = action
         option.textContent = action
-        console.log(option)
+        option.addEventListener('click', updateStatus)
         option.addEventListener("click", updateStatus)
         actions.appendChild(option)
     })
     
 }
 
-function updateStatus(e){
-console.log(    e.target.value)
+async function updateStatus(e){
+    const status = JSON.stringify({status: e.target.value})
+    console.log(e.target.value) 
+    const options = {
+        method: "PATCH",
+        headers: {
+            "Authorization": localStorage.token,
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+        body: status
+        }
+
+    const response = await fetch(backendURL + "/donation/status/" + donationID , options)
+    const data = await response.json()
+    if(response.status == 203){
+        alert("Donation status updated to: " + e.target.value)
+        document.getElementById("donation_status").textContent = 'Donation Status: ' + e.target.value 
+
+    }else{
+        alert('Unable to ammend donation')
+        }
+
 }
 
 async function markAsCollected(e){
@@ -73,14 +92,57 @@ async function markAsCollected(e){
 
     const response = await fetch(backendURL + "/donation/received/" + donationID , options)
     const data = await response.json()
-    console.log(data)
+    if(response.status == 203){
+        alert("Donation marked as received")
+        document.getElementById("donation_received").textContent = 'Donation Received: Received' 
 
-    alert("Donation marked as received")
+    }else{
+        alert('Unable to ammend donation')
+        }
 
 }
 
-function verifyItems(){
-    //pass
+async function verifyItems(e){
+
+    e.preventDefault()
+
+    const items = []
+    const product_IDs = document.getElementsByClassName('product_id')
+    const product_names = document.getElementsByClassName('product_name')
+    const product_quantities = document.getElementsByClassName('quantity_donated')
+    const product_expirations = document.getElementsByClassName('expiration_date')
+    const product_verifys = document.getElementsByClassName('verified')
+    //console.log(rows)
+    
+    for(i=0; i<product_IDs.length; i++){
+        const item = {
+            product_id: product_IDs[i].value,
+            product_name: product_names[i].value,
+            quantity_donated: product_quantities[i].value,
+            expiration_date: product_expirations[i].value,
+            verified: product_verifys[i].checked
+        }
+        items.push(item)
+  
+    }
+
+    for(j = 0; j<items.length; j++){
+        const item = JSON.stringify(item[i])
+        const options = {
+            method: "PATCH",
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': token    /// change to colacl.storage
+            },
+            body: item
+        }
+    
+        const request = await fetch(backendURL + `/donation/item=${id}`, options)
+        const response = await request.json()
+        donationID = response.donation.id
+        loadRequest(response)
+    }
 }
 
 
@@ -88,7 +150,6 @@ function verifyItems(){
 // Send request
 const token = localStorage.token
 const id = new URLSearchParams(window.location.search).get('id')
-console.log(token, id)
 
 sendRequest(token, id)
 async function sendRequest(token, id){
@@ -105,7 +166,6 @@ async function sendRequest(token, id){
 
     const request = await fetch(backendURL + `/donation/${id}`, options)
     const response = await request.json()
-    console.log(response)
     donationID = response.donation.id
     loadRequest(response)
 
@@ -119,18 +179,18 @@ function loadRequest(response){
     const days = donatioDate.getFullYear()+'-'+(donatioDate.getMonth()+1)+'-'+donatioDate.getDate(); 
 
     document.getElementById("donation_id").textContent = "Donation Locator:      " + response.event.code
-    document.getElementById("donation_date").textContent = "Donation Status:    " + response.donation.status
-    document.getElementById("donation_status").textContent = "Donation date:    " + days
+    document.getElementById("donation_status").textContent = "Donation Status:    " + response.donation.status
+    document.getElementById("donation_date").textContent = "Donation date:    " + days
     const received = document.getElementById("donation_received")
     if(response.donation.received == false){
         received.textContent = 'Donation Received: Pending' 
     }else{
-        received.textContent = 'Donation Received:Yes'
+        received.textContent = 'Donation Received: Received'
     }
 
     const itemList = response.responseItems
 
-    console.log(isAdmin)
+    console.log('isAdmin: ', isAdmin)
     isAdmin == true ? tableNonAdmin(itemList) : tableAdmin(itemList)
 }
 
@@ -141,41 +201,48 @@ function tableAdmin(itemList){
     const button = document.getElementById('collected-button')
     button.addEventListener('click', markAsCollected)
 
+    const submitBox = document.getElementById('submit-box')
+    submitBox.style.display = 'block'
+
+    const form = document.getElementById("resquest-items")
+    form.addEventListener('submit', verifyItems)
+   
+
 
   
-    const actions = ['Close', 'Hold', 'Report']
+    const actions = ['Open', 'Closed', 'Hold', 'Report']
     addActions(actions)
     const table = document.getElementById('request-table');
     
     const tbody = table.querySelector('tbody');
-    const thead = table.querySelector('thead tr')
     
     console.log(table)
     tbody.innerHTML = '';
 
-    const th = document.createElement('th')
-    th.textContent = 'Action'
-    thead.appendChild(th)
-
 
     for (let i = 0; i < itemList.length; i++) {
-        const form = document.createElement('form')
+        //const form = document.getElementByID('request-items')
 
-        console.log('aaa', i, itemList[i])
         const row = document.createElement('tr');
         const rowData = itemList[i];
 
         const cell1 = document.createElement('td')
+        cell1.value = rowData['product_id']
+        cell1.classList.add('product_id')
         cell1.textContent = rowData['product_id']
         row.appendChild(cell1)
 
         const cell2 = document.createElement('td')
         cell2.textContent = rowData['product_name']
+        cell2.classList.add('product_name')
+        cell2.value = rowData['product_name']
         row.appendChild(cell2)
 
         const cell4 = document.createElement('td');
         const input2 = document.createElement('input')
+        input2.classList.add('quantity_donated')
         input2.type = 'number'
+        input2.id ='quantity_donated'
         input2.defaultValue = rowData['quantity_donated']
 
         cell4.appendChild(input2)
@@ -183,6 +250,8 @@ function tableAdmin(itemList){
 
         const cell3 = document.createElement('td');
         const input1 = document.createElement('input')
+        input1.classList.add('expiration_date')
+        input1.id = 'expiration_date'
         let date = new Date(rowData['expiration_date'])
         const day = date.toISOString().split("T")[0];
         input1.type = 'date'
@@ -192,18 +261,19 @@ function tableAdmin(itemList){
         row.appendChild(cell3)
 
         const cell5 = document.createElement('td')
-        rowData['verified'] == false ? cell5.textContent = 'No' : cell5.textContent = 'Yes'
-        row.appendChild(cell5)
-
-
-        const cell6 = document.createElement('td');
         const input3 = document.createElement('input')
-        input3.type = 'submit'
-        input3.value = 'Verify'
-        cell6.appendChild(input3)
-        row.appendChild(cell6)
-
-        //form.appendChild(row)        
+        input3.id = 'verified'
+        input3.classList.add('verified')
+        input3.type = 'checkbox'
+        input3.value = rowData['product_id']
+        cell5.appendChild(input3)
+        if(rowData['verified']){
+            input3.checked = true
+            input2.disabled = true
+            input1.disabled = true
+            input3.disabled = true
+        }
+        row.appendChild(cell5)     
         tbody.appendChild(row)
     }
 }
@@ -217,11 +287,9 @@ function tableNonAdmin(itemList) {
     const table = document.getElementById('request-table');
 
     const tbody = table.querySelector('tbody');
-    console.log(tbody)
     tbody.innerHTML = '';
 
     for (let i = 0; i < itemList.length; i++) {
-        console.log('aaa', i, itemList[i])
         const row = document.createElement('tr');
         const rowData = itemList[i];
         const keys = ['product_id', 'product_name', "quantity_donated", 'expiration_date', 'verified']
@@ -240,7 +308,6 @@ function tableNonAdmin(itemList) {
 
             row.appendChild(cell);
         })
-    console.log(row)
     tbody.appendChild(row)
     }
 }
