@@ -148,14 +148,15 @@ footer{
   color: white;
 }
 .loginButton{
-    border-radius: 8px;
-    border-color: white;
-    height: 40px;
-    width: 100%;
-    background-color: #ffffff;;
-    color: rgb(21, 107, 11);
-    font-weight: bold;
-    margin-bottom: 10px;
+  border-radius: 8px;
+  border-color: white;
+  height: 50px;
+  width: 100%;
+  width: 100%;
+  background-color: #ffffff;;
+  color: rgb(29, 113, 37);
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .passwordInput{
