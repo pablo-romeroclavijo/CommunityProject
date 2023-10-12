@@ -146,11 +146,11 @@ function tableAdmin(itemList){
     const actions = ['Close', 'Hold', 'Report']
     addActions(actions)
     const table = document.getElementById('request-table');
-
+    
     const tbody = table.querySelector('tbody');
     const thead = table.querySelector('thead tr')
     
-    console.log(tbody)
+    console.log(table)
     tbody.innerHTML = '';
 
     const th = document.createElement('th')
