@@ -29,7 +29,6 @@ footer{
 
 .flexbox-item {
 	width: 50px;
-  height: 100px;
 	margin: 100px;
 	background-color: transparent;
   max-width: 50px;
@@ -55,11 +54,10 @@ footer{
 
 .flexbox-login-array{
     width: 500px;
-    height: 100px;
     filter: drop-shadow(100px 100px 100px rgba(22, 107, 30, 0.25));
     margin-top: 25px;
     max-width: 500px;
-    max-height: 100px;
+    max-height: 0px;
 }
 
 .flexbox-container{
@@ -68,8 +66,24 @@ footer{
     justify-content: space-around;
     align-items: center;
     row-gap: 10px;
+    height: 40vh;;
 }
 
+
+.flexbox-container2 {
+  display: block;
+  text-align: center;
+}
+
+.flexbox-iframe {
+  text-align: center; /* Center-align the buttons */
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.iframe-container {
+  text-align: center; /* Center-align the iframe */
+  margin-top: 20px; /* Adjust the margin as needed */
+}
 .login-array{
     display: flex;
     flex-direction: column;
@@ -174,8 +188,9 @@ footer{
   content: "/f070"
 }
 
-.welcomeHeader{
-  font-size: 2pc;
+.login-array ul{
+  font-size: 20px;
+  font-size: large;
   font-weight: bold;
   padding-bottom: 20px;
   

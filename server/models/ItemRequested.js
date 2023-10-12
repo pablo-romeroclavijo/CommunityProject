@@ -42,8 +42,10 @@ class ItemRequested {
 
     async updateCollected(){
         this.collected = '1'
+        console.log("We're here now")
         const response = await db.query("UPDATE items_requested SET collected = '1' WHERE item_id = $1 RETURNING *", [this.item_id])
-        return new ItemRequested(response.rows[0])
+        const response2 = await db.query("UPDATE requests SET status = 'Collected' WHERE request_id = $1 RETURNING*", [this.item_id])
+        return new ItemRequested(response2.rows[0])
     }
 
 
