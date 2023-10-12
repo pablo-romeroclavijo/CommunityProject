@@ -44,12 +44,23 @@ footer{
   width: 40%;
   align-self: center;
   padding-left: 20px;
+  visibility: hidden; 
+  width: 500px; 
+  font-size: large
   }
-
+.table-header{
+  text-align: center; 
+  font-size: X-large; 
+  color: white; 
+  width:500px;
+}
   .request-table{
     width: 40%;
     align-self: center;
     padding-left: 20px;
+    visibility: hidden; 
+    width: 500px; 
+    font-size: large
     }
 
 th, td {

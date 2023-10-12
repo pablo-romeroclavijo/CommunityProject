@@ -12,7 +12,6 @@
 </head>
 <body>
     
-    <h1>
         <nav class="navbar navbar-expand-md sticky-top" style = "background: linear-gradient(109.6deg, rgb(214, 231, 217) 0%, rgb(167, 225, 170) 20%, rgb(122, 147, 119) 80%);
         ; font-size: small; position: fixed; width: 100%">
             <a href="./home.html" class="navbar-brand" style = "color: black">Carmour CommUnity</a>
@@ -42,7 +41,7 @@
                 <div class = "welcomeHeader"></div>
                     <p id = "welcomeMessage" class = "welcome">Either <a href = "index.html">Login</a>, or <a href = "register">create an account!</a></p>
 
-                    <p id = "welcomeBlurb">Logging in with your account will allow you to view and track requests and donations you've made</p>
+                    <p id = "welcomeBlurb" style = "font-size: medium;">Logging in with your account will allow you to view and track requests and donations you've made</p>
                     
         </div>
         </div>
@@ -54,8 +53,8 @@
     <div class = "flexbox-container tables" style = "flex-direction: row; position: relative; height: auto; justify-content: space-evenly">
             
             <div class = "flexbox-item" style = "width: 500px; margin-right: auto">
-                <p style = "text-align: center; font-size: X-large; color: white; width:500px">Your donations:</p>
-                <table id = "donations" class = "profile-table" style="visibility: hidden; width: 500px">
+                <p class = "table-header">Your donations:</p>
+                <table id = "donations" class = "profile-table" style="visibility: hidden; width: 500px; font-size: large">
                     <thead>
                         <tr>
                             <th>Donation ID</th>
@@ -71,9 +70,9 @@
             </div>
 
             <div class = "flexbox-item" style = "width: 500px; margin-right: auto"">
-                <p style = "text-align: center; font-size: X-large; color: white; width:500px">Your requests:</p>
+                <p class = "table-header">Your requests:</p>
 
-                <table id = "requests" class = "request-table" style="visibility: hidden; width: 500px">
+                <table id = "requests" class = "request-table" style="visibility: hidden; width: 500px; font-size: large">
                     <thead>
                         <tr>
                             <th>Request ID</th>
@@ -92,7 +91,7 @@
 
 
     <footer class = "fixed-bottom">
-        <a href = "contact.html">Contact Us:</a>
+        <a href = "contact.html" style = "font-size: large;">Contact Us:</a>
     </footer>
 </body>
 </html>
