@@ -87,7 +87,7 @@ async function modifyStatus(req, res){
 catch(error){console.log('error')}}
 
 async function markReceived(req, res){
-    // try{
+    try{
        const donationID = req.params.id
        console.log(donationID) 
    
@@ -95,7 +95,7 @@ async function markReceived(req, res){
        console.log('a', response) 
        res.status(203).send(response)
    }
-//    catch(error){console.log('error')}}
+   catch(error){console.log('error')}}
 
 
   
