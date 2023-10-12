@@ -67,8 +67,8 @@ async function verifyItems(req, res) {
 	console.log(donationID);
 	try {
 		const donation = await Donation.getOneById(donationID);
-		const verifiedItems = await dotion.updateVerify();
-		res.status(201).send(verifiedItem);
+		const verifiedItems = await donation.updateVerify();
+		res.status(201).send(verifiedItems);
 	} catch (err) {
 		res.status(403).json({ error: err.message });
 	}

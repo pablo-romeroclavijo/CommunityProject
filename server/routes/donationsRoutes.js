@@ -11,7 +11,7 @@ donationRouter.get("/:id", donationController.getOneById); //to be built
 donationRouter.post("/", donationController.createDonation);
 
 
-donationRouter.patch("/donatiod/:id", donationController.verifyItems); //to be built
+donationRouter.patch("/donation/:id", donationController.verifyItems); //to be built
 donationRouter.patch('/status/:id', donationController.modifyStatus)
 donationRouter.patch('/received/:id', donationController.markReceived)   //to be built Modify Status and Received
 
