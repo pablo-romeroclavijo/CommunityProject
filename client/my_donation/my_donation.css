@@ -93,8 +93,17 @@ footer{
   width: 40%;
   align-self: center;
   position: relative;
+  font-family: "Jost", sans-serif;
+
   
   }
+
+.request-container{
+  flex-direction: row; 
+  font-family: "Jost", sans-serif;
+  padding-top: 50px;
+
+}
 
 th, td {
   border: 1px solid #ddd;
@@ -154,6 +163,7 @@ th {
     position: relative;
     width: 50%;
     margin: 10px 700px;
+    font-family: "Jost", sans-serif;
   }
 
 .flexbox-item {
@@ -296,12 +306,16 @@ th {
   }
   .dropdown:hover .dropdown-content {
     display: block;
+    border-radius: 8px;
   }
   .dropdown-content option {
     display: block;
     color: #000000;
     padding: 5px;
     text-decoration: none;
+    border-radius: 8px;
+    font-family: "Jost", sans-serif;
+
   }
   .dropdown-content option:hover {
     color: #FFFFFF;
