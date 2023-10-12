@@ -23,9 +23,18 @@ class Donation {
         return new Donation(response.rows[0]);
     }
 
+    static async markAsReceived(id){
+        console.log(id)
+        const response = await db.query('UPDATE donations SET received = true WHERE donation_id = $1 RETURNING *', [id])
+  
+        const donation = new Donation(response.rows[0])
+
+        return donation
+    }
+
 
     static async modifyStatus(id, status){
-        console.log('a', id, status)
+        console.log(id, status)
         const response = await db.query('UPDATE donations SET status = $1 WHERE donation_id = $2 RETURNING *', [status, id])
   
         const donation = new Donation(response.rows[0])
