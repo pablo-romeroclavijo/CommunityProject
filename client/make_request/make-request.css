@@ -5,8 +5,12 @@ h1 {
 }
 
 body {
-  background: linear-gradient(109.6deg, rgb(223, 234, 247) 11.2%, rgb(244, 248, 252) 91.1%);
+  background: linear-gradient(109.6deg, rgb(214, 231, 217) 0%, rgb(167, 225, 170) 20%, rgb(122, 147, 119) 80%);
   min-height: 100%;
+  font-family: "Jost", sans-serif;
+  min-height: 100vh; /* Use viewport height instead of height */
+  width: 100%;
+  overflow: hidden; /* Prevent content overflow */
 }
 
 /* table */
