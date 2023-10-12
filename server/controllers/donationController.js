@@ -20,9 +20,11 @@ async function createDonation(req, res){   // req.body ={items:OBJECT, slot_time
 }
 
 async function getAll(req, res){
+    console.log("wasap")
     try{
         token = req.headers["authorization"] 
         const user = await User.getOneByToken(token)
+        console.log("wassup")
         let response
         console.log(user)
         if(user.isAdmin){

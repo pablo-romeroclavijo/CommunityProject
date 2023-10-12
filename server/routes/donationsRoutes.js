@@ -8,7 +8,7 @@ const donationRouter = Router();
 donationRouter.post("/", donationController.createDonation);
 donationRouter.get("/", donationController.getAll); //to be built
 donationRouter.get("/:id", donationController.getOneById); //to be built
-donationRouter.post("/", donationController.createDonation);
+
 
 
 donationRouter.patch("/donation/:id", donationController.verifyItems); //to be built

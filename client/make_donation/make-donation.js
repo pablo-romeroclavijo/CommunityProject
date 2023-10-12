@@ -41,37 +41,7 @@ updateTable();
 async function updateTable() {
     let tableData = await getStock()
     console.log(tableData)
-    const table = document.getElementById('data-table');
-    const tbody = table.querySelector('tbody');
-    tbody.innerHTML = '';
-    updatePagination(tableData)
-
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-
-    for (let i = startIndex; i < endIndex && i < tableData.length; i++) {
-        const row = document.createElement('tr');
-        const rowData = tableData[i];
-        const keys = ['product_id', 'product_name', "category", "quantity_remaining", "unit"]
-        keys.map(key =>{
-            const cell = document.createElement('td');
-            if(rowData[key] == null){
-                cell.textContent = 'Unavailable';
-            }else{
-                cell.textContent = rowData[key];}
-            row.appendChild(cell);
-        })
-        const cell = document.createElement('td');
-        const button = document.createElement('button')
-        button.innerHTML = 'ADD TO LIST'
-        button.classList.add('add-button')
-        button.id = rowData.product_id
-        cell.appendChild(button)
-        row.appendChild(cell)
-
-        tbody.appendChild(row);
-    }
-    eventListeners()
+   eventListeners()
     console.log(disabled_buttons)
     disableButtons(disabled_buttons)
 }

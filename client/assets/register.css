@@ -5,7 +5,7 @@ h1 {
 }
 
 body {
-  background: linear-gradient(109.6deg, rgb(214, 231, 217) 0%, rgb(167, 225, 170) 20%, rgb(122, 147, 119) 80%);
+  background: linear-gradient(109.6deg, rgb(214, 231, 217) 0%, rgb(167, 225, 170) 20%, rgb(81, 113, 77) 80%);
   min-height: 100%;
   font-family: "Jost", sans-serif;
   min-height: 100vh; /* Use viewport height instead of height */
@@ -148,14 +148,15 @@ footer{
   color: white;
 }
 .loginButton{
-    border-radius: 8px;
-    border-color: white;
-    height: 40px;
-    width: 100%;
-    background-color: #ffffff;;
-    color: rgb(21, 107, 11);
-    font-weight: bold;
-    margin-bottom: 10px;
+  border-radius: 8px;
+  border-color: white;
+  height: 50px;
+  width: 100%;
+  width: 100%;
+  background-color: #ffffff;;
+  color: rgb(29, 113, 37);
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .passwordInput{
