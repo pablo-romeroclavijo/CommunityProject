@@ -29,6 +29,9 @@ footer{
   flex-direction: column;
 }
 
+.nav-item a{
+  font-size: 20px;
+}
 .welcome{
     font-size: x-large
 }

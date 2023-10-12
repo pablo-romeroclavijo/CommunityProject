@@ -32,6 +32,10 @@ th, td {
     text-align: left;
 }
 
+.nav-item a{
+  font-size: 20px;
+}
+
 tr:nth-child(even) {
     background-color: #ffffff;
     color: black;

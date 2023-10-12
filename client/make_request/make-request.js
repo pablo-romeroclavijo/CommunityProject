@@ -235,7 +235,7 @@ async function sendRequest(requestList) {
 }
 
 function loadRequest(response) {
-	console.log('aaa')
+	console.log("aaa");
 	document.getElementById("container3").style.display = "none";
 	document.getElementById("container2").style.display = "block";
 
@@ -243,7 +243,7 @@ function loadRequest(response) {
 	const code = document.getElementById("code");
 
 	const { event, itemList, request } = response;
-	code.textContent = "your collection code is: " + event.code;
+	code.textContent = "Your collection code is: " + event.code;
 	QR.setAttribute("src", event.QR);
 	QR.setAttribute("title", event.code);
 	updateRequestedTable(itemList);
