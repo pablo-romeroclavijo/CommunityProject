@@ -1,19 +1,18 @@
 const message = document.getElementById("welcomeMessage");
 const donations = document.getElementById("donations");
 const blurb = document.getElementById("welcomeBlurb");
-const requests = document.getElementById("requests")
+const requests = document.getElementById("requests");
 console.log(donations);
 backendURL = "https://communityapp-gsbn.onrender.com/";
 
+async function loadProfile() {
+	let headers = {};
+	if (localStorage.token) {
+		donations.style.visibility = "visible";
+		requests.style.visibility = "visible";
 
-async function loadProfile(){
-    let headers = {}
-    if (localStorage.token){
-        donations.style.visibility = "visible"
-        requests.style.visibility = "visible"
-
-        console.log(donations)
-        headers = {"Authorization": localStorage.token}
+		console.log(donations);
+		headers = { Authorization: localStorage.token };
 
 		const options = {
 			method: "GET",
@@ -75,30 +74,28 @@ function updateTable_request(tableData) {
 		const row = document.createElement("tr");
 		const rowData = tableData[i];
 		const keys = ["id", "donation_date", "received", "status"];
-		
-		for (let j = 0; j <= 3; j++){
+
+		for (let j = 0; j <= 3; j++) {
 			const cell = document.createElement("td");
 
-			if (j != 1){
+			if (j != 1) {
 				if (rowData[keys[j]] == null) {
 					cell.textContent = "Unavailable";
 				} else {
 					cell.textContent = rowData[keys[j]];
 				}
-			}else{
+			} else {
 				let donationDate = new Date(rowData["donation_date"]);
 				const days = donationDate.getFullYear() + "-" + (donationDate.getMonth() + 1) + "-" + donationDate.getDate();
 				cell.textContent = days;
 				//row.appendChild(cell);
-		
 			}
 			row.appendChild(cell);
-		}			
+		}
 
 		tbody.appendChild(row);
 	}
 }
-
 
 async function getStock() {
 	console.log("HI");
@@ -119,7 +116,7 @@ async function getStock() {
 	const table_2 = await request2.json();
 
 	updateTable_donation(table);
-	updateTable_request(table_2)
+	updateTable_request(table_2);
 	// updatePagination(table)
 
 	return (tableData = table);
