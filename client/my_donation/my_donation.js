@@ -191,7 +191,7 @@ function loadRequest(response){
     const itemList = response.responseItems
 
     console.log('isAdmin: ', isAdmin)
-    isAdmin == true ?  tableAdmin(itemList): tableNonAdmin(itemList)
+    isAdmin == false ?  tableAdmin(itemList): tableNonAdmin(itemList)
 }
 
 function tableAdmin(itemList){

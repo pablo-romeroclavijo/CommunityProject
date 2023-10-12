@@ -27,24 +27,68 @@ async function getStock(){
     return table
 }
 
-const tableData = getStock()
-
-
 const itemsPerPage = 10;
 let currentPage = 1;
-let disabled_buttons = []
+let disabled_buttons = [];
 
 updateTable();
 
-
-
 async function updateTable() {
-    let tableData = await getStock()
-    console.log(tableData)
-   eventListeners()
-    console.log(disabled_buttons)
-    disableButtons(disabled_buttons)
+	let tableData = await getStock();
+	console.log(tableData);
+	const table = document.getElementById("data-table");
+	const tbody = table.querySelector("tbody");
+	tbody.innerHTML = "";
+	updatePagination(tableData);
+
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const endIndex = startIndex + itemsPerPage;
+
+	for (let i = startIndex; i < endIndex && i < tableData.length; i++) {
+		const row = document.createElement("tr");
+		const rowData = tableData[i];
+		const keys = ["product_id", "product_name", "category", "quantity_remaining", "unit"];
+		keys.map((key) => {
+			const cell = document.createElement("td");
+			if (rowData[key] == null) {
+				cell.textContent = "Unavailable";
+			} else {
+				cell.textContent = rowData[key];
+			}
+			row.appendChild(cell);
+		});
+		const cell = document.createElement("td");
+		const button = document.createElement("button");
+		button.innerHTML = "Request";
+		button.classList.add("add-button");
+		button.id = rowData.product_id;
+		cell.appendChild(button);
+		row.appendChild(cell);
+
+		tbody.appendChild(row);
+	}
+	eventListeners();
+	console.log(disabled_buttons);
+	disableButtons(disabled_buttons);
 }
+
+function updatePagination(tableData) {
+	const totalPages = Math.ceil(tableData.length / itemsPerPage);
+	const pagination = document.getElementById("pagination");
+	pagination.innerHTML = "";
+
+	for (let i = 1; i <= totalPages; i++) {
+		const listItem = document.createElement("li");
+		listItem.textContent = i;
+		listItem.addEventListener("click", () => {
+			currentPage = i;
+			updateTable();
+			updatePagination();
+		});
+		pagination.appendChild(listItem);
+	}
+}
+
 
 function updatePagination(tableData) {
     const totalPages = Math.ceil(tableData.length / itemsPerPage);
@@ -76,40 +120,44 @@ function disableButtons(list){
 }
 
 //Request table
-let requestTable = []
+let requestTable = [];
 
-function eventListeners(){
-    let addButtons = document.getElementsByClassName('add-button')
-    console.log(addButtons)
+function eventListeners() {
+	let addButtons = document.getElementsByClassName("add-button");
+	console.log(addButtons);
 
-    for(let i = 0; i < addButtons.length; i++){
-        const button = addButtons[i]
-        button.addEventListener('click', addItem)}
+	for (let i = 0; i < addButtons.length; i++) {
+		const button = addButtons[i];
+		button.addEventListener("click", addItem);
+	}
 }
 
-async function addItem (e){
-    const tableData = await getStock()
-    const item = await tableData.find(element => element["product_id"] == e.target.id)
-    e.target.textContent = "ADDED"
-    e.target.disabled = true
-    disabled_buttons.push(e.target.id)
-    requestTable.push(item)
-    console.log(item)
+async function addItem(e) {
+	const tableData = await getStock();
+    console.log(tabl)
+	const item = await tableData.find((element) => element["product_id"] == e.target.id);
+	e.target.textContent = "ADDED";
+	e.target.disabled = true;
+	disabled_buttons.push(e.target.id);
+	requestTable.push(item);
+	console.log(item);
 
-    document.getElementById('request-container').style.display = 'block'
-    
-    updateRequestTable()
+	document.getElementById("resquest-items").style.display = "block";
 
-    try{
-        const form = document.getElementById('resquest-items')
-        form.addEventListener('submit', fetchForm)}
-    catch{//pass
-    }   
+	updateRequestTable();
+
+	try {
+		const form = document.getElementById("resquest-items");
+		form.addEventListener("submit", fetchForm);
+	} catch {
+		//pass
+	}
 }
 
 
 function updateRequestTable() {
-    const table = document.getElementById('request-table');
+    const table = document.getElementById('data-table');
+    console.log(table)
     const tbody = table.querySelector('tbody');
     tbody.innerHTML = '';
 

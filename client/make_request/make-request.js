@@ -147,6 +147,7 @@ function eventListeners() {
 	for (let i = 0; i < addButtons.length; i++) {
 		const button = addButtons[i];
 		button.addEventListener("click", addItem);
+		console.log(button)
 	}
 }
 
