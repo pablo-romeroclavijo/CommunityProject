@@ -159,7 +159,7 @@ async function addItem(e) {
 	requestTable.push(item);
 	console.log(item);
 
-	document.getElementById("request-container").style.display = "block";
+	document.getElementById("resquest-items").style.display = "block";
 
 	updateRequestTable();
 
@@ -234,7 +234,8 @@ async function sendRequest(requestList) {
 }
 
 function loadRequest(response) {
-	document.getElementById("container1").style.display = "none";
+	console.log('aaa')
+	document.getElementById("container3").style.display = "none";
 	document.getElementById("container2").style.display = "block";
 
 	const QR = document.getElementById("QR");

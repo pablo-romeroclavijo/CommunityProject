@@ -47,7 +47,7 @@ class ItemDonated {
 
 
     static async getAllByProductID(){
-        const query = "SELECT  p.product_id, p.product_name, p.category_name, SUM(i.quantity_remaining) AS quantity_remaining, p.max_order, unit_quantity FROM products p FULL JOIN items_donated i ON p.product_id = i.product_id GROUP BY p.product_id, p.product_name, p.max_order, p.unit_quantity, p.category_name"
+        const query = "SELECT  p.product_id, p.product_name, p.category_name, SUM(i.quantity_remaining) AS quantity_remaining, p.max_order, unit_quantity FROM products p FULL JOIN items_donated i ON p.product_id = i.product_id GROUP BY p.product_id, p.product_name, p.max_order, p.unit_quantity, p.category_name ORDER BY p.product_id"
         const response = await db.query(query)
         const products = response.rows.map(item => new ItemDonated(item)) 
         return products
