@@ -5,7 +5,7 @@ h1 {
 }
 
 body {
-  background: linear-gradient(109.6deg, rgb(214, 231, 217) 0%, rgb(167, 225, 170) 20%, rgb(122, 147, 119) 80%);
+  background: linear-gradient(109.6deg, rgb(214, 231, 217) 0%, rgb(167, 225, 170) 20%, rgb(81, 113, 77) 80%);
   min-height: 100%;
   font-family: "Jost", sans-serif;
   min-height: 100vh; /* Use viewport height instead of height */
