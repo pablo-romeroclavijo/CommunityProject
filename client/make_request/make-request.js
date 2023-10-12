@@ -1,3 +1,6 @@
+const message = document.getElementById("welcomeMessage");
+const donations = document.getElementById("donations");
+const blurb = document.getElementById("welcomeBlurb");
 backendURL = "https://communityapp-gsbn.onrender.com";
 
 async function getStock() {
@@ -14,6 +17,48 @@ async function getStock() {
 	const table = await request.json();
 	console.log(table);
 	return table;
+}
+
+async function loadProfile() {
+	let headers = {};
+	if (localStorage.token) {
+		headers = { Authorization: localStorage.token };
+
+		const options = {
+			method: "GET",
+			headers: {
+				Authorization: localStorage.token,
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		};
+
+		const response = await fetch("https://communityapp-gsbn.onrender.com/user/profile", options);
+		const data = await response.json();
+		console.log(data);
+		message.textContent = `Welcome to the request page ${data.username}!`;
+
+		if (data.isAdmin !== true) {
+			blurb.textContent = "Please manage donations and requests made below.";
+		} else {
+			const instructionList = document.getElementById("instruction-list");
+			instructionList.innerHTML = "";
+
+			const instructions = [
+				"Instruction 1: Check the table for the item you with to request and add it to your list.",
+				"Instruction 2: This will add the item to the request table below. Once you are happy with your request hit submit.",
+				"Instruction 3: You will then recieve a QR code for collection along with a collection code as an alternative.",
+			];
+
+			instructions.forEach((instruction) => {
+				const listItem = document.createElement("li");
+				listItem.textContent = instruction;
+				instructionList.appendChild(listItem);
+			});
+
+			blurb.textContent = "Please follow these instructions:";
+		}
+	}
 }
 
 const tableData = getStock();
@@ -226,3 +271,5 @@ function updateRequestedTable(itemList) {
 		table.appendChild(row);
 	}
 }
+
+loadProfile();
