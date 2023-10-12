@@ -44,15 +44,10 @@
         </div>
         </div>
     </div>
-
-
-    
-
-    <div class = "flexbox-container tables" style = "flex-direction: row; position: relative; height: auto; justify-content: space-evenly">
-            
-            <div class = "flexbox-item" style = "width: 500px; margin-right: auto">
+    <div class = "flexbox-container2">  
+            <div class = "flexbox-item">
                 <p class = "table-header">Your donations:</p>
-                <table id = "donations" class = "profile-table" style="visibility: hidden; width: 500px; font-size: large">
+                <table id = "donations" class = "profile-table">
                     <thead>
                         <tr>
                             <th>Donation ID</th>
@@ -63,14 +58,16 @@
                     <tbody>
                         <!-- Your data rows will go here -->
                     </tbody>
-
                 </table>
+                <ul class="pagination" id="donations-pagination">
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="previousPage_donations()">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="nextPage_donations()">Next</a></li>
+                </ul>
             </div>
-
-            <div class = "flexbox-item" style = "width: 500px; margin-right: auto"">
+            <div class = "flexbox-item">
                 <p class = "table-header">Your requests:</p>
 
-                <table id = "requests" class = "request-table" style="visibility: hidden; width: 500px; font-size: large">
+                <table id = "requests" class = "request-table">
                     <thead>
                         <tr>
                             <th>Request ID</th>
@@ -85,13 +82,11 @@
                     </tbody>
 
                 </table>
+                <ul class="pagination" id="requests-pagination">
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="previousPage_requests()">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="nextPage_requests()">Next</a></li>
+                </ul>
             </div>
     </div>
-
-
-
-    <footer class = "fixed-bottom">
-        <a href = "contact.html" style = "font-size: large;">Contact Us:</a>
-    </footer>
 </body>
 </html>
