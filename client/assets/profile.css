@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Jost&display=swap');
 
+html {
+  overflow-y: scroll;
+}
+
 h1 {
     color: #36454F;
     font-size: 50 px;
@@ -22,15 +26,25 @@ footer{
   width: 100%;
 }
 
+.table-manager{
+  flex-direction: column;
+}
+
 .welcome{
     font-size: x-large
 }
 
 .profile-table{
-  width: 100%;
+  width: 40%;
   align-self: center;
   padding-left: 20px;
-}
+  }
+
+  .request-table{
+    width: 40%;
+    align-self: center;
+    padding-left: 20px;
+    }
 
 th, td {
   border: 1px solid #ddd;

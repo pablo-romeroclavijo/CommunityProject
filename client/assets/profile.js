@@ -27,33 +27,33 @@ async function loadProfile(){
 }
 }
 
-function updateTable(tableData) {
-
+function updateTable_donation(tableData) {
     const tbody = donations.querySelector('tbody');
     tbody.innerHTML = '';
-    let currentPage = 1
-    let itemsPerPage = 10
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-
-
-    console.log(tableData)
-    for (let i = startIndex; i < endIndex && i < tableData.length; i++) {
+    console.log(tableData.length)
+    for (let i = 0; i < tableData.length; i++) {
         const row = document.createElement('tr');
         const rowData = tableData[i];
-        const keys = ['product_id', 'product_name', "category", "quantity_remaining", "unit"]
-        keys.map(key =>{
-            const cell = document.createElement('td');
-            cell.textContent = rowData[key];
-            row.appendChild(cell);
-        })
-        const cell = document.createElement('td');
-        const button = document.createElement('button')
-        button.innerHTML = 'DONATE'
-        button.classList.add('add-button')
-        button.id = rowData.product_id
-        cell.appendChild(button)
-        row.appendChild(cell)
+        const keys = ['id', 'donation_date', "status"]
+        
+        
+        const cell1 = document.createElement('td');
+        const a = document.createElement("a")
+        a.textContent = rowData["id"]; //Link to get donation by id
+        a.setAttribute("href", `http://127.0.0.1:5500/client/my_donation/my_donation.html?id=${rowData["id"]}`)
+        cell1.appendChild(a)
+
+        row.appendChild(cell1);
+        const cell2 = document.createElement("td")
+        
+        let donationDate = new Date(rowData["donation_date"])
+        const days = donationDate.getFullYear()+'-'+(donationDate.getMonth()+1)+'-'+donationDate.getDate();
+        cell2.textContent = days
+        row.appendChild(cell2)
+
+        const cell3 = document.createElement("td")
+        cell3.textContent = rowData["status"]
+        row.appendChild(cell3)
 
         tbody.appendChild(row);
     }
@@ -72,7 +72,11 @@ async function getStock(){
     const table = await request.json()
     console.log(donations)
 
-    // updateTable(table);
+    const request2 = await fetch('https://communityapp-gsbn.onrender.com/donation', options)
+    const table_2 = await request2.json()
+
+     updateTable_donation(table);
+     updateTable_request()
     // updatePagination(table)
 
     return tableData = table
