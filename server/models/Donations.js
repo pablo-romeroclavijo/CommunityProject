@@ -15,14 +15,6 @@ class Donation {
         this.drop_id = drop_id;
     }
 
-    static async getOneById(id) {
-        const response = await db.query("SELECT * FROM donations WHERE donation_id = $1", [id]);
-        if (response.rows.length != 1) {
-            throw new Error("Unable to locate donation.");
-        }
-        return new Donation(response.rows[0]);
-    }
-
     static async markAsReceived(id){
         console.log(id)
         const response = await db.query('UPDATE donations SET received = true WHERE donation_id = $1 RETURNING *', [id])
