@@ -24,20 +24,27 @@
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
     <div class="container" id="container1">
+        <div class="container" id="info-actions">
 
-        <h2 id ='donation_id'></h2>
-        <h2 id ='donation_date'></h2>
-        <h2 id ='donation_status'></h2>
-        <h2 id ='donation_received'></h2>
+            <h2 id ='donation_id'></h2>
+            <h2 id ='donation_date'></h2>
+            <h2 id ='donation_status'></h2>
+            <h2 id ='donation_received'></h2>
 
-        <div class="dropdown">
-            <button>Actions</button>
-            <div class="dropdown-content" id="dropdown">
-    
+            <div class="dropdown">
+                <button>Actions</button>
+                <div class="dropdown-content" id="dropdown">
+
+                </div>
             </div>
-          </div>
 
-        </input>
+            <div class = 'flexbox-item' id="mark-colected" style="display:none">
+                <button id='collected-button'>Mark as collected</button>
+
+            </div>
+    </div>
+
+
         <div id = 'request-container'>
             <div class = "flexbox-container">
                 <h2> Items donated</h2>
@@ -59,7 +66,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Your data rows will go here -->
+                                <!-- Data -->
                             </tbody>
                         </table>
                     </div>

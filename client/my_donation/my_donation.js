@@ -37,10 +37,8 @@ async function loadProfile(){
 
     }}
 
-
-// add actions
-
-
+let requestID
+// Request function
 
 function addActions(list){
     const actions = document.getElementById("dropdown")
@@ -61,11 +59,36 @@ function updateStatus(e){
 console.log(    e.target.value)
 }
 
+async function markAsCollected(e){
+    e.preventDefault()
+
+    const options = {
+        method: "PATCH",
+        headers: {
+            "Authorization": localStorage.token,
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        }
+    }
+
+    const response = await fetch(backendURL + "/donation/received/" + donationID , options)
+    const data = await response.json()
+    console.log(data)
+
+    alert("Donation marked as received")
+
+}
+
+function verifyItems(){
+    //pass
+}
+
 
 
 // Send request
 const token = localStorage.token
-const id = new URLSearchParams(window.location.search).get('code')
+const id = new URLSearchParams(window.location.search).get('id')
+console.log(token, id)
 
 sendRequest(token, id)
 async function sendRequest(token, id){
@@ -83,11 +106,13 @@ async function sendRequest(token, id){
     const request = await fetch(backendURL + `/donation/${id}`, options)
     const response = await request.json()
     console.log(response)
+    donationID = response.donation.id
     loadRequest(response)
 
-
- 
 }
+
+
+
 
 function loadRequest(response){
     let donatioDate = new Date(response.donation.donation_date)
@@ -98,7 +123,7 @@ function loadRequest(response){
     document.getElementById("donation_status").textContent = "Donation date:    " + days
     const received = document.getElementById("donation_received")
     if(response.donation.received == false){
-        received.textContent = 'Donation Received: No' 
+        received.textContent = 'Donation Received: Pending' 
     }else{
         received.textContent = 'Donation Received:Yes'
     }
@@ -106,10 +131,18 @@ function loadRequest(response){
     const itemList = response.responseItems
 
     console.log(isAdmin)
-    isAdmin == false ? tableNonAdmin(itemList) : tableAdmin(itemList)
+    isAdmin == true ? tableNonAdmin(itemList) : tableAdmin(itemList)
 }
 
 function tableAdmin(itemList){
+    const markCollected = document.getElementById('mark-colected')
+    markCollected.style.display = 'block'
+
+    const button = document.getElementById('collected-button')
+    button.addEventListener('click', markAsCollected)
+
+
+  
     const actions = ['Close', 'Hold', 'Report']
     addActions(actions)
     const table = document.getElementById('request-table');
