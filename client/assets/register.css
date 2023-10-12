@@ -26,6 +26,11 @@ footer{
   content: "/f070"
 }
 
+.nav-item a{
+  font-size: 20px;
+}
+
+
 .container {
     position: relative;
     width: 50%;
