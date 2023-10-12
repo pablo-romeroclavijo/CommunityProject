@@ -52,7 +52,7 @@ function updateTable_donation(tableData) {
 		const cell1 = document.createElement("td");
 		const a = document.createElement("a");
 		a.textContent = rowData["id"]; //Link to get donation by id
-		a.setAttribute("href", `http://127.0.0.1:5500/client/my_donation/my_donation.html?id=${rowData["id"]}`);
+		a.setAttribute("href", `http://127.0.0.1:5500/CommunityProject/client/my_donation/my_donation.html?id=${rowData["id"]}`);
 		cell1.appendChild(a);
 
 		row.appendChild(cell1);
@@ -74,12 +74,13 @@ function updateTable_donation(tableData) {
 function updateTable_request(tableData) {
 	const tbody = requests.querySelector("tbody");
 	tbody.innerHTML = "";
+	console.log(tableData[0]);
 	console.log(tableData.length);
 	for (let i = 0; i < tableData.length; i++) {
 		const row = document.createElement("tr");
 		const rowData = tableData[i];
 		const keys = ["id", "request_date", "status"];
-		const sneaky = sessionStorage.getItem("sneaky")
+
 		for (let j = 0; j <= 2; j++) {
 			const cell = document.createElement("td");
 			
@@ -92,8 +93,7 @@ function updateTable_request(tableData) {
 				} else {
 					cell.textContent = rowData[keys[j]];
 				}
-			}
-			 else {
+			} else {
 				let donationDate = new Date(rowData["request_date"]);
 				const days = donationDate.getFullYear() + "-" + (donationDate.getMonth() + 1) + "-" + donationDate.getDate();
 				cell.textContent = days;
