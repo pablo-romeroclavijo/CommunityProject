@@ -47,7 +47,7 @@ function updateTable_donation(tableData) {
 		const cell1 = document.createElement("td");
 		const a = document.createElement("a");
 		a.textContent = rowData["id"]; //Link to get donation by id
-		a.setAttribute("href", `http://127.0.0.1:5500/client/my_donation/my_donation.html?id=${rowData["id"]}`);
+		a.setAttribute("href", `http://127.0.0.1:5500/CommunityProject/client/my_donation/my_donation.html?id=${rowData["id"]}`);
 		cell1.appendChild(a);
 
 		row.appendChild(cell1);
@@ -69,13 +69,14 @@ function updateTable_donation(tableData) {
 function updateTable_request(tableData) {
 	const tbody = requests.querySelector("tbody");
 	tbody.innerHTML = "";
+	console.log(tableData[0]);
 	console.log(tableData.length);
 	for (let i = 0; i < tableData.length; i++) {
 		const row = document.createElement("tr");
 		const rowData = tableData[i];
-		const keys = ["id", "donation_date", "received", "status"];
+		const keys = ["id", "request_date", "status"];
 
-		for (let j = 0; j <= 3; j++) {
+		for (let j = 0; j <= 2; j++) {
 			const cell = document.createElement("td");
 
 			if (j != 1) {
@@ -85,7 +86,7 @@ function updateTable_request(tableData) {
 					cell.textContent = rowData[keys[j]];
 				}
 			} else {
-				let donationDate = new Date(rowData["donation_date"]);
+				let donationDate = new Date(rowData["request_date"]);
 				const days = donationDate.getFullYear() + "-" + (donationDate.getMonth() + 1) + "-" + donationDate.getDate();
 				cell.textContent = days;
 				//row.appendChild(cell);
@@ -112,7 +113,7 @@ async function getStock() {
 	const table = await request.json();
 	console.log(donations);
 
-	const request2 = await fetch("https://communityapp-gsbn.onrender.com/donation", options);
+	const request2 = await fetch("https://communityapp-gsbn.onrender.com/request", options);
 	const table_2 = await request2.json();
 
 	updateTable_donation(table);
