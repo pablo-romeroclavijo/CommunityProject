@@ -18,7 +18,7 @@ api.use(logRoutes);
 
 //Routes
 api.get("/", (req, res) => {
-	res.send("welcome to food waste api");
+	res.status(200).send("welcome to food waste api");
 });
 
 api.use("/user", userRouter);
