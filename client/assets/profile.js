@@ -4,11 +4,7 @@ const blurb = document.getElementById("welcomeBlurb");
 console.log(donations);
 backendURL = "https://communityapp-gsbn.onrender.com/";
 
-async function loadProfile() {
-	let headers = {};
-	if (localStorage.token) {
-		donations.style.display = "block";
-		headers = { Authorization: localStorage.token };
+
 async function loadProfile(){
     let headers = {}
     if (localStorage.token){
