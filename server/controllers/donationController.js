@@ -100,4 +100,4 @@ async function markReceived(req, res){
 
   
 
-module.exports = { createDonation, getAll, getOneById, verifyItem, modifyStatus, markReceived };  
+module.exports = { createDonation, getAll, getOneById, verifyItems, modifyStatus, markReceived };  
