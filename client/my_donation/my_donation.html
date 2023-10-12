@@ -14,6 +14,7 @@
 </head>
 <body height:100%>
     <h1>Carmour: A CommUnity</h1>
+    <hr />
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About</a>
@@ -23,7 +24,7 @@
     </div>
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-    <div class="container" id="container1" style = "text-align: center;">
+    <div class="container" id="container1" style = "text-align: center; position: relative">
         <div class="container" id="info-actions" style = >
 
             <h2 id ='donation_id'></h2>
@@ -48,17 +49,18 @@
         </div>
     </div>
 
+        <div class = "flexbox-container request-container" style = "position: relative; top: -200px">
+            <form id= "resquest-items" method='get' >
 
-        <div class = "flexbox-container request-container" style = >
             <div class = "row">
-                <div class = "flexbox-item" style = >
+                <div class = "flexbox-item" style = "position: relative; left: 170px">
                     <h2 style> Items donated</h2>
                 </div>
             </div>
 
             <div class = "row">
-                <div class = "flexbox-item" id = 'request-containter' style = "width: 500px">
-                <form id= "resquest-items" method='get' >                  
+                <div class = "flexbox-item" id = 'request-containter' style = "width: 500px; position: relative; top: -120px">
+                                  
                             <table id="request-table">
                                 <thead>
                                     <tr>
@@ -76,19 +78,23 @@
                 </div>
             </div>
                     
-        </div>
+        
 
-                <div class = "flexbox-container" id="submit-box" style="display: none; background-color: red; align-items: center">
-                    <div class = "flexbox-item"></div>
-                    <div class = "flexbox-item" style = "background-color: aqua; align-self: center">
-                        <input id ='update-donation' type= "submit" value="Update donation"  class = "loginButton" style = "width: 200px">
+                <div class = "flexbox-container" id="submit-box" style="display: none; align-items: center; flex-direction: column; width: 100%; position: relative; top: -100px">
+
+                    <div class = "column">
+                        <div class = "flexbox-item mx-auto" style = "align-self: center; position: relative; right: 100px">
+                            <input id ='update-donation' type= "submit" value="Update donation"  class = "loginButton" style = "width: 200px">
+                        </div>
                     </div>
-                    <div class = "flexbox-item"></div>
+                    
+
                 </div>
 
     
             </form>
         </div>
+    </div>
 
     </div>
     
