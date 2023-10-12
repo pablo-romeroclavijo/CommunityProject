@@ -45,7 +45,7 @@ async function loadProfile() {
 			instructionList.innerHTML = "";
 
 			const instructions = [
-				"Instruction 1: Check the table for the item you with to request and add it to your list.",
+				"Instruction 1: Check the table for the item you wish to request and add it to your list.",
 				"Instruction 2: This will add the item to the request table below. Once you are happy with your request hit submit.",
 				"Instruction 3: You will then recieve a QR code for collection along with a collection code as an alternative.",
 			];
@@ -147,7 +147,7 @@ function eventListeners() {
 	for (let i = 0; i < addButtons.length; i++) {
 		const button = addButtons[i];
 		button.addEventListener("click", addItem);
-		console.log(button)
+		console.log(button);
 	}
 }
 
