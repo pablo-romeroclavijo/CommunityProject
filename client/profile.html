@@ -3,40 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carmour</title>
+    <title>Carmour: Profile</title>
     <link rel="shortcut icon" href="./assets/images/favicom.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./assets/profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script defer src="./assets/profile.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-light custom-navbar sticky-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    
+    <h1>
+        <nav class="navbar navbar-expand-md sticky-top" style = "background-color: transparent; font-size: small;">
+            <a href="./home.html" class="navbar-brand" style = "color: black">Carmour CommUnity</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <i class="material-icons ikon" style="color: white; position: relative; top: 5px; right: 10px; cursor: pointer" onmouseover="this.style.color = 'lightgreen';" onmouseout="this.style.color = 'white'"><span class="material-symbols-outlined">
-                person
-                </span></i>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" style="color: white">
-                                <i class="material-icons" style="color: white; position: relative; top: 5px; right: 2px"><span class="material-symbols-outlined">
-                                    home
-                                </span></i>Home
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-        </div> 
-    </nav> 
-
-
+            <div class="navbar-collapse collapse" id="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="./home.html" class="nav-link" style = "color: black">Home</a></li>
+                    <li class="nav-item"><a href="./profile.html" class="nav-link" style = "color: black">Profile</a></li>
+                    <li class="nav-item"><a href="./make_donation/make-donation.html" class="nav-link" style = "color: black">Make Donation</a></li>
+                    <li class="nav-item"><a href="./make_request/make-request.html" class="nav-link" style = "color: black">Make Request</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link" style = "color: black">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        </h1>
+        <hr />
+        
       <div class = "flexbox-container">
         <div class = "flexbox-item flexbox-image-login">
             <img class = "logo" src = "assets/images/Logo.png" padding-top: -100px">
@@ -55,24 +49,45 @@
     </div>
 
 
-    <p style = "text-align: center; font-size: X-large; color: white">Your donations:</p>
+    
 
-    <div class = "flexbox-container tables" style = "position: relative; top: 470px">
+    <div class = "flexbox-container tables" style = "flex-direction: row; position: relative; height: auto; justify-content: space-evenly">
+            
+            <div class = "flexbox-item" style = "width: 500px; margin-right: auto">
+                <p style = "text-align: center; font-size: X-large; color: white; width:500px">Your donations:</p>
+                <table id = "donations" class = "profile-table" style="visibility: hidden; width: 500px">
+                    <thead>
+                        <tr>
+                            <th>Donation ID</th>
+                            <th>Date Received</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Your data rows will go here -->
+                    </tbody>
 
+                </table>
+            </div>
 
-    <table id = "donations" class = "profile-table" style="visibility: hidden">
-        <thead>
-            <tr>
-                <th>Donation ID</th>
-                <th>Date Received</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Your data rows will go here -->
-        </tbody>
+            <div class = "flexbox-item" style = "width: 500px; margin-right: auto"">
+                <p style = "text-align: center; font-size: X-large; color: white; width:500px">Your requests:</p>
 
-    </table> 
+                <table id = "requests" class = "request-table" style="visibility: hidden; width: 500px">
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Donation Date</th>
+                            <th>Received</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Your data rows will go here -->
+                    </tbody>
+
+                </table>
+            </div>
     </div>
 
 

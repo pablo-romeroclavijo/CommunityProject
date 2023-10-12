@@ -2,12 +2,14 @@
 
 html {
   overflow-y: scroll;
+  overflow-x: scroll;
 }
 
+
 h1 {
-    color: #36454F;
-    font-size: 50 px;
-    text-align: center;
+  color: #36454F;
+  font-size: 50 px;
+  text-align: center;
 }
 
 body {
