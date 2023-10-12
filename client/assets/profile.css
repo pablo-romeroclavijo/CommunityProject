@@ -17,6 +17,8 @@ body {
   min-height: 100vh; /* Use viewport height instead of height */
   width: 100%;
   overflow: hidden; /* Prevent content overflow */
+  overflow-y: scroll;
+  color: white
 }
 
 footer{
@@ -25,7 +27,9 @@ footer{
   bottom: 0;
   width: 100%;
 }
-
+.request-container{
+  flex-direction: column;
+}
 .table-manager{
   flex-direction: column;
 }
@@ -210,6 +214,10 @@ th {
     color: rgb(29, 113, 37);
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+.tables{
+ flex-direction: column;
 }
 
 .passwordInput{

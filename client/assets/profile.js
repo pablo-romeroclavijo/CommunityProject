@@ -1,11 +1,13 @@
 const message = document.getElementById("welcomeMessage");
 const donations = document.getElementById("donations");
+const blurb = document.getElementById("welcomeBlurb");
 console.log(donations);
 backendURL = "https://communityapp-gsbn.onrender.com/";
 
 async function loadProfile() {
 	let headers = {};
 	if (localStorage.token) {
+		donations.style.display = "block";
 		headers = { Authorization: localStorage.token };
 
 		const options = {
@@ -21,8 +23,11 @@ async function loadProfile() {
 		const data = await response.json();
 		console.log(data);
 		message.textContent = `Welcome back ${data.username}!`;
-
-		//message.textContent = `Welcome ${}`
+		if (data.isAdmin == true) {
+			blurb.textContent = "Please manage donations and requests made below";
+		} else {
+			blurb.textContent = "Find your donations and requests below!";
+		}
 	}
 }
 
@@ -75,7 +80,7 @@ async function getStock() {
 	const table_2 = await request2.json();
 
 	updateTable_donation(table);
-	updateTable_request();
+	//updateTable_request()
 	// updatePagination(table)
 
 	return (tableData = table);

@@ -191,12 +191,14 @@ function loadRequest(response){
     const itemList = response.responseItems
 
     console.log('isAdmin: ', isAdmin)
-    isAdmin == true ? tableNonAdmin(itemList) : tableAdmin(itemList)
+    isAdmin == true ?  tableAdmin(itemList): tableNonAdmin(itemList)
 }
 
 function tableAdmin(itemList){
+    console.log("Hi")
     const markCollected = document.getElementById('mark-colected')
     markCollected.style.display = 'block'
+    console.log(markCollected)
 
     const button = document.getElementById('collected-button')
     button.addEventListener('click', markAsCollected)
@@ -213,9 +215,10 @@ function tableAdmin(itemList){
     const actions = ['Open', 'Closed', 'Hold', 'Report']
     addActions(actions)
     const table = document.getElementById('request-table');
-
+    
     const tbody = table.querySelector('tbody');
     
+    console.log(table)
     tbody.innerHTML = '';
 
 

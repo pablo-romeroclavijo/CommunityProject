@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My-donation</title>
-    <link rel="shortcut icon" href="../assets/favicom.ico">
+    <title>Carmour: My Donation</title>
+    <link rel="shortcut icon" href="..//assets/images/favicom.ico">
     <link rel = "stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel = "stylesheet" href = "./my_donation.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -20,60 +20,70 @@
         <a href="#">Services</a>
         <a href="#">Clients</a>
         <a href="#">Contact</a>
-      </div>
+    </div>
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-    <div class="container" id="container1">
-        <div class="container" id="info-actions">
+    <div class="container" id="container1" style = "text-align: center;">
+        <div class="container" id="info-actions" style = >
 
             <h2 id ='donation_id'></h2>
             <h2 id ='donation_date'></h2>
             <h2 id ='donation_status'></h2>
             <h2 id ='donation_received'></h2>
 
-            <div class="dropdown">
-                <button>Actions</button>
-                <div class="dropdown-content" id="dropdown">
-
-                </div>
-            </div>
-
-            <div class = 'flexbox-item' id="mark-colected" style="display:none">
-                <button id='collected-button'>Mark as received</button>
-            </div>
-    </div>
-
-
-        <div id = 'request-container'>
             <div class = "flexbox-container">
-                <h2> Items donated</h2>
-            </div>
+                <div class = "flexbox-item" style = "position: relative; top: -90px">
+                    <div class="dropdown">
+                        <button class = "loginButton">Actions</button>
+                        <div class="dropdown-content" id="dropdown">
 
-            <form id= "resquest-items" method='get' >
-                <div class = "flexbox-container">
-
-                    <div class = 'flexbox-item' id = 'request-containter'>
-                    
-                        <table id="request-table">
-                            <thead>
-                                <tr>
-                                    <th>Product ID</th>
-                                    <th>Product</th>
-                                    <th>Quantity Donated</th>
-                                    <th>Expiration Date</th>
-                                    <th>Verified</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Data -->
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
                 </div>
 
-                <div class = "flexbox-container" id="submit-box" style="display: none;">
-                    <input id ='update-donation' type= "submit" value="Update donation" >
+            <div class = "flexbox-item" id="mark-colected" style="display:none; position:relative; top: -90px">
+                <button id='collected-button' class = "loginButton" style = "width: 150px">Mark as received</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div class = "flexbox-container request-container" style = >
+            <div class = "row">
+                <div class = "flexbox-item" style = >
+                    <h2 style> Items donated</h2>
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "flexbox-item" id = 'request-containter' style = "width: 500px">
+                <form id= "resquest-items" method='get' >                  
+                            <table id="request-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product ID</th>
+                                        <th>Product</th>
+                                        <th>Quantity Donated</th>
+                                        <th>Expiration Date</th>
+                                        <th>Verified</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data -->
+                                </tbody>
+                            </table>
+                </div>
+            </div>
                     
+        </div>
+
+                <div class = "flexbox-container" id="submit-box" style="display: none; background-color: red; align-items: center">
+                    <div class = "flexbox-item"></div>
+                    <div class = "flexbox-item" style = "background-color: aqua; align-self: center">
+                        <input id ='update-donation' type= "submit" value="Update donation"  class = "loginButton" style = "width: 200px">
+                    </div>
+                    <div class = "flexbox-item"></div>
                 </div>
 
     
