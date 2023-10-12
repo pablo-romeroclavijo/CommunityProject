@@ -76,7 +76,7 @@ function updateTable_request(tableData) {
 		const rowData = tableData[i];
 		const keys = ["id", "donation_date", "received", "status"];
 		
-		for (let j = 0; j < 4; j++){
+		for (let j = 0; j <= 3; j++){
 			const cell = document.createElement("td");
 
 			if (j != 1){
@@ -89,15 +89,11 @@ function updateTable_request(tableData) {
 				let donationDate = new Date(rowData["donation_date"]);
 				const days = donationDate.getFullYear() + "-" + (donationDate.getMonth() + 1) + "-" + donationDate.getDate();
 				cell.textContent = days;
-				row.appendChild(cell);
+				//row.appendChild(cell);
 		
 			}
-		row.appendChild(cell);
+			row.appendChild(cell);
 		}			
-
-
-		const cell = document.createElement("td");
-		row.appendChild(cell);
 
 		tbody.appendChild(row);
 	}
