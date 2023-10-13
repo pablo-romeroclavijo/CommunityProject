@@ -75,7 +75,7 @@
             </ul>
             
         </div>
-        <div class="flexbox-item flexbox-table-donation" id="donation-table" style="display: none">
+        <div class="flexbox-item flexbox-table-donation" id="donation-table" >
             <form id= "resquest-items" method='get' >
                 <div class = "flexbox-container">
 
@@ -100,7 +100,7 @@
                     </div>
                 </div>
 
-                <div class = "flexbox-container">
+                <div class = "flexbox-container donationslot">
                     <h4>Select a drop-off slot</h4>
                     <p>Drop-off can be booked up to ten days in the future during opening hours 8am to 11am</p>
                     <input id='date' type="date">
@@ -122,20 +122,16 @@
     
 
 
-<div class="container" id="container2" style="display: none; align-items: center">
-    <h1> Thanks for making a Donation</h1>
-    <img id ='QR' src= "" alt="" title="" />
+<div class="container" id="container2">
+    <h1> Thanks for making a Donation!</h1>
+    <img class = "qrimg" id ='QR' src= "" alt="" title="" />
     <h2 id="code"></h2>
     <h2 id="slot"></h2>
     
+
     <div class = "flexbox-container">
         <h2> Donated items</h2>
-    </div>
-
-
-    <div class = "flexbox-container">
-
-        <div class = 'flexbox-item'>
+        <div class = 'flexbox-item1'>
             <table id="requested-table">
                 <thead>
                     <tr>
