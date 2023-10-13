@@ -78,7 +78,7 @@ class Donation {
     }
 
     static async getAllSelf(id){
-        const response = await db.query("SELECT * FROM donations WHERE user_id = $1", [id]);
+        const response = await db.query("SELECT * FROM donations WHERE user_id = $1 ORDER BY id DESC", [id]);
         if (response.rows.length < 1) {
             throw new Error("Unable to locate donations.");
         }
