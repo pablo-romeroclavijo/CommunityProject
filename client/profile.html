@@ -39,7 +39,7 @@
                 <div class = "welcomeHeader"></div>
                     <p id = "welcomeMessage" class = "welcome">Either <a href = "index.html">Login</a>, or <a href = "register">create an account!</a></p>
 
-                    <p id = "welcomeBlurb" style = "font-size: medium;">Logging in with your account will allow you to view and track requests and donations you've made</p>
+                    <p id = "welcomeBlurb">Logging in with your account will allow you to view and track requests and donations you've made</p>
                     
         </div>
         </div>
@@ -47,7 +47,7 @@
     <div class="arrow bounce"></div>
     <div class = "flexbox-container2">  
             <div class = "flexbox-item">
-                <h1 class = "table-header">Your donations:</h1>
+                <h1 class = "table-header">Your donations</h1>
                 <table id = "donations" class = "profile-table">
                     <thead>
                         <tr>
@@ -60,13 +60,12 @@
                         <!-- Your data rows will go here -->
                     </tbody>
                 </table>
-                <ul class="pagination" id="donations-pagination">
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="previousPage_donations()">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="nextPage_donations()">Next</a></li>
+                <ul class="pagination" id="pagination">
+                    <!-- Pagination links will be added here dynamically -->
                 </ul>
             </div>
             <div class = "flexbox-item">
-                <h1 class = "table-header">Your requests:</h1>
+                <h1 class = "table-header">Your requests</h1>
 
                 <table id = "requests" class = "request-table">
                     <thead>
@@ -74,8 +73,6 @@
                             <th>Request ID</th>
                             <th>Request Date</th>
                             <th>Status</th>
-                            <th>Close Request</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -83,9 +80,8 @@
                     </tbody>
 
                 </table>
-                <ul class="pagination" id="requests-pagination">
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="previousPage_requests()">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="nextPage_requests()">Next</a></li>
+                <ul class="pagination" id="pagination">
+                    <!-- Pagination links will be added here dynamically -->
                 </ul>
             </div>
     </div>

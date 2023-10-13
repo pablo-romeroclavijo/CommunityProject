@@ -38,7 +38,7 @@ async function loadProfile() {
 		console.log(data);
 		message.textContent = `Welcome to the request page ${data.username}!`;
 
-		if (data.isAdmin !== true) {
+		if (data.isAdmin == true) {
 			blurb.textContent = "Please manage donations and requests made below.";
 		} else {
 			const instructionList = document.getElementById("instruction-list");
