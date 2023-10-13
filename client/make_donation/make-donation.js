@@ -117,6 +117,7 @@ async function addItem(e) {
 	requestTable.push(item);
 	console.log(item);
 
+
 	document.getElementById("donation-table").style.display = "block";
 
 	updateRequestTable();
@@ -217,8 +218,13 @@ async function sendRequest(donatedList) {
 }
 
 function loadRequest(response) {
-	document.getElementById("container1").style.display = "none";
-	document.getElementById("container2").style.display = "block";
+	const a = document.getElementById("container1")
+	a.style.display = "none";
+	console.log(a)
+	const b = document.getElementById("container2")
+	b.style.display = "block";
+	const c = document.getElementById("container3")
+	c.style.display = "hidden"
 
 	const QR = document.getElementById("QR");
 	const code = document.getElementById("code");

@@ -159,7 +159,7 @@ function previousPage() {
 // 			cell.appendChild(button);
 // 			row.appendChild(cell);
 
-// 			eventListeners();
+// 			
 // 		}
 
 // 		tbody.appendChild(row);
@@ -207,6 +207,8 @@ function updateTable_request(tableData) {
 			button.id = rowData.id;
 			cell.appendChild(button);
 			row.appendChild(cell);
+
+			eventListeners();
 		}
 
 		tbody.appendChild(row);
@@ -295,6 +297,7 @@ async function closeRequest(e) {
 
 	const cell = document.getElementById(`Status${e.target.id}`);
 	cell.textContent = "Collected";
+	alert("Request marked as collected.")
 	console.log(data);
 }
 
