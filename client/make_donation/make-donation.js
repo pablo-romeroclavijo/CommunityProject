@@ -117,10 +117,8 @@ async function addItem(e) {
 	requestTable.push(item);
 	console.log(item);
 
-	const container = document.getElementById("donation-table")
-	console.log(container)
-	container.style.display = "block"
-	///.style.display = "block";
+
+	document.getElementById("donation-table").style.display = "block";
 
 	updateRequestTable();
 
