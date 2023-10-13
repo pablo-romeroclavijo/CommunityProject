@@ -117,7 +117,6 @@ async function addItem(e) {
 	requestTable.push(item);
 	console.log(item);
 
-
 	document.getElementById("donation-table").style.display = "block";
 
 	updateRequestTable();
@@ -218,13 +217,13 @@ async function sendRequest(donatedList) {
 }
 
 function loadRequest(response) {
-	const a = document.getElementById("container1")
+	const a = document.getElementById("container1");
 	a.style.display = "none";
-	console.log(a)
-	const b = document.getElementById("container2")
+	console.log(a);
+	const b = document.getElementById("container2");
 	b.style.display = "block";
-	const c = document.getElementById("container3")
-	c.style.display = "hidden"
+	const c = document.getElementById("container3");
+	c.style.display = "hidden";
 
 	const QR = document.getElementById("QR");
 	const code = document.getElementById("code");
@@ -287,7 +286,7 @@ async function loadProfile() {
 		console.log(data);
 		message.textContent = `Welcome to the donation page ${data.username}!`;
 
-		if (data.isAdmin !== true) {
+		if (data.isAdmin == true) {
 			blurb.textContent = "Please manage donations and requests made below.";
 		} else {
 			const instructionList = document.getElementById("instruction-list");

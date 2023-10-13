@@ -37,43 +37,13 @@ async function loadProfile() {
 	}
 }
 
-// function updateTable_donation(tableData) {
-// 	const tbody = donations.querySelector("tbody");
-// 	tbody.innerHTML = "";
-// 	console.log(tableData.length);
-// 	for (let i = 0; i < tableData.length; i++) {
-// 		const row = document.createElement("tr");
-// 		const rowData = tableData[i];
-// 		const keys = ["id", "donation_date", "status"];
-
-// 		const cell1 = document.createElement("td");
-// 		const a = document.createElement("a");
-// 		a.textContent = rowData["id"]; //Link to get donation by id
-// 		a.setAttribute("href", `http://127.0.0.1:5500/client/my_donation/my_donation.html?id=${rowData["id"]}`);
-// 		cell1.appendChild(a);
-
-// 		row.appendChild(cell1);
-// 		const cell2 = document.createElement("td");
-
-// 		let donationDate = new Date(rowData["donation_date"]);
-// 		const days = donationDate.getFullYear() + "-" + (donationDate.getMonth() + 1) + "-" + donationDate.getDate();
-// 		cell2.textContent = days;
-// 		row.appendChild(cell2);
-
-// 		const cell3 = document.createElement("td");
-// 		cell3.textContent = rowData["status"];
-// 		row.appendChild(cell3);
-
-// 		tbody.appendChild(row);
-// 	}
-// }
-
 const itemsPerPage = 10;
 let currentPage = 1;
 
 function updateTable_donation(tableData) {
 	const tbody = donations.querySelector("tbody");
 	tbody.innerHTML = "";
+	// updatePagination(tableData);
 
 	const startIndex = (currentPage - 1) * itemsPerPage;
 	const endIndex = startIndex + itemsPerPage;
@@ -104,71 +74,10 @@ function updateTable_donation(tableData) {
 	}
 }
 
-// Function to navigate to the next page
-function nextPage() {
-	currentPage++;
-	updateTable_donation(tableData);
-}
-
-// Function to navigate to the previous page
-function previousPage() {
-	if (currentPage > 1) {
-		currentPage--;
-		updateTable_donation(tableData);
-	}
-}
-
-// function updateTable_request(tableData) {
-// 	const tbody = requests.querySelector("tbody");
-// 	tbody.innerHTML = "";
-// 	console.log(tableData[0]);
-// 	console.log(tableData.length);
-// 	for (let i = 0; i < tableData.length; i++) {
-// 		const row = document.createElement("tr");
-// 		const rowData = tableData[i];
-// 		const keys = ["id", "request_date", "status"];
-
-// 		for (let j = 0; j <= 2; j++) {
-// 			const cell = document.createElement("td");
-
-// 			if (j != 1) {
-// 				if (j == 2) {
-// 					cell.id = `Status${rowData.id}`;
-// 				}
-// 				if (rowData[keys[j]] == null) {
-// 					cell.textContent = "Unavailable";
-// 				} else {
-// 					cell.textContent = rowData[keys[j]];
-// 				}
-// 			} else {
-// 				let donationDate = new Date(rowData["request_date"]);
-// 				const days = donationDate.getFullYear() + "-" + (donationDate.getMonth() + 1) + "-" + donationDate.getDate();
-// 				cell.textContent = days;
-// 				//row.appendChild(cell);
-// 			}
-// 			row.appendChild(cell);
-// 		}
-
-// 		if (isAdmin == true) {
-// 			const cell = document.createElement("td");
-// 			const button = document.createElement("button");
-// 			button.innerHTML = "Collected";
-// 			button.classList.add("add-button");
-// 			button.classList.add("loginButton");
-// 			button.id = rowData.id;
-// 			cell.appendChild(button);
-// 			row.appendChild(cell);
-
-// 			
-// 		}
-
-// 		tbody.appendChild(row);
-// 	}
-// }
-
 function updateTable_request(tableData) {
 	const tbody = requests.querySelector("tbody");
 	tbody.innerHTML = "";
+	// updatePagination(tableData);
 
 	const startIndex = (currentPage - 1) * itemsPerPage;
 	const endIndex = startIndex + itemsPerPage;
@@ -198,20 +107,24 @@ function updateTable_request(tableData) {
 			row.appendChild(cell);
 		}
 
-		if (isAdmin == true) {
-			const cell = document.createElement("td");
-			const button = document.createElement("button");
-			button.innerHTML = "Collected";
-			button.classList.add("add-button");
-			button.classList.add("loginButton");
-			button.id = rowData.id;
-			cell.appendChild(button);
-			row.appendChild(cell);
-
-			eventListeners();
-		}
-
 		tbody.appendChild(row);
+	}
+}
+
+function updatePagination(tableData) {
+	const totalPages = Math.ceil(tableData.length / itemsPerPage);
+	const pagination = document.getElementById("pagination");
+	pagination.innerHTML = "";
+
+	for (let i = 1; i <= totalPages; i++) {
+		const listItem = document.createElement("li");
+		listItem.textContent = i;
+		listItem.addEventListener("click", () => {
+			currentPage = i;
+			updateTable();
+			updatePagination();
+		});
+		pagination.appendChild(listItem);
 	}
 }
 
@@ -249,7 +162,6 @@ async function getStock() {
 
 	updateTable_donation(table);
 	updateTable_request(table_2);
-	// updatePagination(table)
 
 	return (tableData = table);
 }
@@ -297,11 +209,13 @@ async function closeRequest(e) {
 
 	const cell = document.getElementById(`Status${e.target.id}`);
 	cell.textContent = "Collected";
-	alert("Request marked as collected.")
+	alert("Request marked as collected.");
 	console.log(data);
 }
 
-let tableData = [];
+let tableData = getStock();
 
 loadProfile();
 getStock();
+updateTable_donation();
+updateTable_request();

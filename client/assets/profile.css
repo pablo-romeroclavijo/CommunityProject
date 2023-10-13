@@ -19,8 +19,18 @@ body {
 .flexbox-container2{
   display: flex;
   flex-direction: row; /* Change to column to center vertically */
-  justify-content: space-between;
-  align-items: center;
+justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
 }
 
 footer{
@@ -48,11 +58,10 @@ footer{
 }
 
 .profile-table{
-  width: 40%;
+  width: 100%;
   align-self: center;
   padding-left: 20px;
   visibility: hidden; 
-  width: 500px; 
   font-size: large
   }
 .table-header{
@@ -62,11 +71,11 @@ footer{
   width:500px;
 }
   .request-table{
-    width: 40%;
+    width: 100%;
     align-self: center;
     padding-left: 20px;
     visibility: hidden; 
-    width: 500px; 
+
     font-size: large
     }
 
@@ -146,7 +155,7 @@ footer{
 
   .flexbox-item {
     margin: 100px;
-    width: 100%;
+    width: 90%;
     justify-content: center;
     align-self: auto;
   }
@@ -195,21 +204,33 @@ footer{
 }
 
 .flexbox-login-array{
-    width: 500px;
-    height: 100px;
-    margin-top: 25px;
-    max-width: 500px;
-    max-height: 100px;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  color: white;
+  width: 500px;
+  height: 400px;
+  max-width: 500px;
+  max-height: 400px;
+  margin-top: 240px;
+  /* box-shadow: 0px 0px 5px 5px rgb(253, 253, 253); */
 }
+#welcomeMessage{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#welcomeBlurb{
+  font-size: 20px;
+}
+
+
 
 .flexbox-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    height: 80vh;
-    width: 100%;
-}
+  }
 
 .login-array{
     display: flex;
@@ -221,8 +242,12 @@ footer{
     height: 400px;
     max-width: 500px;
     max-height: 400px;
-    margin-top: -80px;
+    margin-top: 100px;
     /* box-shadow: 0px 0px 5px 5px rgb(253, 253, 253); */
+}
+
+p{
+  text-align: center;
 }
 
 
