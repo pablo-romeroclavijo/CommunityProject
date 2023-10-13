@@ -26,6 +26,11 @@ footer{
   content: "/f070"
 }
 
+.nav-item a{
+  font-size: 20px;
+}
+
+
 .container {
     position: relative;
     width: 50%;
@@ -34,13 +39,11 @@ footer{
 
 .flexbox-item {
   height: 400px;
-	margin: 50px;
+	margin: 100px;
 	background-color: transparent;
   justify-content: center;
   color: white;
-  font-size: 20px;
-  font-weight: bold;
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
 
 .iframestyle {
@@ -56,28 +59,6 @@ footer{
   display:flex
 }
 
-.dbtn {
-  cursor: pointer;
-  border: 4px solid rgb(0, 0, 0);
-  color: black;
-  padding: 10px 20px 10px 20px;
-  border-radius: 70%;
-  width: 75px;
-  height: 75px;
-  transition: 1s; 
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background:rgb(252, 252, 252);
-  margin-left: 150px;
-}
-
- .dbtn:hover {
-  filter: drop-shadow(0px 0px 50px rgb(255, 255, 255));
-  color: rgb(255, 255, 255);
-}
-
-
 .flexbox-image-login{
   height: 600px;
   width: 600px;
@@ -89,25 +70,25 @@ footer{
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background: linear-gradient(45deg, #98c385 0%, rgb(8, 103, 3) 35%, #90e7e7 100%);
+  background: transparent;
   color: white;
   width: 500px;
-  height: 550px;
+  height: 400px;
   max-width: 500px;
-  max-height: 550px;
-  border-radius: 20px;
-  margin-top: -80px;
+  max-height: 400px;
+  /* margin-top: -80px; */
+  /* box-shadow: 0px 0px 5px 5px rgb(253, 253, 253); */
 }
 
 .directions{
   margin-left: 50px;
 }
 .flexbox-login-array{
-    width: 500px;
-    color:white;
-    font-size: 25px;
-    font-weight: bold;
-
+  width: 500px;
+  height: 100px;
+  margin-bottom: 400px;
+  max-width: 500px;
+  max-height: 100px;
 }
 
 
@@ -156,7 +137,6 @@ footer{
   height: 400px;
   max-width: 500px;
   max-height: 400px;
-  margin-top: 300px;
   /* box-shadow: 0px 0px 5px 5px rgb(253, 253, 253); */
 }
 
@@ -194,7 +174,7 @@ footer{
 .loginButton{
   border-radius: 8px;
   border-color: white;
-  height: 50px;
+  height: 40px;
   width: 100%;
   width: 100%;
   background-color: #ffffff;;

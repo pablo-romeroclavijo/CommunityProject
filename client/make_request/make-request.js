@@ -38,14 +38,14 @@ async function loadProfile() {
 		console.log(data);
 		message.textContent = `Welcome to the request page ${data.username}!`;
 
-		if (data.isAdmin !== true) {
+		if (data.isAdmin == true) {
 			blurb.textContent = "Please manage donations and requests made below.";
 		} else {
 			const instructionList = document.getElementById("instruction-list");
 			instructionList.innerHTML = "";
 
 			const instructions = [
-				"Instruction 1: Check the table for the item you with to request and add it to your list.",
+				"Instruction 1: Check the table for the item you wish to request and add it to your list.",
 				"Instruction 2: This will add the item to the request table below. Once you are happy with your request hit submit.",
 				"Instruction 3: You will then recieve a QR code for collection along with a collection code as an alternative.",
 			];
@@ -147,7 +147,7 @@ function eventListeners() {
 	for (let i = 0; i < addButtons.length; i++) {
 		const button = addButtons[i];
 		button.addEventListener("click", addItem);
-		console.log(button)
+		console.log(button);
 	}
 }
 
@@ -235,7 +235,7 @@ async function sendRequest(requestList) {
 }
 
 function loadRequest(response) {
-	console.log('aaa')
+	console.log("aaa");
 	document.getElementById("container3").style.display = "none";
 	document.getElementById("container2").style.display = "block";
 
@@ -243,7 +243,7 @@ function loadRequest(response) {
 	const code = document.getElementById("code");
 
 	const { event, itemList, request } = response;
-	code.textContent = "your collection code is: " + event.code;
+	code.textContent = "Your collection code is: " + event.code;
 	QR.setAttribute("src", event.QR);
 	QR.setAttribute("title", event.code);
 	updateRequestedTable(itemList);
